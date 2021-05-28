@@ -6,7 +6,7 @@
 
 
 <p align="center">
-<img src="https://i.ibb.co/2tPRKSL/icono-Comanda-Readme.png" width="400" height="400">
+<img src="https://i.ibb.co/XCtKZp9/NWRecurso-3.png" width="400" height="400">
 </p>
 
 
