@@ -14,8 +14,8 @@
 <br>
 <h1 align="center"> INTEGRANTES </h1> 
 
-* **Nahuel Palacios** ***** *Integrante Alfa* *****  **GITHUB:** [NahueP](https://github.com/NahueP)
-* **Agustin Rivola** ***** *Integrante Beta* ***** **GITHUB:** [agustinrv](https://github.com/agustinrv)
-* **Rodolfo Rondon** ***** *Integrante Gama* ***** **GITHUB:** [RondonLeonR](https://github.com/RondonLeonR)
+* Nahuel Palacios (Integrante Alfa)  ->GITHUB: [NahueP](https://github.com/NahueP)
+* Agustin Rivola  (Integrante Beta)  ->GITHUB: [agustinrv](https://github.com/agustinrv)
+* Rodolfo Rondon  (Integrante Gama)  ->GITHUB: [RondonLeonR](https://github.com/RondonLeonR)
 <br>
 <br>
