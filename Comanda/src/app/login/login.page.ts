@@ -12,7 +12,7 @@ import { UsuarioService } from '../servicios/usuario/usuario.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public unUsuario: Usuario;
+  public unUsuario: any={};
   public userValid: boolean = true;
   notfound: number = 0;
   userForm: FormGroup;
