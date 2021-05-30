@@ -2,9 +2,6 @@
 
 <h1 align="center"> :computer: 2021 - Grupo "Mayo" - PPS. :computer:</h1> 
 
-<h1 align="center"> LA COMANDA </h1> 
-
-
 <p align="center">
 <img src="https://i.ibb.co/H47dZrg/NWRecurso-3.png" width="500" height="500">
 </p>
