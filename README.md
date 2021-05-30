@@ -6,7 +6,7 @@
 
 
 <p align="center">
-<img src="https://i.ibb.co/H47dZrg/NWRecurso-3.png" width="400" height="400">
+<img src="https://i.ibb.co/H47dZrg/NWRecurso-3.png" width="500" height="500">
 </p>
 
 
