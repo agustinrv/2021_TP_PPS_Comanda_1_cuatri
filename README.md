@@ -17,7 +17,8 @@
 <br>
 <br>
 
-<h3> Semana 1 </h3> 
+<h1 align="center"> INTEGRANTES </h1> 
+
 <p align="center">
 <img src="https://i.ibb.co/gwyDJ3Z/Screenshot-6.png" >
 </p>
