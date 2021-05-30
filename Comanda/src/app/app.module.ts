@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +21,7 @@ import { AngularFireModule } from '@angular/fire';
             AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
            ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [SplashScreen,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

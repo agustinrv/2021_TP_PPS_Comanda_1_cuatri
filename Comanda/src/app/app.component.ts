@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router:Router) {
-    this.router.navigateByUrl('login');
+  constructor() {
+    
+    
   }
 }

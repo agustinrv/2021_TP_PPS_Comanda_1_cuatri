@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tpcomanda-59140": {
+      "hosting": {
+        "app": [
+          "tpcomanda-59140"
+        ]
+      }
+    }
+  }
+}
