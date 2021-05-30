@@ -19,5 +19,5 @@
 
 
 <p align="center">
-<img src="https://i.ibb.co/gwyDJ3Z/Screenshot-6.png" width="500" height="500">
+<img src="https://i.ibb.co/gwyDJ3Z/Screenshot-6.png" >
 </p>
