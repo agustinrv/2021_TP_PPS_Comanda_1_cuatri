@@ -21,3 +21,12 @@
 <p align="center">
 <img src="https://i.ibb.co/gwyDJ3Z/Screenshot-6.png" >
 </p>
+
+<p align="center">
+<img src="https://i.ibb.co/Sm1XwTj/20210530-185519-CUT-00-27-586-00-33-019.gif" >
+</p>
+
+<p align="center">
+<img src="https://i.ibb.co/HKp1f6C/Screenshot-6.png" >
+</p>
+
