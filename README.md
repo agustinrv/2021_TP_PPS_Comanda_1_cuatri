@@ -1,6 +1,6 @@
 <h1>2021 - 1 cuatrimestre - PPS - La Comanda</h1>
 
-<h1 align="center"> :computer: 2021 - PPS. :computer:</h1> 
+<h1 align="center"> :computer: 2021 - Grupo "Mayo" - PPS. :computer:</h1> 
 
 <h1 align="center"> LA COMANDA </h1> 
 
