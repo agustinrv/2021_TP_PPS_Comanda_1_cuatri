@@ -17,7 +17,7 @@
 <br>
 <br>
 
-<h3 align="center"> SEMANA 1 </h3> 
+<h1 align="center"> SEMANA 1 </h1> 
 
 <p align="center">
 <img src="https://i.ibb.co/gwyDJ3Z/Screenshot-6.png" >
@@ -27,7 +27,7 @@
 <img src="https://i.ibb.co/Sm1XwTj/20210530-185519-CUT-00-27-586-00-33-019.gif" >
 </p>
 
-<h3 align="center"> SEMANA 2 </h3> 
+<h1 align="center"> SEMANA 2 </h1> 
 
 <p align="center">
 <img src="https://i.ibb.co/HKp1f6C/Screenshot-6.png" >
