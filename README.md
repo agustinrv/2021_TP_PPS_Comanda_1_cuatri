@@ -13,7 +13,7 @@
 
 * Nahuel Palacios (Integrante Alfa)  ->GITHUB: [NahueP](https://github.com/NahueP)
 * Agustin Rivola  (Integrante Beta)  ->GITHUB: [agustinrv](https://github.com/agustinrv)
-* Rodolfo Rondon  (Integrante Gama)  ->GITHUB: [RondonLeonR](https://github.com/RondonLeonR)
+* Rodolfo Rondon  (Integrante Gamma)  ->GITHUB: [RondonLeonR](https://github.com/RondonLeonR)
 <br>
 <br>
 
