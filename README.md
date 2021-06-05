@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-<img src="https://i.ibb.co/Sm1XwTj/20210530-185519-CUT-00-27-586-00-33-019.gif" >
+<img src="https://i.imgur.com/JNlHA6S.gif" >
 </p>
 
 <h1 align="center"> SEMANA 2 </h1> 
