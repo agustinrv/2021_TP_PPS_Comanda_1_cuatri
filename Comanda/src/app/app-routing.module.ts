@@ -19,6 +19,16 @@ const routes: Routes = [
     redirectTo: 'splash',
     pathMatch: 'full'
   },
+  
+  {
+    path: 'home-super',
+    loadChildren: () => import('./supervisor/home-super/home-super.module').then( m => m.HomeSuperPageModule)
+  },
+  {
+    path: 'habilitar-cliente',
+    loadChildren: () => import('./supervisor/habilitar-cliente/habilitar-cliente.module').then( m => m.HabilitarClientePageModule)
+  },
+
 
 
   

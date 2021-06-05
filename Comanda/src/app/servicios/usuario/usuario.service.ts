@@ -60,7 +60,7 @@ export class UsuarioService {
   public ModificarUno(unUsuario: Usuario) {
     this.coleccionUsuarios.doc(unUsuario.id).set({ ...unUsuario }).then(() => {
 
-        alert('Modificado');
+        console.log('Modificado');
     });
   }
 }

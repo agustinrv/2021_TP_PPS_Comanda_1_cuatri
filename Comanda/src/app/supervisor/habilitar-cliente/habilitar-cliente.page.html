@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button routerLink="/home-super" slot="end">Volver</ion-button>
+    <ion-title style="text-align: center;">Clientes Pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <div *ngFor="let item of this.listadoUsuarios">
+
+      <!--3 Es igual a cliente-->
+      <div *ngIf="item.perfil == 3 && !item.habilitado">
+        <ion-card color="dark">
+          <img src={{item.foto}}>
+          <ion-card-header>
+            <ion-card-title>{{item.nombre}} {{item.apellido}}</ion-card-title>
+          </ion-card-header>
+      
+          <ion-card-content>
+            <ion-card-subtitle>DNI: {{item.DNI}}</ion-card-subtitle>
+            <ion-card-subtitle>Correo: {{item.correo}}</ion-card-subtitle>
+  
+            <ion-button color="success" [disabled]="item.habilitado" (click)="AceptarCliente(item)">Aceptar</ion-button>
+            <ion-button color="danger" [disabled]="item.habilitado" (click)="RechazarCliente(item)">Rechazar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+  
+</ion-content>

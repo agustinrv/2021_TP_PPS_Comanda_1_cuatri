@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { Usuario } from '../clases/Usuario/usuario';
 import { AuthService } from '../servicios/auth/auth.service';
 import { UsuarioService } from '../servicios/usuario/usuario.service';
+import {Eperfil} from '../enumerados/Eperfil/eperfil';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -47,7 +49,20 @@ export class LoginPage implements OnInit {
           
           localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
 
-          this.router.navigateByUrl('/home');
+          switch (usuarioLogin.perfil) {
+            case Eperfil.Dueño:
+              this.router.navigateByUrl('/home-super');
+              console.log(usuarioLogin.perfil);
+            break;
+            case Eperfil.Supervisor:
+              this.router.navigateByUrl('/home-super');
+              console.log(usuarioLogin.perfil);
+            break;
+            ///Agregar los otros homes
+            ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
+            
+          }
+          //this.router.navigateByUrl('/home');
         });
     }).catch(()=>{
       alert('usuario y/o contraseña incorrecta');
