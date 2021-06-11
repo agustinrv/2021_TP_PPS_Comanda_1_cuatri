@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
     this.unUsuario.clave=this.userForm.value.password;
 
 
-    console.log(this.unUsuario);
+    //console.log(this.unUsuario);
 
     this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then(()=>{
         this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
@@ -56,6 +56,10 @@ export class LoginPage implements OnInit {
             break;
             case Eperfil.Supervisor:
               this.router.navigateByUrl('/home-super');
+              console.log(usuarioLogin.perfil);
+            break;
+            case Eperfil.Anonimo:
+              this.router.navigateByUrl('/home-anonimo');
               console.log(usuarioLogin.perfil);
             break;
             ///Agregar los otros homes

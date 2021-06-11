@@ -1,0 +1,76 @@
+
+<!-- Back button with a default href -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-anonimo"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Solicitar Mesa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+    <ion-grid class="bg-dark h-100 ml-3 mr-3 mt-3 mb-3 rounded ">
+      <ion-row>
+        <ion-col class="text-center">
+          <ion-label color='light' >Cuantas Personas son?</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12' class="text-center">
+          <ion-button [color]='this.colorBoton1' (click)='this.SeleccionarCantidad(1)'>1</ion-button>
+          <ion-button [color]='this.colorBoton2' (click)='this.SeleccionarCantidad(2)'>2</ion-button>
+          <ion-button [color]='this.colorBoton3' (click)='this.SeleccionarCantidad(3)'>3</ion-button>
+          <ion-button [color]='this.colorBoton4' (click)='this.SeleccionarCantidad(4)'>4</ion-button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size='12'>
+          <ion-button expand='block' >Ingresar Cantidad</ion-button> <!--Podemos sacarlo o dejarlo para el final-->
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          
+          <ion-list>
+            <ion-radio-group value="Normal">
+              <ion-list-header>
+                <ion-label color='light' >Tipo de Mesa</ion-label>
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label color='light' >Normal</ion-label>
+                <ion-radio slot="start" value="Normal"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label color='light' >Discapacitados</ion-label>
+                <ion-radio slot="start" value="Discapacitados"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+
+          </ion-list>
+
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand='block'>Solicitar</ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+    
+    
+  
+    
+
+</ion-content>
+

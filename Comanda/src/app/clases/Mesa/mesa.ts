@@ -1,5 +1,5 @@
 export class Mesa {
-    public id:number;
+    public id:string;
     public numero:number;
     public cantidadDeComensales:number;
     public tipo:string;
