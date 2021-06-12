@@ -34,7 +34,7 @@
       </ion-row>
 
 
-      <ion-row>
+      <ion-row *ngIf='eligioCantidad'>
         <ion-col>
           
           <ion-list>
@@ -45,12 +45,12 @@
           
               <ion-item>
                 <ion-label color='light' >Normal</ion-label>
-                <ion-radio slot="start" value="Normal"></ion-radio>
+                <ion-radio slot="start" value="Normal" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Normal'></ion-radio>
               </ion-item>
           
               <ion-item>
                 <ion-label color='light' >Discapacitados</ion-label>
-                <ion-radio slot="start" value="Discapacitados"></ion-radio>
+                <ion-radio slot="start" value="Discapacitados" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Discapacitados'></ion-radio>
               </ion-item>
             </ion-radio-group>
 
@@ -60,9 +60,9 @@
 
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf='eligioCantidad'>
         <ion-col>
-          <ion-button expand='block'>Solicitar</ion-button>
+          <ion-button expand='block' (click)='this.SolicitarMesa()'>Solicitar</ion-button>
         </ion-col>
       </ion-row>
       

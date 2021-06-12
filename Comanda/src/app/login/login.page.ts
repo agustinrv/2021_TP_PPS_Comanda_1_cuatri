@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then(()=>{
         this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
           let datosUsuario:any=data;
-        
+        console.log('estoy');
           let usuarioLogin:any={};
           usuarioLogin.correo= this.unUsuario.correo;
           usuarioLogin.perfil= datosUsuario[0].perfil;
@@ -62,6 +62,10 @@ export class LoginPage implements OnInit {
               this.router.navigateByUrl('/home-anonimo');
               console.log(usuarioLogin.perfil);
             break;
+            case Eperfil.Metre:
+              this.router.navigateByUrl('/home-metre');
+              console.log(usuarioLogin.perfil);
+              break;
             ///Agregar los otros homes
             ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
             

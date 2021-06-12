@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'solicitar-mesa',
     loadChildren: () => import('./paginas/anonimo/solicitar-mesa/solicitar-mesa.module').then( m => m.SolicitarMesaPageModule)
   },
+  {
+    path: 'solicitudes-mesas',
+    loadChildren: () => import('./paginas/metre/solicitudes-mesas/solicitudes-mesas.module').then( m => m.SolicitudesMesasPageModule)
+  },
 
 
 

@@ -36,6 +36,6 @@ export class MesaService {
 
   public ModificarUno(unaMesa)
   {
-    this.coleccionMesas.doc(unaMesa.id).set({...unaMesa});
+    return this.coleccionMesas.doc(unaMesa.id).set({...unaMesa});
   }
 }

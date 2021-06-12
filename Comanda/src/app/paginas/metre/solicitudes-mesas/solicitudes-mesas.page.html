@@ -1,0 +1,53 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-metre"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Solicitudes de Mesas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-row class="mt-2">
+      <ion-col size='6'>
+        <div class="bg-dark p-2">
+          <ion-label class=" text-white " expand=''>Mesas Disponibles: {{this.cantidaMesasDisponibles}} </ion-label> 
+        </div>
+      </ion-col>
+      <ion-col size='6' color='dark'>
+        <div class="bg-dark p-2 text-center">
+          <ion-label class="text-white" expand='block'>Solicitudes: {{this.cantidaSolicitudes}} </ion-label> 
+        </div>
+      </ion-col>
+    </ion-row>
+        
+        
+  
+  
+  <div *ngFor="let unaSolicitud of this.listadoSolicitudes">
+
+    <!--3 Es igual a cliente-->
+    
+      <ion-card color="dark">
+        <img src={{unaSolicitud.cliente.foto}}>
+        <ion-card-header>
+          <ion-card-title *ngIf='unaSolicitud.cliente.apellido === undefined' style="text-transform: capitalize;">{{unaSolicitud.cliente.nombre}}</ion-card-title>
+          <ion-card-title *ngIf='unaSolicitud.cliente.apellido'>{{unaSolicitud.cliente.nombre}} {{unaSolicitud.cliente.apellido}}</ion-card-title>
+        </ion-card-header>
+    
+        <ion-card-content>
+          <ion-card-subtitle>Tipo de mesa: {{this.EtipoMesa[unaSolicitud.tipo]}}</ion-card-subtitle>
+          <ion-card-subtitle>Correo: {{unaSolicitud.cliente.correo}}</ion-card-subtitle>
+
+          <ion-button color="success" (click)="AsignarMesa(unaSolicitud)">Asignar Mesa</ion-button>
+          <ion-button color="danger" (click)="RechazarCliente(unaSolicitud)">Rechazar</ion-button>
+        </ion-card-content>
+      </ion-card>
+  </div>
+
+
+
+
+</ion-content>
