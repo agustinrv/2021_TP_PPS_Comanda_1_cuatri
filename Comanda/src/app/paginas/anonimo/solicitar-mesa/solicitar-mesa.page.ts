@@ -17,10 +17,10 @@ export class SolicitarMesaPage implements OnInit {
 
   public nuevaSolicitud:SolicitudMesa;
 
-  public colorBoton1:string='primary';
-  public colorBoton2:string='primary';
-  public colorBoton3:string='primary';
-  public colorBoton4:string='primary';
+  public colorBoton1:string='light';
+  public colorBoton2:string='light';
+  public colorBoton3:string='light';
+  public colorBoton4:string='light';
   
   public EtipoMesa=EtipoMesa;//no borrar sirve en html
   public eligioCantidad=false;
