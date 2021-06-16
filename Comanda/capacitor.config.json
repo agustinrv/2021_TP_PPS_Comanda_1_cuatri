@@ -1,0 +1,13 @@
+{
+  "appId": "comanda.app",
+  "appName": "El Mazacote",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2950
+    }
+  },
+  "cordova": {}
+}

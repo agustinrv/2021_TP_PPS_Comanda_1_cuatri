@@ -79,6 +79,12 @@ export class LoginPage implements OnInit {
     this.userForm.setValue({email: _correo ,password: _password});
    }
 
+   irRegistro()
+  {
+    this.router.navigateByUrl("alta-cliente");
+  }
+
+
 
   isValidField(field: string): string {
     const validateField = this.userForm.get(field);

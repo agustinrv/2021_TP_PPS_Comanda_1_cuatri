@@ -60,6 +60,22 @@ export class AuthService {
     });
   }
 
+  signAnonimo()
+  {
+
+    return new Promise((resolve, rejected) => {
+      this.firebaseAuth.signInAnonymously().then(response => {
+        
+        resolve(response);
+      }, (error: any) => {
+        console.log(error);
+        
+      });
+
+    });
+
+  }
+
   async EnviarMailDeVerificacion(){
     return await (await this.firebaseAuth.currentUser).sendEmailVerification(); 
   }

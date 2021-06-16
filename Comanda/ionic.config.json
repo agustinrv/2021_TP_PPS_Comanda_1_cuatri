@@ -1,7 +1,8 @@
 {
   "name": "Comanda",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

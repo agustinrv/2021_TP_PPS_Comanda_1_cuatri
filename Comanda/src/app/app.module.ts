@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 
 
 @NgModule({
@@ -21,7 +23,11 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
             AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
            ],
-  providers: [SplashScreen,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    SplashScreen,
+    BarcodeScanner,
+    Camera,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

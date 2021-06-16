@@ -1,0 +1,45 @@
+ion-content{
+    --background:url("../../../../assets/fondoLogin.png") center center fixed no-repeat;
+        
+}
+
+
+ion-title{
+    font-size: large;
+    text-align: center;
+    margin-right: 15px;
+    
+}
+
+ion-card{
+
+    --background: #751722;
+}
+
+ion-card-title{
+    font-size: large;
+}
+
+ion-item{
+    --background: #751722;
+    
+}
+
+.cardSelect{
+    position: relative; 
+    align-items: center;
+    justify-content: center;
+     align-self: center;
+     text-align: center;
+     width: 80% !important;
+     left: 8%;
+     background-color: #751722;;
+     color: whitesmoke;
+}
+
+
+.btnRegistro{
+    font-size: medium;
+    font-weight: bold;
+    
+}
