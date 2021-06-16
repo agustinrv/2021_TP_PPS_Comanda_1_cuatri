@@ -33,3 +33,10 @@
 <img src="https://i.ibb.co/HKp1f6C/Screenshot-6.png" >
 </p>
 
+<h1 align="center"> SEMANA 3 </h1> 
+
+<p align="center">
+<img src="https://i.imgur.com/qz7htkC.png" >
+</p>
+
+
