@@ -31,4 +31,6 @@ export class HomeAnonimoPage implements OnInit {
     this.router.navigateByUrl('solicitar-mesa');
   }
 
+  
+
 }

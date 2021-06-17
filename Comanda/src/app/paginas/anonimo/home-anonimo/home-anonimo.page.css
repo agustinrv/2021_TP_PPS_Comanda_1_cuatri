@@ -1,0 +1,30 @@
+ion-toolbar {
+  --ion-background-color: #000000 !important;
+  color: white;
+}
+
+ion-content {
+  --ion-background-color: #751722d0 !important;
+}
+
+.botonesMenu {
+  width: 20rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.botonSalir {
+  --background: rgb(34, 32, 32);
+  --border-radius:50%;
+  width: 50px;
+  height: 50px;
+}
+
+.my-custom-class {
+  --background: red !important;
+}
+/*# sourceMappingURL=home-anonimo.page.css.map */

@@ -7,6 +7,7 @@ import { Usuario } from '../clases/Usuario/usuario';
 import { AuthService } from '../servicios/auth/auth.service';
 import { UsuarioService } from '../servicios/usuario/usuario.service';
 import {Eperfil} from '../enumerados/Eperfil/eperfil';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -24,24 +25,29 @@ export class LoginPage implements OnInit {
     private router: Router,
     private authServicie:AuthService,
     private servicioUsuario:UsuarioService,
+    private loadingController:LoadingController,
+    private alertController:AlertController
 
   ) {
     this.unUsuario=new Usuario();
   }
   ngOnInit(): void {
     this.initForm();
+    console.log('asdasd');
   }
-  onLogin() {
+ async onLogin() {
     this.unUsuario.correo=this.userForm.value.email;
     this.unUsuario.clave=this.userForm.value.password;
+    console.log('estoy en login');
+    
+    let loading= this.presentLoading()
 
+    this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then( ()=>{
 
-    //console.log(this.unUsuario);
-
-    this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then(()=>{
-        this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
+        this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe( (data)=>{
+          
           let datosUsuario:any=data;
-        console.log('estoy');
+
           let usuarioLogin:any={};
           usuarioLogin.correo= this.unUsuario.correo;
           usuarioLogin.perfil= datosUsuario[0].perfil;
@@ -72,8 +78,10 @@ export class LoginPage implements OnInit {
           }
           //this.router.navigateByUrl('/home');
         });
-    }).catch(()=>{
-      alert('usuario y/o contraseña incorrecta');
+    }).catch(async()=>{
+      (await loading).onDidDismiss().then(()=>{
+        this.presentAlert('Usuario y/o contraseña incorrecta');///
+      })
     });
   
    }
@@ -99,4 +107,32 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
+
+  
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'loading',
+      message: 'Espere un momento',
+      duration: 2000
+    });
+    await loading.present();
+    
+    return loading;
+  }
+
+  async presentAlert(mensaje:string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      message: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+
+    
+  }
+  
 }

@@ -54,28 +54,28 @@ export class SolicitarMesaPage implements OnInit {
       switch(cantidad)
       {
         case 1:
-            this.colorBoton1='success';
-            this.colorBoton2='primary';
-            this.colorBoton3='primary';
-            this.colorBoton4='primary';
+            this.colorBoton1='primary';
+            this.colorBoton2='light';
+            this.colorBoton3='light';
+            this.colorBoton4='light';
           break;
         case 2:
-            this.colorBoton1='primary';
-            this.colorBoton2='success';
-            this.colorBoton3='primary';
-            this.colorBoton4='primary';
+            this.colorBoton1='light';
+            this.colorBoton2='primary';
+            this.colorBoton3='light';
+            this.colorBoton4='light';
           break;
         case 3:
-            this.colorBoton1='primary';
-            this.colorBoton2='primary';
-            this.colorBoton3='success';
-            this.colorBoton4='primary';
+            this.colorBoton1='light';
+            this.colorBoton2='light';
+            this.colorBoton3='primary';
+            this.colorBoton4='light';
           break;
           case 4:
-          this.colorBoton1='primary';
-          this.colorBoton2='primary';
-          this.colorBoton3='primary';
-          this.colorBoton4='success';
+          this.colorBoton1='light';
+          this.colorBoton2='light';
+          this.colorBoton3='light';
+          this.colorBoton4='primary';
           break;
       }
       this.eligioCantidad=true;
