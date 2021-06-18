@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
   }
   ngOnInit(): void {
     this.initForm();
-    console.log('asdasd');
+    
   }
  async onLogin() {
     this.unUsuario.correo=this.userForm.value.email;
@@ -44,8 +44,7 @@ export class LoginPage implements OnInit {
 
     this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then( ()=>{
 
-        this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe( (data)=>{
-          
+        this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
           let datosUsuario:any=data;
 
           let usuarioLogin:any={};
@@ -54,6 +53,7 @@ export class LoginPage implements OnInit {
           
           
           localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
+          console.log(usuarioLogin);
 
           switch (usuarioLogin.perfil) {
             case Eperfil.Dueño:

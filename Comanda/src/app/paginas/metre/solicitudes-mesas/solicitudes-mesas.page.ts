@@ -96,7 +96,7 @@ export class SolicitudesMesasPage implements OnInit {
       solicitudMesa.estadoSolicitud=EestadoSolicitudMesa.Aceptar;
       
       this.servicioMesas.ModificarUno(mesaModificar).then(()=>{
-        this.Toast('success','Mesa Asignada');
+        this.Toast('success','Mesa ' + mesaModificar.numero + ' asignada');
         
       });
       this.servicioSolicitudMesas.ModificarUno(solicitudMesa);

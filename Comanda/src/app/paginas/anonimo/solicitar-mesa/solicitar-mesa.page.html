@@ -45,12 +45,12 @@
           
               <ion-item class="fondoItem">
                 <ion-label color='light' >Normal</ion-label>
-                <ion-radio slot="start" color='primary' value="Normal" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Normal'></ion-radio>
+                <ion-radio slot="start" color='warning' value="Normal" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Normal'></ion-radio>
               </ion-item>
           
               <ion-item class='fondoItem'>
                 <ion-label  color='light' >Discapacitados</ion-label>
-                <ion-radio slot="start" color='primary' value="Discapacitados" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Discapacitados'></ion-radio>
+                <ion-radio slot="start" color='warning' value="Discapacitados" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Discapacitados'></ion-radio>
               </ion-item>
             </ion-radio-group>
 
@@ -62,7 +62,7 @@
 
       <ion-row *ngIf='eligioCantidad'>
         <ion-col>
-          <ion-button expand='block' color='primary' (click)='this.SolicitarMesa()'>Solicitar</ion-button>
+          <ion-button expand='block' color='warning' (click)='this.SolicitarMesa()'>Solicitar</ion-button>
         </ion-col>
       </ion-row>
       

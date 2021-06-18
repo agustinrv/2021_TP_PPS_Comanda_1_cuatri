@@ -17,10 +17,10 @@ export class SolicitarMesaPage implements OnInit {
 
   public nuevaSolicitud:SolicitudMesa;
 
-  public colorBoton1:string='light';
-  public colorBoton2:string='light';
-  public colorBoton3:string='light';
-  public colorBoton4:string='light';
+  public colorBoton1:string='dark';
+  public colorBoton2:string='dark';
+  public colorBoton3:string='dark';
+  public colorBoton4:string='dark';
   
   public EtipoMesa=EtipoMesa;//no borrar sirve en html
   public eligioCantidad=false;
@@ -54,28 +54,28 @@ export class SolicitarMesaPage implements OnInit {
       switch(cantidad)
       {
         case 1:
-            this.colorBoton1='primary';
-            this.colorBoton2='light';
-            this.colorBoton3='light';
-            this.colorBoton4='light';
+            this.colorBoton1='warning';
+            this.colorBoton2='dark';
+            this.colorBoton3='dark';
+            this.colorBoton4='dark';
           break;
         case 2:
-            this.colorBoton1='light';
-            this.colorBoton2='primary';
-            this.colorBoton3='light';
-            this.colorBoton4='light';
+            this.colorBoton1='dark';
+            this.colorBoton2='warning';
+            this.colorBoton3='dark';
+            this.colorBoton4='dark';
           break;
         case 3:
-            this.colorBoton1='light';
-            this.colorBoton2='light';
-            this.colorBoton3='primary';
-            this.colorBoton4='light';
+            this.colorBoton1='dark';
+            this.colorBoton2='dark';
+            this.colorBoton3='warning';
+            this.colorBoton4='dark';
           break;
           case 4:
-          this.colorBoton1='light';
-          this.colorBoton2='light';
-          this.colorBoton3='light';
-          this.colorBoton4='primary';
+          this.colorBoton1='dark';
+          this.colorBoton2='dark';
+          this.colorBoton3='dark';
+          this.colorBoton4='warning';
           break;
       }
       this.eligioCantidad=true;

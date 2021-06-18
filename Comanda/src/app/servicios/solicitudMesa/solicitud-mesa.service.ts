@@ -35,6 +35,12 @@ export class SolicitudMesaService {
     return this.coleccionSolicitudMesas;    
   }
 
+  public TraerUno(correo)
+  {
+    
+    return this.bd.collection(this.pathSolicitudMesa, ref=>ref.where("cliente.correo", "==", correo ));    
+  }
+
   public TraerSolicitudesPendientes() {
     return this.bd.collection(this.pathSolicitudMesa, ref=>ref.where("estadoSolicitud", "==", EestadoSolicitudMesa.Pendiente ));    
   }

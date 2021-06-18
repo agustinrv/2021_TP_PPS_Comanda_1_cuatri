@@ -23,7 +23,8 @@ const routes: Routes = [
   {
     path: 'habilitar-cliente',
     loadChildren: () => import('./supervisor/habilitar-cliente/habilitar-cliente.module').then( m => m.HabilitarClientePageModule)
-  },  {
+  },
+  {
     path: 'home-anonimo',
     loadChildren: () => import('./paginas/anonimo/home-anonimo/home-anonimo.module').then( m => m.HomeAnonimoPageModule)
   },
@@ -38,8 +39,12 @@ const routes: Routes = [
   {
     path: 'solicitudes-mesas',
     loadChildren: () => import('./paginas/metre/solicitudes-mesas/solicitudes-mesas.module').then( m => m.SolicitudesMesasPageModule)
+  },  {
+    path: 'mesa-clientes',
+    loadChildren: () => import('./paginas/mesa-clientes/mesa-clientes.module').then( m => m.MesaClientesPageModule)
   },
 
+  
 
 
   
