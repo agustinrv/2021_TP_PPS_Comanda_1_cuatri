@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home-metre</ion-title>
+    <ion-button  color="danger" slot="start" (click)="CerrarSesion()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <ion-title style="text-align: center;">Menu Metre</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+  
+    <ion-button class="botonesMenu" expand="block" color="success" (click)='VerSolicitudes()'>Solicitudes De Mesas</ion-button>
 
 </ion-content>

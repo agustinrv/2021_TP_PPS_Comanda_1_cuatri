@@ -1,6 +1,6 @@
 
-<!-- Back button with a default href -->
-<ion-header>
+
+<ion-header class="mb-3">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="home-anonimo"></ion-back-button>
@@ -10,9 +10,9 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content [fullscreen]="true" padding class="background">
   
-    <ion-grid class="bg-dark h-100 ml-3 mr-3 mt-3 mb-3 rounded ">
+    <ion-grid class="h-100 ml-3 mr-3  rounded " >
       <ion-row>
         <ion-col class="text-center">
           <ion-label color='light' >Cuantas Personas son?</ion-label>
@@ -29,28 +29,28 @@
       </ion-row>
       <ion-row>
         <ion-col size='12'>
-          <ion-button expand='block' >Ingresar Cantidad</ion-button> <!--Podemos sacarlo o dejarlo para el final-->
+          
         </ion-col>
       </ion-row>
 
 
-      <ion-row>
+      <ion-row *ngIf='eligioCantidad'>
         <ion-col>
           
-          <ion-list>
-            <ion-radio-group value="Normal">
-              <ion-list-header>
+          <ion-list  style="background-color: rgba(0, 0, 0, 0.61);">
+            <ion-radio-group value="Normal" >
+              <ion-list-header >
                 <ion-label color='light' >Tipo de Mesa</ion-label>
               </ion-list-header>
           
-              <ion-item>
+              <ion-item class="fondoItem">
                 <ion-label color='light' >Normal</ion-label>
-                <ion-radio slot="start" value="Normal"></ion-radio>
+                <ion-radio slot="start" color='warning' value="Normal" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Normal'></ion-radio>
               </ion-item>
           
-              <ion-item>
-                <ion-label color='light' >Discapacitados</ion-label>
-                <ion-radio slot="start" value="Discapacitados"></ion-radio>
+              <ion-item class='fondoItem'>
+                <ion-label  color='light' >Discapacitados</ion-label>
+                <ion-radio slot="start" color='warning' value="Discapacitados" (click)='this.nuevaSolicitud.tipo=EtipoMesa.Discapacitados'></ion-radio>
               </ion-item>
             </ion-radio-group>
 
@@ -60,9 +60,9 @@
 
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf='eligioCantidad'>
         <ion-col>
-          <ion-button expand='block'>Solicitar</ion-button>
+          <ion-button expand='block' color='warning' (click)='this.SolicitarMesa()'>Solicitar</ion-button>
         </ion-col>
       </ion-row>
       
@@ -73,4 +73,8 @@
     
 
 </ion-content>
+
+<ion-footer class='mt-3'>
+
+</ion-footer>
 

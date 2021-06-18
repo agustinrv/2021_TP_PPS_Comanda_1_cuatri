@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,WAAW,CAAA;EACP,sBAAsB,CAAA,mBAAC;EACvB,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,WAAW,CAAA;EACP,sBAAsB,CAAA,qBAAC;CAC1B",
+    "sources": [
+        "habilitar-cliente.page.scss"
+    ],
+    "names": [],
+    "file": "habilitar-cliente.page.css"
+}

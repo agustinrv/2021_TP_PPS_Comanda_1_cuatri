@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,sBAAsB,CAAA,mBAAC;EACvB,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,WAAW,CAAA;EACP,sBAAsB,CAAA,qBAAC;CAC1B;;AAED,AAAA,YAAY,CAAA;EACR,KAAK,EAAE,KAAK;EACZ,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;EACT,YAAY,EAAE,IAAI;EAClB,SAAS,EAAE,qBAAqB;CACnC",
+    "sources": [
+        "solicitudes-mesas.page.scss"
+    ],
+    "names": [],
+    "file": "solicitudes-mesas.page.css"
+}

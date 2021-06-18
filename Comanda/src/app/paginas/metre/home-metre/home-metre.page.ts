@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth/auth.service';
 
 @Component({
   selector: 'app-home-metre',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeMetrePage implements OnInit {
 
-  constructor() { }
+  listadoUsuarios : any;
+
+  constructor(
+    private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
+
+  }
+
+  public CerrarSesion(){
+    localStorage.removeItem('usuarioLogeado');
+    this.auth.LogOutCurrentUser();
+    this.router.navigateByUrl('/login');
+  }
+
+  public VerSolicitudes()
+  {
+    this.router.navigateByUrl('solicitudes-mesas');
   }
 
 }
+
+

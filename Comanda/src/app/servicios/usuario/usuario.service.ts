@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, } from '@angular/fire/fir
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/clases/Usuario/usuario';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 
 @Injectable({
   providedIn: 'root'
@@ -38,10 +39,16 @@ export class UsuarioService {
     return this.bd.collection(this.pathUsuarios, ref=>ref.where("correo", "==", correo ));    
   }
 
-  public TraerPorPerfil(perfil:string)
+  public TraerPorPerfil(perfil:Eperfil)
   {
     return this.bd.collection(this.pathUsuarios, ref=>ref.where("perfil", "==", perfil ));    
   }
+
+  public TraerClientesHabilitados()
+  {
+    return this.bd.collection(this.pathUsuarios, ref=>ref.where("perfil", "==", Eperfil.Cliente ).where("habilitado","==",true));    
+  }
+
 
   public AgregarUsuario(usuario: any) {
 
