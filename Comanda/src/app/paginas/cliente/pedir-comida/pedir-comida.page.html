@@ -1,0 +1,28 @@
+<ion-content class="background">
+  <!--Creo que tengo que agregar un filtro entre comida, bebidas, postres-->
+  <!--Al ir agregando los productos tendre que ir sumando los precios... (mostrar)
+    el tiempo total del pedido sera el tiempo de espera mas alto de los productos elegidos-->
+  <ion-card *ngFor="let item of this.listadoProductos">
+    <ion-card-header>
+      <ion-slides>
+        <ion-slide>
+          <img src={{item.fotoUno}}>
+        </ion-slide>
+        <ion-slide>
+          <img src={{item.fotoDos}}>
+        </ion-slide>
+        <ion-slide>
+          <img src={{item.fotoTres}}>
+        </ion-slide>
+      </ion-slides>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title color="light" align="center">{{item.nombre}}</ion-card-title>
+      <ion-card-subtitle color="light">Precio: {{item.precio}}$</ion-card-subtitle>
+      <ion-card-subtitle color="light">Tiempo de espera: {{item.tiempoDeEspera}} min.</ion-card-subtitle>
+      <br>
+      <ion-button color="success" expand="block">Agregar</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-content class="background">
+  <ion-grid *ngIf="this.usuarioDeBD != null">
+    <ion-row *ngFor="let msg of listadoMsg">
+      <ion-col size="9" *ngIf="this.usuarioDeBD.nombre !== msg.usuario" class="message other-message">
+        <b>{{ msg.usuario }}</b><br>
+        <span>{{ msg.msg }}</span>
+        <div class="time" style="text-align: right;"><br>
+        {{ msg.fecha | date:'short' }}</div>
+      </ion-col>
+      <ion-col offset="3" size="9" *ngIf="this.usuarioDeBD.nombre == msg.usuario" class="message my-message">
+        <b>{{ msg.usuario }}</b><br>
+        <span>{{ msg.msg }}</span>
+        <div class="time" style="text-align: right;"><br>
+        {{ msg.fecha | date:'short' }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="footerEstilo">
+  <ion-toolbar>
+    <ion-row align-items-center no-padding>
+      <ion-col size="10">
+        <ion-input [(ngModel)]="newMsg" class="message-input"></ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" [disabled]="newMsg === ''" 
+        class="msg-btn" (click)="EnviarMsg()">
+          <ion-icon name="send-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

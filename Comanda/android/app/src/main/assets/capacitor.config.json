@@ -1,0 +1,11 @@
+{
+	"appId": "comanda.app",
+	"appName": "Comanda",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 2950
+		}
+	}
+}

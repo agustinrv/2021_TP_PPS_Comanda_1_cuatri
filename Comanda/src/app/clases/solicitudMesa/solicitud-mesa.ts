@@ -6,4 +6,5 @@ export class SolicitudMesa {
     public cantidadDeComensales:number;
     public tipo:EtipoMesa;
     public estadoSolicitud:EestadoSolicitudMesa=EestadoSolicitudMesa.Pendiente;
+    public numMesa : number;
 }

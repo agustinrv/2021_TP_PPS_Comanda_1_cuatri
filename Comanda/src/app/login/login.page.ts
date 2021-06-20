@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { Usuario } from '../clases/Usuario/usuario';
 import { AuthService } from '../servicios/auth/auth.service';
 import { UsuarioService } from '../servicios/usuario/usuario.service';
-import {Eperfil} from '../enumerados/Eperfil/eperfil';
+import { Eperfil } from '../enumerados/Eperfil/eperfil';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
@@ -15,7 +15,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public unUsuario: any={};
+  public unUsuario: any = {};
   public userValid: boolean = true;
   notfound: number = 0;
   userForm: FormGroup;
@@ -23,76 +23,78 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authServicie:AuthService,
-    private servicioUsuario:UsuarioService,
-    private loadingController:LoadingController,
-    private alertController:AlertController
+    private authServicie: AuthService,
+    private servicioUsuario: UsuarioService,
+    private loadingController: LoadingController,
+    private alertController: AlertController
 
   ) {
-    this.unUsuario=new Usuario();
+    //this.unUsuario = new Usuario();
   }
   ngOnInit(): void {
     this.initForm();
-    
+    this.unUsuario = new Usuario();
   }
- async onLogin() {
-    this.unUsuario.correo=this.userForm.value.email;
-    this.unUsuario.clave=this.userForm.value.password;
+  async onLogin() {
+    this.unUsuario.correo = this.userForm.value.email;
+    this.unUsuario.clave = this.userForm.value.password;
     console.log('estoy en login');
-    
-    let loading= this.presentLoading()
 
-    this.authServicie.Login(this.unUsuario.correo,this.unUsuario.clave).then( ()=>{
+    let loading = this.presentLoading()
 
-        this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data)=>{
-          let datosUsuario:any=data;
+    this.authServicie.Login(this.unUsuario.correo, this.unUsuario.clave).then(() => {
 
-          let usuarioLogin:any={};
-          usuarioLogin.correo= this.unUsuario.correo;
-          usuarioLogin.perfil= datosUsuario[0].perfil;
-          
-          
-          localStorage.setItem('usuarioLogeado',JSON.stringify(usuarioLogin));
-          console.log(usuarioLogin);
+      this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data) => {
+        let datosUsuario: any = data;
 
-          switch (usuarioLogin.perfil) {
-            case Eperfil.Dueño:
-              this.router.navigateByUrl('/home-super');
-              console.log(usuarioLogin.perfil);
+        let usuarioLogin: any = {};
+        usuarioLogin.correo = this.unUsuario.correo;
+        usuarioLogin.perfil = datosUsuario[0].perfil;
+
+
+        localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioLogin));
+        console.log(usuarioLogin);
+
+        switch (usuarioLogin.perfil) {
+          case Eperfil.Dueño:
+            this.router.navigateByUrl('/home-super');
+            console.log(usuarioLogin.perfil);
             break;
-            case Eperfil.Supervisor:
-              this.router.navigateByUrl('/home-super');
-              console.log(usuarioLogin.perfil);
+          case Eperfil.Supervisor:
+            this.router.navigateByUrl('/home-super');
+            console.log(usuarioLogin.perfil);
             break;
-            case Eperfil.Anonimo:
-              this.router.navigateByUrl('/home-anonimo');
-              console.log(usuarioLogin.perfil);
+          case Eperfil.Anonimo:
+            this.router.navigateByUrl('/home-anonimo');
+            console.log(usuarioLogin.perfil);
             break;
-            case Eperfil.Metre:
-              this.router.navigateByUrl('/home-metre');
-              console.log(usuarioLogin.perfil);
-              break;
-            ///Agregar los otros homes
-            ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
-            
-          }
-          //this.router.navigateByUrl('/home');
-        });
-    }).catch(async()=>{
-      (await loading).onDidDismiss().then(()=>{
+          case Eperfil.Metre:
+            this.router.navigateByUrl('/home-metre');
+            console.log(usuarioLogin.perfil);
+            break;
+          case Eperfil.Cliente:
+            this.router.navigateByUrl('/home-cliente');
+            console.log(usuarioLogin.perfil);
+            break;
+          ///Agregar los otros homes
+          ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
+
+        }
+        //this.router.navigateByUrl('/home');
+      });
+    }).catch(async () => {
+      (await loading).onDidDismiss().then(() => {
         this.presentAlert('Usuario y/o contraseña incorrecta');///
       })
     });
-  
-   }
 
-   public Login(_correo,_password)
-   {
-    this.userForm.setValue({email: _correo ,password: _password});
-   }
+  }
 
-   irRegistro()
-  {
+  public Login(_correo, _password) {
+    this.userForm.setValue({ email: _correo, password: _password });
+  }
+
+  irRegistro() {
     this.router.navigateByUrl("alta-cliente");
   }
 
@@ -103,8 +105,8 @@ export class LoginPage implements OnInit {
     return !validateField.valid && validateField.touched
       ? 'is-invalid'
       : validateField.touched
-      ? 'is-valid'
-      : '';
+        ? 'is-valid'
+        : '';
   }
 
   private initForm(): void {
@@ -114,7 +116,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  
+
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'loading',
@@ -122,11 +124,11 @@ export class LoginPage implements OnInit {
       duration: 2000
     });
     await loading.present();
-    
+
     return loading;
   }
 
-  async presentAlert(mensaje:string) {
+  async presentAlert(mensaje: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Error',
@@ -138,7 +140,7 @@ export class LoginPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
 
-    
+
   }
-  
+
 }

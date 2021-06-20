@@ -93,6 +93,12 @@ export class HomeAnonimoPage implements OnInit {
     }
   }
 
+  ///Probando lo de buscar la mesa
+
+  public ProbandoSolicitarMesa(){
+    this.router.navigateByUrl('mesa-clientes');
+  }
+
   ///Aqui va la validacion de que la mesa sea de ese cliente;
   public IngresarAMesa()
   {

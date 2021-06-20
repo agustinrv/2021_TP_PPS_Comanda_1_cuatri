@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-button class="botonSalir " slot="start" (click)="CerrarSesion()">
+      <ion-icon class="icono" color='light' src='assets/puerta.svg'></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="background">
+  <br>
+
+  <!--Vista para que entre a la lista de espera-->
+  <ion-card *ngIf="this.BanderaMostrarBienvenido">
+    <ion-card-header>
+      <h1 style="color: white; text-align: center; font-size: 50px;">Bienvenido</h1>
+      <img src="../../../../assets/splash/center.png">
+    </ion-card-header>
+    <ion-card-content>
+      <p style="text-align: center; color:white;font-size: 20px;">Se necesita escanear el QR para ingresar a la sala de
+        espera
+      </p>
+      <br>
+      <br>
+      <br>
+      <ion-fab vertical="bottom" horizontal="center">
+        <ion-fab-button color="success" (click)="ScanQRBienvenido()">
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!---Esperando la asignacion del metre--->
+  <ion-card *ngIf="this.BanderaMostrarEspera && this.SolicitudDeMesaEnBD != null">
+    <ion-card-header *ngIf="this.SolicitudDeMesaEnBD.estadoSolicitud == this.enumEstadosSolicitud.Pendiente">
+      <h1 style="color: white; text-align: center; font-size: xx-large;">Esperando la asignacion de mesa</h1>
+      <img class="scale-up-center" src="../../../../assets/splash/center.png">
+    </ion-card-header>
+    <ion-card-header *ngIf="this.SolicitudDeMesaEnBD.estadoSolicitud == this.enumEstadosSolicitud.Aceptar">
+      <h1 style="color: white; text-align: center; font-size: xx-large;">Mesa Asignada!!</h1>
+      <h1 style="color: white; text-align: center; font-size: xx-large;">Su mesa es:
+        {{this.SolicitudDeMesaEnBD.numMesa}}</h1>
+    </ion-card-header>
+    <ion-card-content *ngIf='this.SolicitudDeMesaEnBD.estadoSolicitud == this.enumEstadosSolicitud.Aceptar'>
+      <p style="text-align: center; color: white;">Por favor. Escanee el QR de la mesa asignada</p>
+      <br>
+      <br>
+      <br>
+      <ion-fab vertical="bottom" horizontal="center">
+        <ion-fab-button color="success" (click)="ScanQRMesa()">
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-tabs *ngIf="this.BanderaMenuCliente" class="tabEstilo">
+    <ion-tab-bar slot="bottom"> 
+      <ion-tab-button tab="pedir">
+        <ion-icon color="light" name="fast-food"></ion-icon>
+        <ion-label color="light">Pedir</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="chat">
+        <ion-icon color="light" name="chatbubbles"></ion-icon>
+        <ion-label color="light">Chat</ion-label>
+        <!--<ion-badge>6</ion-badge>-->
+      </ion-tab-button>
+
+      <ion-tab-button tab="encuesta">
+        <ion-icon color="light" name="information-circle"></ion-icon>
+        <ion-label color="light">Encuesta</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+
+</ion-content>

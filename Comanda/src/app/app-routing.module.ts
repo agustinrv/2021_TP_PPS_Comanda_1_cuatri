@@ -18,11 +18,11 @@ const routes: Routes = [
   
   {
     path: 'home-super',
-    loadChildren: () => import('./supervisor/home-super/home-super.module').then( m => m.HomeSuperPageModule)
+    loadChildren: () => import('./paginas/supervisor/home-super/home-super.module').then( m => m.HomeSuperPageModule)
   },
   {
     path: 'habilitar-cliente',
-    loadChildren: () => import('./supervisor/habilitar-cliente/habilitar-cliente.module').then( m => m.HabilitarClientePageModule)
+    loadChildren: () => import('./paginas/supervisor/habilitar-cliente/habilitar-cliente.module').then( m => m.HabilitarClientePageModule)
   },
   {
     path: 'home-anonimo',
@@ -39,14 +39,18 @@ const routes: Routes = [
   {
     path: 'solicitudes-mesas',
     loadChildren: () => import('./paginas/metre/solicitudes-mesas/solicitudes-mesas.module').then( m => m.SolicitudesMesasPageModule)
-  },  {
-    path: 'mesa-clientes',
-    loadChildren: () => import('./paginas/mesa-clientes/mesa-clientes.module').then( m => m.MesaClientesPageModule)
   },
   {
     path: 'alta-cliente',
     loadChildren: () => import('./paginas/altas/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
   },
+  {
+    path: 'home-cliente',
+    loadChildren: () => import('./paginas/cliente/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+  },
+  
+
+
 
   
 
