@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button  color="danger" slot="start" (click)="CerrarSesion()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+
+    <ion-button class="botonSalir " slot="start" (click)="CerrarSesion()">
+      <ion-icon class="icono" color='light' src='assets/puerta.svg'></ion-icon>
+    </ion-button>
     <ion-title style="text-align: center;">Menu Metre</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,6 +11,8 @@
 
 <ion-content>
   
-    <ion-button class="botonesMenu" expand="block" color="success" (click)='VerSolicitudes()'>Solicitudes De Mesas</ion-button>
-
+    <ion-button class="botonesMenu" expand="block" color="warning" (click)='VerSolicitudes()'>Solicitudes De Mesas</ion-button>
+    
+   
+ 
 </ion-content>
