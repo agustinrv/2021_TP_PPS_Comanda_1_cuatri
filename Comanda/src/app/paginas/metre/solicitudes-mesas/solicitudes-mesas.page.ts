@@ -1,3 +1,4 @@
+
 import { EtipoMesa } from './../../../enumerados/EtipoMesa/etipo-mesa';
 import { element } from 'protractor';
 
@@ -10,7 +11,7 @@ import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { Mesa } from 'src/app/clases/Mesa/mesa';
-import { ToastController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-solicitudes-mesas',
@@ -21,7 +22,11 @@ export class SolicitudesMesasPage implements OnInit {
 
   public listadoClientes:Cliente[]=[];
   public listadoSolicitudes : SolicitudMesa[]=[];
+
   public listadoMesas:Mesa[]=[];
+  public listaMesasDisponibles:Mesa[]=[];
+
+
 
   public EestadoSolicitudMesa=EestadoSolicitudMesa;
   public EtipoMesa=EtipoMesa;
@@ -30,11 +35,14 @@ export class SolicitudesMesasPage implements OnInit {
   public cantidaMesasDisponibles:number=0;
   public cantidaSolicitudes:number=0;
 
+  public mesaSeleccionada:Mesa;
+
   constructor(
     private servicioSolicitudMesas: SolicitudMesaService,
     private servicioUsuarios:UsuarioService,
     private servicioMesas:MesaService,
-    public toastController: ToastController){ }
+    public toastController: ToastController,
+    public actionSheetController:ActionSheetController){ }
 
   ngOnInit() {
     this.CargarSolicitudes();
@@ -44,18 +52,17 @@ export class SolicitudesMesasPage implements OnInit {
   
   private CargarMesas()
   {
-    this.servicioMesas.TraerTodos().valueChanges().subscribe((data:Mesa[])=>{
+    this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
       this.listadoMesas=data;
       this.cantidaMesasDisponibles=0;
-      
-      this.listadoMesas.forEach((element) => {
-        if(!element.asignada)
-        {
-          this.cantidaMesasDisponibles++;
-        }
+
+      this.listaMesasDisponibles=this.listadoMesas.filter((value,index,array)=>{
+        return !value.asignada;
       });
 
-    })
+    
+
+    });
   }
 
   
@@ -69,31 +76,20 @@ export class SolicitudesMesasPage implements OnInit {
     });
   }
 
-  public AsignarMesa(solicitudMesa:SolicitudMesa){
+  public AsignarMesa(solicitudMesa:SolicitudMesa,mesaSeleccionada:Mesa){
     
-    let encontroSinAsignar=false;
-    let mesaModificar:Mesa;
-    console.log(mesaModificar);
-
-    console.log(this.listadoMesas);
-
-    for (let i=0;i<this.listadoMesas.length;i++)
-    {
-      if(!this.listadoMesas[i].asignada)
-      {
-        mesaModificar=this.listadoMesas[i];
-        break;
-      }
-    }
+    let mesaModificar:Mesa;  
+    mesaModificar=mesaSeleccionada;
       
     if(mesaModificar!=undefined)
     { 
       mesaModificar.asignada=true;
       mesaModificar.cliente=solicitudMesa.cliente;
-      mesaModificar.cantidadDeComensales=solicitudMesa.cantidadDeComensales;
-      mesaModificar.tipo=solicitudMesa.tipo;
+      //mesaModificar.cantidadDeComensales=solicitudMesa.cantidadDeComensales;
+      //mesaModificar.tipo=solicitudMesa.tipo;
 
       solicitudMesa.estadoSolicitud=EestadoSolicitudMesa.Aceptar;
+      solicitudMesa.numMesa=mesaSeleccionada.numero;
       
       this.servicioMesas.ModificarUno(mesaModificar).then(()=>{
         this.Toast('success','Mesa ' + mesaModificar.numero + ' asignada');
@@ -110,9 +106,76 @@ export class SolicitudesMesasPage implements OnInit {
   }
 
   public RechazarCliente(solicitudMesa){
-    console.log(solicitudMesa);
-    //this.servicioSolicitudMesas.BorrarUno(user);
+    this.servicioSolicitudMesas.BorrarUno(solicitudMesa);
   }
+
+  public ReiniciarMesas()
+  {
+    this.listadoMesas.forEach((element)=>{
+    
+      element.asignada=false;
+
+      this.servicioMesas.ModificarUno(element);
+    });
+
+  }
+
+  public ReiniciarSolicitudes()
+  {
+      this.servicioSolicitudMesas.BorrarTodos();
+  }
+
+  async SeleccionarMesa(unaSolicitud:SolicitudMesa) {
+    
+    let menu = this.GenerarMenu(unaSolicitud);
+
+    const actionSheet = await this.actionSheetController.create(menu);
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+  }
+
+  public GenerarMenu(unaSolicitud:SolicitudMesa)
+  {
+    let menu:any={};
+
+    menu.header='Mesas Disponibles';
+    menu.cssClass='menuMesas';
+    
+    let listaBotones:any[]=[];
+
+
+    
+    this.listaMesasDisponibles.forEach(element => {
+      
+        let unBoton:any={};
+        unBoton.text='Mesa '+ element.numero;
+        unBoton.handler=()=>{
+          this.AsignarMesa(unaSolicitud,element);
+        };
+        
+        listaBotones.push(unBoton);
+      });
+      
+      let botonCancelar:any={};
+      
+      botonCancelar.text='Cancelar';
+      botonCancelar.role='cancel';
+      botonCancelar.icon='close';
+      botonCancelar.handler=()=>{
+        console.log('Cancel clicked');
+      }
+      
+      listaBotones.push(botonCancelar)
+  
+      menu.buttons=listaBotones;
+
+
+      return menu;
+  
+  }
+
+
 
 
   
@@ -128,3 +191,4 @@ export class SolicitudesMesasPage implements OnInit {
 
 
 }
+

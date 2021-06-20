@@ -15,12 +15,9 @@ export class MesaService {
   constructor(private bd:AngularFirestore) 
   { 
     this.coleccionMesas=this.bd.collection(this.pathMesa);
+   
     
-    this.TraerTodos().valueChanges().subscribe((data)=>{
-      
-      this.listaMesas=data;
-      
-    });
+ 
   }
 
   public  AgregarUno(nuevaMesa:Mesa)
@@ -34,8 +31,17 @@ export class MesaService {
     return this.coleccionMesas;    
   }
 
+  public TraerOrdenado()
+  {
+    return this. bd.collection<Mesa>(this.pathMesa, ref => ref.orderBy('numero', 'asc'));
+  }
+
   public ModificarUno(unaMesa)
   {
     return this.coleccionMesas.doc(unaMesa.id).set({...unaMesa});
   }
+
+  
+ 
+  
 }

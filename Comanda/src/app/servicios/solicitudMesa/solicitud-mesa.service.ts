@@ -49,4 +49,16 @@ export class SolicitudMesaService {
   {
     return this.coleccionSolicitudMesas.doc(unSolicitudMesa.id).set({...unSolicitudMesa});
   }
+
+  public BorrarUno(unaSolicitud:SolicitudMesa) {
+    this.coleccionSolicitudMesas.doc(unaSolicitud.id).delete();
+  }
+
+  public BorrarTodos()
+  {
+      this.listaSolicitudMesas.forEach((element)=>{
+        this.BorrarUno(element);
+      })
+  }
+
 }

@@ -68,7 +68,7 @@ export class HomeAnonimoPage implements OnInit {
 
   public SolicitarMesa()
   {
-    if(this.tieneUnaSolicitud)
+    if(!this.tieneUnaSolicitud)
     {
       this.router.navigateByUrl('solicitar-mesa');
     }
