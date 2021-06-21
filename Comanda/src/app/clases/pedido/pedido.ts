@@ -4,10 +4,11 @@ import { Productos } from "../Productos/productos";
 
 export class Pedido {
     public id:string;
-    public listaProductos:Productos[];
+    public listaProductos:Productos[] = [];
     public cliente:Cliente;
     public estadoPedido:EestadoPedido;
-
-    //falta agregar numero mesa creo
-
+    public CocineroTermino = true;
+    public BarTenderTermino = true;
+    public precioTotal : any;
+    public tiempoEstimadoTotal : any;
 }

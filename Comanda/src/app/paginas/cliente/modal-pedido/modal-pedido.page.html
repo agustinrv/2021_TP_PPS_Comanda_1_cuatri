@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title align="center">Pedido</ion-title>
+    <ion-buttons slot="start" style="position: absolute;">
+      <ion-button (click)="dismiss()" color="danger">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let item of this.pedido.listaProductos">
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src={{item.fotoUno}}>
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">{{item.nombre}}</ion-label>
+      <ion-badge slot="end">Cant x{{item.cantidad}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-button color="success" expand="block" (click)="ConfirmarCompra()" [disabled]="this.pedido.listaProductos.length == 0">Confirmar Compra</ion-button>
+</ion-content>

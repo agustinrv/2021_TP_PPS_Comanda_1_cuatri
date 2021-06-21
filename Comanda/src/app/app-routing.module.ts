@@ -55,7 +55,11 @@ const routes: Routes = [
   {
     path: 'pedidos-cocinero',
     loadChildren: () => import('./paginas/cocinero/pedidos-cocinero/pedidos-cocinero.module').then( m => m.PedidosCocineroPageModule)
+  },  {
+    path: 'modal-pedido',
+    loadChildren: () => import('./paginas/cliente/modal-pedido/modal-pedido.module').then( m => m.ModalPedidoPageModule)
   },
+
 
  
 
