@@ -1,8 +1,9 @@
 import { EestadoPedido } from './../../../enumerados/EestadoPedido/eestado-pedido';
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido/pedido';
-import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
+import { ModalController } from '@ionic/angular';
+import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido.component';
 
 @Component({
   selector: 'app-pedidos-cocinero',
@@ -13,7 +14,8 @@ export class PedidosCocineroPage implements OnInit {
 
   public listaPedidos:Pedido[]=[];
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido
-  constructor(private servicioPedido:PedidosService) { 
+  constructor(private servicioPedido:PedidosService,
+              private modalController: ModalController) { 
 
   }
 
@@ -21,13 +23,31 @@ export class PedidosCocineroPage implements OnInit {
       this.CargarPedidos();
   }
 
-  public CargarPedidos()
+  private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidos=data;
     });
   }
 
+  public async SeleccionarPedido(unPedido?:Pedido)
+  {
+    const modal = await this.modalController.create({
+      component: CompModalPedidoComponent,
+      componentProps: {
+        'pedidoSeleccionado': unPedido,
+      }
+    });
+//Deberia devolver que se cerro el modal, sirve para devolver el pedido
+    console.log(await modal.present())
+    //modificar en la BD que el pedido ya se completo por parte del cocinero
+    //si el pedido esta completo por todas las partes avisar al mozo
 
+  }
+
+  public TerminarPedido($event)
+  {
+
+  }
 
 }

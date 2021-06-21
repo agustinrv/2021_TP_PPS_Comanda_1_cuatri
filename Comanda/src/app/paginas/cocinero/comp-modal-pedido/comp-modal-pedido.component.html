@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)='CerrarModal()'>
+      <ion-back-button defaultHref="pedidos-cocinero"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor='let unProducto of this.pedidoSeleccionado.listaProductos'>
+    <ion-item *ngIf='!unProducto.terminado'>
+      <ion-avatar slot="start">
+        <img [src]='unProducto.fotoUno'>
+      </ion-avatar>
+      <ion-label>{{unProducto.nombre}}</ion-label>
+      <ion-button color='danger' (click)='this.TerminarProducto(unProducto.nombre)'>Terminado</ion-button>
+    </ion-item>
+  </div>
+  
+  
+</ion-content>

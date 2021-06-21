@@ -8,4 +8,6 @@ export class Pedido {
     public cliente:Cliente;
     public estadoPedido:EestadoPedido;
 
+    //falta agregar numero mesa creo
+
 }
