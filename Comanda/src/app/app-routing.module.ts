@@ -32,11 +32,11 @@ const routes: Routes = [
     path: 'home-metre',
     loadChildren: () => import('./paginas/metre/home-metre/home-metre.module').then( m => m.HomeMetrePageModule)
   },
-  {
+  {//CLiente/anonimo
     path: 'solicitar-mesa',
     loadChildren: () => import('./paginas/anonimo/solicitar-mesa/solicitar-mesa.module').then( m => m.SolicitarMesaPageModule)
   },
-  {
+  {//Metre
     path: 'solicitudes-mesas',
     loadChildren: () => import('./paginas/metre/solicitudes-mesas/solicitudes-mesas.module').then( m => m.SolicitudesMesasPageModule)
   },
@@ -48,6 +48,17 @@ const routes: Routes = [
     path: 'home-cliente',
     loadChildren: () => import('./paginas/cliente/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
   },
+  {
+    path: 'home-cocinero',
+    loadChildren: () => import('./paginas/cocinero/home-cocinero/home-cocinero.module').then( m => m.HomeCocineroPageModule)
+  },
+  {
+    path: 'pedidos-cocinero',
+    loadChildren: () => import('./paginas/cocinero/pedidos-cocinero/pedidos-cocinero.module').then( m => m.PedidosCocineroPageModule)
+  },
+
+ 
+
   
 
 
