@@ -7,5 +7,8 @@ export class Pedido {
     public listaProductos:Productos[] = [];
     public cliente:Cliente;
     public estadoPedido:EestadoPedido;
-
+    public CocineroTermino = true;
+    public BarTenderTermino = true;
+    public precioTotal : any;
+    public tiempoEstimadoTotal : any;
 }

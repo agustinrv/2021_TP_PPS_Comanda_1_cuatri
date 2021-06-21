@@ -19,5 +19,5 @@
       <ion-badge slot="end">Cant x{{item.cantidad}}</ion-badge>
     </ion-item>
   </ion-list>
-  <ion-button color="success" expand="block">Confirmar Compra</ion-button>
+  <ion-button color="success" expand="block" (click)="ConfirmarCompra()" [disabled]="this.pedido.listaProductos.length == 0">Confirmar Compra</ion-button>
 </ion-content>

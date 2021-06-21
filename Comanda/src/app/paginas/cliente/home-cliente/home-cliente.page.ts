@@ -107,7 +107,6 @@ export class HomeClientePage implements OnInit {
       this.BanderaMostrarEspera = false;
       this.BanderaMostrarBienvenido = false;
 
-      //this.router.navigateByUrl('home-cliente/pedir');
     }
     else {
       this.Toast('danger', 'Esta no fue la mesa asignada');

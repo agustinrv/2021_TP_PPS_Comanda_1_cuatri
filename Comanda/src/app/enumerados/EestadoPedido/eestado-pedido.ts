@@ -1,1 +1,1 @@
-export enum EestadoPedido {Recibido,Preparando,Terminado,Entregado}
+export enum EestadoPedido {Recibido,Preparando,Terminado,Entregado,SolitaCuenta,Pagado}

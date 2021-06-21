@@ -46,12 +46,12 @@
       <br>
       <ion-item color="dark">
         <ion-label>Cantidad</ion-label>
-        <ion-select interface="popover" value="1" (onChanged)="ElegirCantidad(item)">
-          <ion-select-option value="2" (click)="item.cantidad = 1">1</ion-select-option>
-          <ion-select-option value="2">2</ion-select-option>
-          <ion-select-option value="3">3</ion-select-option>
-          <ion-select-option value="4">4</ion-select-option>
-          <ion-select-option (click)="item.cantidad = 5">5</ion-select-option>
+        <ion-select [(ngModel)]="item.cantidad" interface="popover" [value]="1">
+          <ion-select-option [value]="1">1</ion-select-option>
+          <ion-select-option [value]="2">2</ion-select-option>
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-button color="warning" expand="block" (click)="AgregarProducto(item)">Agregar</ion-button>
