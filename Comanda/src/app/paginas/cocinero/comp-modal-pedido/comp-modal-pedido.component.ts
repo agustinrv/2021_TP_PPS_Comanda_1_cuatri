@@ -1,3 +1,4 @@
+import { EtipoMesa } from 'src/app/enumerados/EtipoMesa/etipo-mesa';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
@@ -12,13 +13,11 @@ import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 })
 export class CompModalPedidoComponent implements OnInit {
 
-  @Input() pedidoSeleccionado:Pedido;
-  
+  @Input() pedidoSeleccionado:Pedido;  
 
   constructor(private modalController:ModalController,private servicioPedidos:PedidosService) { }
 
   ngOnInit() {
-    this.pedidoSeleccionado.listaProductos
   }
 
   public CerrarModal(pedidoTerminado?:Pedido) {

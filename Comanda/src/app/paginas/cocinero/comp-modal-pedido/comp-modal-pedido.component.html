@@ -10,7 +10,7 @@
 <ion-content>
   <div *ngFor='let unProducto of this.pedidoSeleccionado.listaProductos'>
     <ion-item *ngIf='!unProducto.terminado'>
-      <ion-avatar slot="start">
+      <ion-avatar slot="start" > 
         <img [src]='unProducto.fotoUno'>
       </ion-avatar>
       <ion-label>{{unProducto.nombre}}</ion-label>

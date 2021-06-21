@@ -13,7 +13,7 @@ import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido
 export class PedidosCocineroPage implements OnInit {
 
   public listaPedidos:Pedido[]=[];
-  public EestadoPedido:EestadoPedido=EestadoPedido.Recibido
+  public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController) { 
 
