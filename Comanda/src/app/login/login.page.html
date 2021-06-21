@@ -1,5 +1,5 @@
 <ion-header class="tituloLogin">
-  
+
 </ion-header>
 <ion-content [fullscreen]="true" padding class="background">
   <div class="login card">
@@ -14,8 +14,8 @@
               [class]="isValidField('email')" />
             <div class="invalid-feedback" style="font-family: sans-serif; color: white;">
               <span style="color:white" *ngIf="userForm.get('email').errors?.required">
-                 *Debe ingresar un correo
-              </span>              
+                *Debe ingresar un correo
+              </span>
             </div>
           </div>
           <div class="form-group">
@@ -23,7 +23,7 @@
             <input type="password" class="form-control" id="password" placeholder="Contraseña"
               formControlName="password" [class]="isValidField('password')" />
             <div class="invalid-feedback" style="font-family: sans-serif;">
-              <span  style="color:white"  *ngIf="userForm.get('password').errors?.required">
+              <span style="color:white" *ngIf="userForm.get('password').errors?.required">
                 *Debe ingresar una contraseña
               </span>
             </div>
@@ -33,31 +33,45 @@
             Ingresar
           </button>
           <hr>
-          
-          
+
+          <ion-fab vertical="top" horizontal="end" slot="fixed">
+            <ion-fab-button color="light">
+              <ion-icon name="person"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="bottom">
+              <ion-fab-button (click)="this.Login('juanmetre@gmail.com','123123')">
+                <ion-icon src="assets/animales/mono.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('barTender@gmail.com','123123')">
+                <ion-icon src="assets/animales/leon.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('rodorondon98@gmail.com','123123')">
+                <ion-icon src="assets/animales/gato.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('nahuelpalacios@hotmail.com','123123')">
+                <ion-icon src="assets/animales/perro.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('agustinrivola2000@gmail.com','123123')">
+                <ion-icon src="assets/animales/pajaro.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('pepitoCliente@gmail.com','123123')">
+                <ion-icon src="assets/animales/caballo.svg"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('anonimo@anonimo.com','123123')">
+                <ion-icon name='person'></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="this.Login('cocinero@cocinero.com','123123')">
+                <ion-icon src='assets/animales/cocinero.svg'></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
 
 
-                  <ion-fab vertical="top" horizontal="end" slot="fixed">
-                      <ion-fab-button color="light">
-                        <ion-icon name="person"></ion-icon>
-                      </ion-fab-button>
-                    <ion-fab-list side="bottom">
-                      <ion-fab-button (click)="this.Login('juanmetre@gmail.com','123123')"><ion-icon src="assets/animales/mono.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('barTender@gmail.com','123123')"><ion-icon src="assets/animales/leon.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('rodorondon98@gmail.com','123123')"><ion-icon src="assets/animales/gato.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('nahuelpalacios@hotmail.com','123123')"><ion-icon src="assets/animales/perro.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('agustinrivola2000@gmail.com','123123')"><ion-icon src="assets/animales/pajaro.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('pepitoCliente@gmail.com','123123')"><ion-icon src="assets/animales/caballo.svg"></ion-icon></ion-fab-button>
-                      <ion-fab-button (click)="this.Login('anonimo@anonimo.com','123123')"><ion-icon name='person'></ion-icon></ion-fab-button>
-                    </ion-fab-list>
-                </ion-fab>
-          
-          
-          
+
         </fieldset>
       </form>
-      
-      <button  class="btn btn-light rounded-pill btn-block " (click)="irRegistro()"  >
+
+      <button class="btn btn-light rounded-pill btn-block " (click)="irRegistro()">
         Registrarse
       </button>
     </div>
