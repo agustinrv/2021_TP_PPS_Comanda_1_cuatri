@@ -4,7 +4,7 @@ import { Productos } from "../Productos/productos";
 
 export class Pedido {
     public id:string;
-    public listaProductos:Productos[];
+    public listaProductos:Productos[] = [];
     public cliente:Cliente;
     public estadoPedido:EestadoPedido;
 

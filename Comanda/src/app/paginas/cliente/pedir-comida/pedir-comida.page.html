@@ -1,8 +1,31 @@
+<ion-fab horizontal="start" vertical="bottom">
+  <ion-button color="dark" (click)="modalPedido()"><ion-icon name="cart-outline"></ion-icon> ${{precioDelPedido}}</ion-button>
+</ion-fab>
 <ion-content class="background">
   <!--Creo que tengo que agregar un filtro entre comida, bebidas, postres-->
   <!--Al ir agregando los productos tendre que ir sumando los precios... (mostrar)
     el tiempo total del pedido sera el tiempo de espera mas alto de los productos elegidos-->
+
+  <!--<ion-segment color="warning" slot="fixed">
+    <ion-segment-button value="comidas">
+      <ion-label>Comidas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="bebidas">
+      <ion-label>Bebidas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="postres">
+      <ion-label>Postres</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <br><br>-->
+  
+
   <ion-card *ngFor="let item of this.listadoProductos">
+    <ion-fab horizontal="end" vertical="top">
+      <ion-fab-button color="warning">
+        <ion-label>x{{item.cantidad}}</ion-label>
+      </ion-fab-button>
+    </ion-fab>
     <ion-card-header>
       <ion-slides>
         <ion-slide>
@@ -21,8 +44,19 @@
       <ion-card-subtitle color="light">Precio: {{item.precio}}$</ion-card-subtitle>
       <ion-card-subtitle color="light">Tiempo de espera: {{item.tiempoDeEspera}} min.</ion-card-subtitle>
       <br>
-      <ion-button color="success" expand="block">Agregar</ion-button>
+      <ion-item color="dark">
+        <ion-label>Cantidad</ion-label>
+        <ion-select interface="popover" value="1" (onChanged)="ElegirCantidad(item)">
+          <ion-select-option value="2" (click)="item.cantidad = 1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option (click)="item.cantidad = 5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button color="warning" expand="block" (click)="AgregarProducto(item)">Agregar</ion-button>
     </ion-card-content>
   </ion-card>
-  
+
+
 </ion-content>
