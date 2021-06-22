@@ -11,4 +11,5 @@ export class Pedido {
     public BarTenderTermino = true;
     public precioTotal : any;
     public tiempoEstimadoTotal : any;
+    public numMesa : any;
 }

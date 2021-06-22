@@ -1,10 +1,21 @@
-<ion-fab horizontal="start" vertical="bottom">
-  <ion-button color="dark" (click)="modalPedido()"><ion-icon name="cart-outline"></ion-icon> ${{precioDelPedido}}</ion-button>
+<ion-fab horizontal="end" vertical="top">
+  <ion-button color="warning" (click)="modalPedido()">
+    <ion-icon name="cart-outline"></ion-icon> ${{precioDelPedido}}
+  </ion-button>
 </ion-fab>
+<ion-fab vertical="bottom" horizontal="end">
+  <ion-fab-button color="success" (click)="ScanQRProductos()">
+    <ion-icon name="qr-code-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title align="center" color="light">Realizar Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="background">
   <!--Creo que tengo que agregar un filtro entre comida, bebidas, postres-->
-  <!--Al ir agregando los productos tendre que ir sumando los precios... (mostrar)
-    el tiempo total del pedido sera el tiempo de espera mas alto de los productos elegidos-->
 
   <!--<ion-segment color="warning" slot="fixed">
     <ion-segment-button value="comidas">
@@ -18,14 +29,14 @@
     </ion-segment-button>
   </ion-segment>
   <br><br>-->
-  
+
 
   <ion-card *ngFor="let item of this.listadoProductos">
-    <ion-fab horizontal="end" vertical="top">
+    <!--<ion-fab horizontal="end" vertical="top">
       <ion-fab-button color="warning">
         <ion-label>x{{item.cantidad}}</ion-label>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab>-->
     <ion-card-header>
       <ion-slides>
         <ion-slide>
@@ -57,6 +68,5 @@
       <ion-button color="warning" expand="block" (click)="AgregarProducto(item)">Agregar</ion-button>
     </ion-card-content>
   </ion-card>
-
 
 </ion-content>

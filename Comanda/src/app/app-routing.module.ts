@@ -67,19 +67,17 @@ const routes: Routes = [
     path: 'pedidos-bartender',
     loadChildren: () => import('./paginas/bartender/pedidos-bartender/pedidos-bartender.module').then( m => m.PedidosBartenderPageModule)
   },
+  {
+    path: 'home-mesero',
+    loadChildren: () => import('./paginas/mesero/home-mesero/home-mesero.module').then( m => m.HomeMeseroPageModule)
+  },
+  {
+    path: 'chat-mesero',
+    loadChildren: () => import('./paginas/mesero/chat-mesero/chat-mesero.module').then( m => m.ChatMeseroPageModule)
+  },
 
-
- 
-
-  
-
-
-
-  
-
-
-  
 ];
+
 
 @NgModule({
   imports: [

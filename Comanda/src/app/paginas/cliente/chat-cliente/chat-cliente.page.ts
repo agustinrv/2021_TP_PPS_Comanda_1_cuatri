@@ -51,7 +51,8 @@ export class ChatClientePage implements OnInit {
       usuario: this.usuarioDeBD.nombre,
       fecha: new Date().getTime(),
       msg: this.newMsg,
-      mesa: this.solicitudDeMesaEncontrada.numMesa
+      mesa: this.solicitudDeMesaEncontrada.numMesa,
+      estado : "EnviadoCliente"
     }
 
     this.msgSvc.CrearMsgRT(msgNuevo);

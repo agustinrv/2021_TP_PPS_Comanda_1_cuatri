@@ -18,7 +18,7 @@ export class PedidosService {
     this.coleccionPedidos=this.bd.collection(this.pathPedido); 
   }
 
-  public  AgregarUno(nuevaPedido:Pedido)
+  public AgregarUno(nuevaPedido:Pedido)
   {    
     nuevaPedido.id=this.bd.createId();
     this.coleccionPedidos.doc(nuevaPedido.id).set({...nuevaPedido});    
