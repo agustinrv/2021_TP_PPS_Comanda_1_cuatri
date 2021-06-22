@@ -3,15 +3,13 @@ ion-toolbar{
     color: white;
 }
 
-ion-content{
-    --ion-background-color: #751722 !important;
+ion-content.background {
+    --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
 }
 
-.botonesMenu{
-    width: 20rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+
+ion-toolbar {
+    --ion-background-color: #751722 !important;
+    color: white;
 }

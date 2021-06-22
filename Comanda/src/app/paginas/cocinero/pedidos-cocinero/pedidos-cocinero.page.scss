@@ -1,11 +1,14 @@
-ion-toolbar{
-    --ion-background-color: #000000 !important;
+ion-content.background {
+    --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
+}
+  
+
+ion-toolbar {
+    --ion-background-color: #751722 !important;
     color: white;
 }
 
-ion-content{
-    --ion-background-color: #751722 !important;
-}
 
 .botonesMenu{
     width: 20rem;

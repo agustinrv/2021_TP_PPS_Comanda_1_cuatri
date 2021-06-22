@@ -12,7 +12,9 @@ import { ModalPedidoComponent } from '../modal-pedido/modal-pedido.component';
 })
 export class PedidosBartenderPage implements OnInit {
 
-  public listaPedidos:Pedido[]=[];
+  public listaPedidosRecibidos:Pedido[]=[];
+  public listaPedidosPreparando:Pedido[]=[];
+
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController) { 
@@ -26,7 +28,13 @@ export class PedidosBartenderPage implements OnInit {
   private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
-      this.listaPedidos=data.filter((value,index,array)=>{
+      this.listaPedidosRecibidos=data.filter((value,index,array)=>{
+        return value.BarTenderTermino==false;
+      });
+    });
+
+    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+      this.listaPedidosPreparando=data.filter((value,index,array)=>{
         return value.BarTenderTermino==false;
       });
     });
