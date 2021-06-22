@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start" (click)='CerrarModal()'>
-      <ion-back-button defaultHref="pedidos-cocinero"></ion-back-button>
+      <ion-back-button defaultHref="pedidos-bartender"></ion-back-button>
     </ion-buttons>
     <ion-title>Detalles pedido</ion-title>
   </ion-toolbar>
@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <div *ngFor='let unProducto of this.pedidoSeleccionado.listaProductos'>
-      <ion-item *ngIf='unProducto.tipo==="comida" || unProducto.tipo==="postre"' style='--border-color:white' >
+      <ion-item *ngIf='unProducto.tipo==="bebida"'style='--border-color:white' >
         <ion-avatar slot="start" > 
           <img [src]='unProducto.fotoUno'>
         </ion-avatar>
