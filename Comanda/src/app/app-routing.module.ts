@@ -75,6 +75,8 @@ const routes: Routes = [
     path: 'chat-mesero',
     loadChildren: () => import('./paginas/mesero/chat-mesero/chat-mesero.module').then( m => m.ChatMeseroPageModule)
   },
+ 
+
 
 ];
 

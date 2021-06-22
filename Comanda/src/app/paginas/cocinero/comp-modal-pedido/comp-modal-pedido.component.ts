@@ -41,6 +41,7 @@ export class CompModalPedidoComponent implements OnInit {
 //eN HTML QUE SEA UN CHECK COMO EL DE LA PAGINA
   public CambiarEstado(nombreProducto:string)
   {
+    this.pedidoSeleccionado.estadoPedido=EestadoPedido.Preparando;
     for(let producto of this.pedidoSeleccionado.listaProductos)
     {
       if(producto.nombre==nombreProducto)
@@ -89,7 +90,7 @@ export class CompModalPedidoComponent implements OnInit {
 
       if(this.pedidoSeleccionado.BarTenderTermino)
       {
-        this.pedidoSeleccionado.estadoPedido=EestadoPedido.Preparando;
+        this.pedidoSeleccionado.estadoPedido=EestadoPedido.Terminado;
         //push notificiacion???
       }
       this.servicioPedidos.ModificarUno(this.pedidoSeleccionado);

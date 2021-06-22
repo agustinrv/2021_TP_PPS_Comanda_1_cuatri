@@ -41,6 +41,8 @@ export class ModalPedidoComponent implements OnInit {
 
   public CambiarEstado(nombreProducto:string)
   {
+      this.pedidoSeleccionado.estadoPedido=EestadoPedido.Preparando;
+
     for(let producto of this.pedidoSeleccionado.listaProductos)
     {
       if(producto.nombre==nombreProducto)
@@ -88,7 +90,7 @@ export class ModalPedidoComponent implements OnInit {
 
       if(this.pedidoSeleccionado.CocineroTermino)
       {
-        this.pedidoSeleccionado.estadoPedido=EestadoPedido.Preparando;
+        this.pedidoSeleccionado.estadoPedido=EestadoPedido.Terminado;
         //push notificiacion???
       }
       this.servicioPedidos.ModificarUno(this.pedidoSeleccionado);

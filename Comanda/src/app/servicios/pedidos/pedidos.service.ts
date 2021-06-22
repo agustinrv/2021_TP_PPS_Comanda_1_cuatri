@@ -42,5 +42,13 @@ export class PedidosService {
     return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Recibido));    
   }
 
+  public TraerPedidosPreparando(){
+    return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Preparando));    
+  }
+
+  public TraerPedidosTerminado(){
+    return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Terminado));    
+  }
+
   
 }
