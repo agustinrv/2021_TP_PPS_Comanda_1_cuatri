@@ -26,7 +26,9 @@ export class PedidosCocineroPage implements OnInit {
   private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
-      this.listaPedidos=data;
+      this.listaPedidos=data.filter((value,index,array)=>{
+        return value.CocineroTermino==false;
+      });
     });
   }
 
@@ -38,16 +40,8 @@ export class PedidosCocineroPage implements OnInit {
         'pedidoSeleccionado': unPedido,
       }
     });
-//Deberia devolver que se cerro el modal, sirve para devolver el pedido
-    console.log(await modal.present())
-    //modificar en la BD que el pedido ya se completo por parte del cocinero
-    //si el pedido esta completo por todas las partes avisar al mozo
-
+    await modal.present();
   }
 
-  public TerminarPedido($event)
-  {
-
-  }
 
 }

@@ -9,4 +9,5 @@ export class Productos {
     public fotoDos:string;
     public fotoTres:string;
     public terminado:boolean=false;
+    public cantidad:number;
 }
