@@ -59,6 +59,14 @@ const routes: Routes = [
     path: 'modal-pedido',
     loadChildren: () => import('./paginas/cliente/modal-pedido/modal-pedido.module').then( m => m.ModalPedidoPageModule)
   },
+  {
+    path: 'home-mesero',
+    loadChildren: () => import('./paginas/mesero/home-mesero/home-mesero.module').then( m => m.HomeMeseroPageModule)
+  },
+  {
+    path: 'chat-mesero',
+    loadChildren: () => import('./paginas/mesero/chat-mesero/chat-mesero.module').then( m => m.ChatMeseroPageModule)
+  },
 
 
  

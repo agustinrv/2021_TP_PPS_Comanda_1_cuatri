@@ -20,6 +20,7 @@ export class ModalPedidoPage implements OnInit {
     private PedidoSvc : PedidosService) { }
 
   ngOnInit() {
+    //console.log(this.pedido);
   }
 
   dismiss(){
@@ -59,10 +60,22 @@ export class ModalPedidoPage implements OnInit {
 
     this.pedido.tiempoEstimadoTotal = tiempoAux;
     this.pedido.estadoPedido = EestadoPedido.Recibido;
-    //this.PedidoSvc.AgregarUno(this.pedido);
+    console.log(this.pedido);
+    this.PedidoSvc.AgregarUno(this.pedido);
     //Limpio el Pedido, para pueda crear otro nuevo si desea.
     this.pedido = new Pedido();
+    this.pedido.precioTotal = 0;
     this.dismiss();
+  }
+
+  BorrarProducto(producto){
+    for(let i = 0; i < this.pedido.listaProductos.length; i++){
+      if(producto.nombre == this.pedido.listaProductos[i].nombre){
+        this.pedido.precioTotal -= this.pedido.listaProductos[i].precio * this.pedido.listaProductos[i].cantidad;
+      
+        this.pedido.listaProductos.splice(i,1);
+      }
+    }
   }
 
 }

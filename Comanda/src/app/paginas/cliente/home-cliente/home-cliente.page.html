@@ -1,12 +1,16 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar>
 
     <ion-button class="botonSalir " slot="start" (click)="CerrarSesion()">
       <ion-icon class="icono" color='light' src='assets/puerta.svg'></ion-icon>
     </ion-button>
   </ion-toolbar>
-</ion-header>
-
+</ion-header>-->
+<ion-fab horizontal="start" vertical="top">
+  <ion-fab-button color="dark" (click)="CerrarSesion()">
+    <ion-icon src='assets/puerta.svg'></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
 <ion-content class="background">
   <br>

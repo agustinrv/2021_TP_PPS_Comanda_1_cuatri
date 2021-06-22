@@ -1,20 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title align="center" color="light">Chat</ion-title>
+  <ion-toolbar class="headerToolbar">
+    <ion-title align="center">Chat de mesa {{numMesa}}</ion-title>
+    <ion-buttons slot="start" style="position: absolute;">
+      <ion-button (click)="dismiss()" color="danger">
+        ❌
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="background">
-  <ion-grid *ngIf="this.usuarioDeBD != null">
+  <ion-grid>
     <ion-row *ngFor="let msg of listadoMsg">
-      <ion-col size="9" *ngIf="this.usuarioDeBD.nombre !== msg.usuario && this.solicitudDeMesaEncontrada.numMesa == msg.mesa" class="message other-message">
+      <ion-col size="9" *ngIf="msg.usuario != 'Mozo' && msg.mesa == this.numMesa" class="message other-message">
         <b>{{ msg.usuario }}</b><br>
         <span>{{ msg.msg }}</span>
         <div class="time" style="text-align: right;"><br>
         {{ msg.fecha | date:'short' }}</div>
       </ion-col>
-      <ion-col offset="3" size="9" *ngIf="this.usuarioDeBD.nombre == msg.usuario && this.solicitudDeMesaEncontrada.numMesa == msg.mesa" class="message my-message">
-        <b>{{ msg.usuario }}</b><br>
+      <ion-col offset="3" size="9" *ngIf="msg.usuario == 'Mozo' && msg.mesa == this.numMesa" class="message my-message">
+        <b>Mozo</b><br>
         <span>{{ msg.msg }}</span>
         <div class="time" style="text-align: right;"><br>
         {{ msg.fecha | date:'short' }}</div>

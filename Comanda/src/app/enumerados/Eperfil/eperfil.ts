@@ -1,1 +1,1 @@
-export enum Eperfil {Dueño,Supervisor,Empleado,Cliente,Anonimo,Metre,Cocinero,BarTender}
+export enum Eperfil {Dueño,Supervisor,Empleado,Cliente,Anonimo,Metre,Cocinero,BarTender,Mozo}

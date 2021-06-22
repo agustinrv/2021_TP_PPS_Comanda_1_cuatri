@@ -80,6 +80,10 @@ export class LoginPage implements OnInit {
             this.router.navigateByUrl('/home-cocinero');
             console.log(usuarioLogin.perfil);
             break;
+          case Eperfil.Mozo:
+            this.router.navigateByUrl('home-mesero');
+            console.log(usuarioLogin.perfil);
+            break;
           ///Agregar los otros homes
           ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
 
