@@ -91,6 +91,9 @@ export class LoginPage implements OnInit {
             break;
           case Eperfil.BarTender:
             this.router.navigateByUrl('/home-bartender');
+            break;
+          case Eperfil.Mozo:
+            this.router.navigateByUrl('home-mesero');
             console.log(usuarioLogin.perfil);
             break;
           ///Agregar los otros homes

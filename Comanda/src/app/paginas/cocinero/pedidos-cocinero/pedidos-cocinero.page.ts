@@ -12,8 +12,9 @@ import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido
 })
 export class PedidosCocineroPage implements OnInit {
 
-  public listaPedidos:Pedido[]=[];
-  public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
+  public listaPedidosRecibidos:Pedido[]=[];
+  public listaPedidosPreparando:Pedido[]=[];
+  public EestadoPedido=EestadoPedido;
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController) { 
 
@@ -26,10 +27,16 @@ export class PedidosCocineroPage implements OnInit {
   private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
-      this.listaPedidos=data.filter((value,index,array)=>{
+      this.listaPedidosRecibidos=data.filter((value,index,array)=>{
         return value.CocineroTermino==false;
       });
     });
+
+    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+      this.listaPedidosPreparando=data.filter((value,index,array)=>{
+         return value.CocineroTermino==false;
+      })
+    })
   }
 
   public async SeleccionarPedido(unPedido?:Pedido)

@@ -1,0 +1,47 @@
+ion-content.background {
+    --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
+}
+
+.headerToolbar{
+    --ion-background-color: #751722 !important;
+    color: white;
+}
+
+.footerEstilo{
+    --ion-background-color: #751722 !important;
+}
+
+.message{
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+} 
+
+.other-message{
+    background: #444444c4;
+    color: #fff;
+}
+
+.my-message{
+    background: #751722c4;
+    color: #fff;
+}
+
+.message-input{
+    width: 100%;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 10px; 
+    background: #fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.msg-btn{
+    --color: #ffffff;
+    --background: #e9cb21f8;
+    height: 90%;
+    width: 90%;
+}

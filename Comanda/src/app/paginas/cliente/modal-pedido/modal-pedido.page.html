@@ -15,9 +15,16 @@
       <ion-thumbnail slot="start">
         <img src={{item.fotoUno}}>
       </ion-thumbnail>
-      <ion-label class="ion-text-wrap">{{item.nombre}}</ion-label>
-      <ion-badge slot="end">Cant x{{item.cantidad}}</ion-badge>
+      <ion-label class="ion-text-wrap">{{item.cantidad}} {{item.nombre}}
+      </ion-label>
+      <ion-badge slot="start"></ion-badge>
+      <ion-fab horizontal="end">
+        <ion-button color="danger" (click)="BorrarProducto(item)">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-fab>
     </ion-item>
   </ion-list>
-  <ion-button color="success" expand="block" (click)="ConfirmarCompra()" [disabled]="this.pedido.listaProductos.length == 0">Confirmar Compra</ion-button>
+  <ion-button color="success" expand="block" (click)="ConfirmarCompra()"
+    [disabled]="this.pedido.listaProductos.length == 0">Confirmar Compra</ion-button>
 </ion-content>

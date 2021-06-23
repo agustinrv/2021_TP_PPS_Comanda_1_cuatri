@@ -18,7 +18,7 @@ export class PedidosService {
     this.coleccionPedidos=this.bd.collection(this.pathPedido); 
   }
 
-  public  AgregarUno(nuevaPedido:Pedido)
+  public AgregarUno(nuevaPedido:Pedido)
   {    
     nuevaPedido.id=this.bd.createId();
     this.coleccionPedidos.doc(nuevaPedido.id).set({...nuevaPedido});    
@@ -40,6 +40,14 @@ export class PedidosService {
 
   public TraerPedidosRecibidos(){
     return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Recibido));    
+  }
+
+  public TraerPedidosPreparando(){
+    return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Preparando));    
+  }
+
+  public TraerPedidosTerminado(){
+    return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Terminado));    
   }
 
   
