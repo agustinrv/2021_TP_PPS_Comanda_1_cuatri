@@ -8,6 +8,7 @@ import { ModalPedidoPage } from '../modal-pedido/modal-pedido.page';
 import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-mesa.service';
 import { ActionSheetController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +45,8 @@ export class PedirComidaPage implements OnInit {
     private toastController: ToastController,
     private soliSvc: SolicitudMesaService,
     private actionSheetCtrl: ActionSheetController,
-    private scanner: BarcodeScanner
+    private scanner: BarcodeScanner,
+    private router:Router
   ) {
     this.pedido = new Pedido();
   }
@@ -62,7 +64,7 @@ export class PedirComidaPage implements OnInit {
     this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(soli => {
       //console.log(soli[0]);
       this.solicitudDeMesaEncontrada = soli[0];
-    })
+    });
 
   }
 
@@ -139,9 +141,16 @@ export class PedirComidaPage implements OnInit {
 
   ScanQRProductos() {
     let auxProd: any;
-
+    this.router.navigateByUrl('menu-espera-cliente');
+    
     this.scanner.scan().then(data => {
       auxProd = data["text"];
+      if(auxProd==this.solicitudDeMesaEncontrada.numMesa){
+          this.router.navigateByUrl('menu-espera-cliente');
+      }
+
+
+
       let prodBDEncontrado: any;
       this.listadoProductos.forEach(prodBD => {
         if (prodBD.nombre == auxProd) {
