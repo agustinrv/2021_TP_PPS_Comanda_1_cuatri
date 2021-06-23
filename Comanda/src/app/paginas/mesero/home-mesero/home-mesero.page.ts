@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, ModalController } from '@ionic/angular';
+import { ActionSheetController, ModalController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
+import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
+
 
 @Component({
   selector: 'app-home-mesero',
@@ -11,21 +15,34 @@ import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
   styleUrls: ['./home-mesero.page.scss'],
 })
 export class HomeMeseroPage implements OnInit {
+  info = "Mostrar";
 
   //Mesas
   listadoMesasOrdenada : any;
+
+  //MSG CHAT
+  listadoChat : any;
+  cantMsg = 0;
 
   constructor(
     private actionSheetController : ActionSheetController,
     private mesaSvc : MesaService,
     private modalCtrl: ModalController,
     private auth : AuthService,
-    private router : Router
+    private router : Router,
+    private msgSvc : MsgConsultaService,
+    private localNotifications: LocalNotifications,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
     this.mesaSvc.TraerOrdenado().valueChanges().subscribe(mesa => {
       this.listadoMesasOrdenada = mesa;
+    });
+
+    this.msgSvc.TraerChat().valueChanges().subscribe( msg =>{
+      this.listadoChat = msg;
+      this.VerMensajesNuevos();
     });
   }
 
@@ -92,5 +109,38 @@ export class HomeMeseroPage implements OnInit {
     })
 
     return await modal.present();
+  }
+
+  VerMensajesNuevos(){
+    this.cantMsg = 0;
+    this.listadoChat.forEach(element => {
+      if(element.estado == "EnviadoCliente"){
+        this.cantMsg ++;
+        //Lanzar notication
+        this.LanzarNotificacion(element.mesa);
+        //this.Toast("success","Aca se mandaria una notificacion!");
+      }
+    });
+  }
+
+  LanzarNotificacion(numMesa){
+    this.localNotifications.schedule([{
+      id: numMesa,
+      title: 'El Mazacote',
+      text: 'Le llego un mensaje de la mesa: ' + numMesa,
+      sound: true ? 'file://sound.mp3': 'file://beep.caf',
+      icon: '../../../assets/splash/center.png'
+     }]);
+  }
+
+  async Toast(color: string, mensaje: string, duration: number = 2000) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: duration,
+      color: color,
+      position: 'bottom'
+
+    });
+    toast.present();
   }
 }

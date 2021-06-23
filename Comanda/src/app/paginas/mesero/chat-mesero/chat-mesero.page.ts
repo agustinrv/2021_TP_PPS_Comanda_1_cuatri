@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonContent, ModalController } from '@ionic/angular';
+import { element } from 'protractor';
 import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 
@@ -45,6 +46,7 @@ export class ChatMeseroPage implements OnInit {
     this.listadoMsg.forEach(msg => {
       if(msg.mesa == this.numMesa && msg.estado == "EnviadoCliente"){
         msg.estado = "LeidoMozo";
+        this.msgSvc.ModificarMsg(msg);
       }
     });
   }

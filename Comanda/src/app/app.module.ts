@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     SplashScreen,
     BarcodeScanner,
     Camera,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
