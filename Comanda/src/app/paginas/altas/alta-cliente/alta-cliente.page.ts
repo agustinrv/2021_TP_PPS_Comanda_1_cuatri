@@ -147,6 +147,7 @@ registrar() {
 		this.socio.dni = this.form.get('dni').value;
 		this.socio.correo = this.form.get('correo').value;
 		this.socio.foto = this.form.get('foto').value;
+		this.socio.habilitado = false;
 
 		this.auth.Register(this.socio.correo, contrasenia).then(response=>{
 
@@ -182,7 +183,7 @@ registrar() {
 				   }
 				   else
 				   {
-					   this.router.navigateByUrl('home-cliente');
+					   this.router.navigateByUrl('login');
 				   }
                 });
               });
@@ -196,6 +197,7 @@ registrar() {
 			
 			this.anonimo.nombre = this.formAnonimo.get('nombre').value;
 			 this.anonimo.foto = this.formAnonimo.get('foto').value;
+			 this.anonimo.habilitado = true;
 			
 			this.auth.signAnonimo().then(response=>{
 				

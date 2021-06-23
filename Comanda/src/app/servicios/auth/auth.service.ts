@@ -41,7 +41,7 @@ export class AuthService {
 
   
   Register(email: string, password: string) {
-
+    
     return new Promise<any>((resolve, rejected) => {
       this.firebaseAuth.createUserWithEmailAndPassword(email, password).then((response: any) => {
         this.EnviarMailDeVerificacion();
