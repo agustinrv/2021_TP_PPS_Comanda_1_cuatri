@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login" *ngIf="tipo=='ninguno'"></ion-back-button>
-      <a *ngIf="tipo=='socio' || tipo =='anonimo'" (click)="tipo='ninguno'"><ion-icon name="arrow-back-outline" style="font-size: large;"></ion-icon></a>
+      <ion-back-button defaultHref="login" *ngIf="tipo=='ninguno' && perfilLogeado!=5"></ion-back-button>
+      <ion-back-button defaultHref="home-metre" *ngIf="tipo=='ninguno' && perfilLogeado==5"></ion-back-button>
+      <a *ngIf="tipo=='socio' || tipo =='anonimo'" (click)="setTipoNinguno()"><ion-icon name="arrow-back-outline" style="font-size: large;"></ion-icon></a>
     </ion-buttons>
     <ion-title  *ngIf="tipo=='ninguno'">¿Que desea registrar?</ion-title>
     <ion-title  *ngIf="tipo=='socio'">REGISTRO SOCIO</ion-title>

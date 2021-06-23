@@ -30,6 +30,11 @@ export class HomeMetrePage implements OnInit {
     this.router.navigateByUrl('solicitudes-mesas');
   }
 
+  public CargarCliente()
+  {
+    this.router.navigateByUrl('alta-cliente');
+  }
+
 }
 
 
