@@ -52,7 +52,7 @@
 </p>
 
 # Workflow 
-**Recorrido desde que ingresa un cliente, se toma el pedido el cual sera recibido por el metre, hasta que el cliente paga.**
+**Recorrido desde que ingresa un cliente, se toma el pedido que sera recibido por el metre, hasta que el cliente paga.**
 
 <p align="center">
 <img src="https://i.imgur.com/rGHI9wn.png" >
