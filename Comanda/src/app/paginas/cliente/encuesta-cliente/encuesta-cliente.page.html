@@ -1,3 +1,68 @@
 <ion-content class="background">
-  <p>Encuesta</p>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label color="light" style="font-size: 1.2em;">¿Como calificaría la atención y el servicio brindado?</ion-label>
+    </ion-item-divider>
+  
+    <ion-item color = "dark">
+      <ion-range min="1" max="5"  snaps="true" pin="true" (ionChange)="rangoEvento($event)">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">5</ion-label>
+      </ion-range>
+    </ion-item>
+   
+  </ion-item-group>
+  
+  <ion-item-group >
+    <ion-item-divider >
+      <ion-label color="light" style="font-size: 1.2em;">¿Como fue su experiencia con nuestra aplicación?</ion-label>
+    </ion-item-divider>
+    <ion-list >
+      <ion-radio-group value="radio1" (ionChange)="radioEvento1($event)">
+        <ion-item color = "dark">
+          <ion-label>Excelente</ion-label>
+          <ion-radio slot="start" value="excelente"></ion-radio>
+        </ion-item>
+    
+        <ion-item color = "dark">
+          <ion-label>Buena</ion-label>
+          <ion-radio slot="start" value="buena"></ion-radio>
+        </ion-item>
+    
+        <ion-item color = "dark">
+          <ion-label>Mala</ion-label>
+          <ion-radio slot="start" value="mala"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+  </ion-item-group>
+
+  <ion-item-group >
+    <ion-item-divider >
+      <ion-label color="light" style="font-size: 1.1em;">¿Recomendaría nuestro restaurante a otras personas?</ion-label>
+    </ion-item-divider>
+    <ion-list >
+      <ion-radio-group value="radio2" (ionChange)="radioEvento2($event)" >
+        <ion-item color = "dark">
+          <ion-label>Si</ion-label>
+          <ion-radio slot="start" value="si" ></ion-radio>
+        </ion-item>
+    
+        <ion-item color = "dark">
+          <ion-label>No</ion-label>
+          <ion-radio slot="start" value="no"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+  </ion-item-group>
+
+  <ion-item>
+    <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" [(ngModel)]="resenia"></ion-textarea>
+  </ion-item>
+  
+  <ion-button expand="full" style="font-weight: bold;" (click)="enviarEncuesta()">Enviar encuesta</ion-button>
+
+
 </ion-content>

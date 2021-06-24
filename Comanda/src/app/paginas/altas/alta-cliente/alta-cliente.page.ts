@@ -28,7 +28,7 @@ export class AltaClientePage implements OnInit {
 
   public formAnonimo: FormGroup = this.formBuilder.group({
 		nombre: [null, [Validators.required, Validators.pattern('^[a-zA-ZñÑ ]{3,25}$'),this.noWhitespaceValidator]],
-		foto: [null, [Validators.required]]
+		 foto: [null, [Validators.required]]
 		});
 
 
@@ -74,9 +74,9 @@ export class AltaClientePage implements OnInit {
 			{ type: 'required', message: 'La contraseña es requerida.' },
 			{ type: 'pattern', message: 'La contraseña debe tener entre 6 y 18 caracteres.' }
 		],
-		  'foto': [
-		  	{ type: 'required', message: 'La foto es requerida.' },
-		  ]
+		   'foto': [
+		   	{ type: 'required', message: 'La foto es requerida.' },
+		   ]
 	};
 
 
@@ -151,6 +151,7 @@ registrar() {
 
 		this.auth.Register(this.socio.correo, contrasenia).then(response=>{
 
+			this.socio.id = response.user.id;
             let email = response.user.email;
 			
 			if(this.foto)
@@ -196,48 +197,50 @@ registrar() {
 		{
 			
 			this.anonimo.nombre = this.formAnonimo.get('nombre').value;
-			 this.anonimo.foto = this.formAnonimo.get('foto').value;
-			 this.anonimo.habilitado = true;
+			this.anonimo.foto = this.formAnonimo.get('foto').value;
+			this.anonimo.habilitado = true;
 			
-			this.auth.signAnonimo().then(response=>{
+			this.auth.signAnonimo().then((response : any)=>{
 				
-			if(this.foto)
-            {
-              const filePath = `/anonimo/${this.anonimo.nombre}/fotoAnonimo.png`;
-              const ref = this.storage.ref(filePath);
-              const taks = this.storage.upload(filePath, this.foto).then(()=>{
+			this.anonimo.id = response.user.uid;
+
+			 if(this.foto)
+             {
+               const filePath = `/anonimo/${this.anonimo.id}/fotoAnonimo.png`; //cambiar por email
+               const ref = this.storage.ref(filePath);
+               const taks = this.storage.upload(filePath, this.foto).then(()=>{
   
-                let storages = firebase.storage();
-                let storageRef = storages.ref();
-                let spaceRef = storageRef.child(filePath);
+                 let storages = firebase.storage();
+                 let storageRef = storages.ref();
+                 let spaceRef = storageRef.child(filePath);
 
-                spaceRef.getDownloadURL().then(url=>{
-                  this.fotoCargada = url;
-                  this.fotoCargada = `${this.fotoCargada}`;
+                 spaceRef.getDownloadURL().then(url=>{
+                   this.fotoCargada = url;
+                   this.fotoCargada = `${this.fotoCargada}`;
 
-                  console.log(this.fotoCargada);
+                   console.log(this.fotoCargada);
 
-                  this.anonimo.foto = this.fotoCargada;
+                   this.anonimo.foto = this.fotoCargada;
                 
-                   this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
-				   localStorage.setItem('anonimo',JSON.stringify(this.anonimo.nombre));
+                    this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
+			  	    localStorage.setItem('anonimo',JSON.stringify(this.anonimo.nombre));
 				
-                   this.formAnonimo.reset();
+                    this.formAnonimo.reset();
 
-				   if(this.perfilLogeado==5)
-				   {
-					  this.router.navigateByUrl('home-metre');
-				   }
-				   else
-				   {
-					   this.router.navigateByUrl('home-cliente');
-				   }
+			 	   if(this.perfilLogeado==5)
+			 	   {
+			 		  this.router.navigateByUrl('home-metre');
+			 	   }
+			 	   else
+			 	   {
+			 		   this.router.navigateByUrl('home-cliente');
+			 	   }
 				   
                  
 
-                });
-              });
-            }
+                 });
+               });
+             }
 
 			
 

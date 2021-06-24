@@ -3,3 +3,20 @@ ion-content.background {
     background-size: contain;
 }
   
+
+ion-button{
+    --background: #751722;
+}
+
+ion-radio{
+    --color-checked: #751722;
+}
+
+ion-range{
+    --bar-background:gray;
+    --knob-background: #751722;
+    --bar-background-active: #751722;
+    --pin-background: #751722;
+    --pin-color: white;
+    
+}

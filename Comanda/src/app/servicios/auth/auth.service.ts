@@ -64,7 +64,7 @@ export class AuthService {
   {
 
     return new Promise((resolve, rejected) => {
-      this.firebaseAuth.signInAnonymously().then(response => {
+      this.firebaseAuth.signInAnonymously().then((response:any) => {
         
         resolve(response);
       }, (error: any) => {
