@@ -9,6 +9,7 @@ import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-
 import { ActionSheetController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Router } from '@angular/router';
+import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 
 
 @Component({
@@ -85,6 +86,7 @@ export class PedirComidaPage implements OnInit {
 
     this.pedido.cliente = this.usuarioBD;
     this.pedido.numMesa = this.solicitudDeMesaEncontrada.numMesa;
+    this.pedido.estadoPedido = EestadoPedido.PedidoEnviadoCli;
 
     /*let productoEncontrado = false;
     this.pedido.listaProductos.forEach(prod => {
