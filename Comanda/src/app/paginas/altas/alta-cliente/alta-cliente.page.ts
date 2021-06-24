@@ -20,7 +20,6 @@ import { ToastController } from '@ionic/angular';
 export class AltaClientePage implements OnInit {
 
   tipo : string = "ninguno";
-  foto : any;
   fotoCargada: any;
   socio : Cliente = new Cliente();
   anonimo : Anonimo = new Anonimo();
@@ -74,9 +73,9 @@ export class AltaClientePage implements OnInit {
 			{ type: 'required', message: 'La contraseña es requerida.' },
 			{ type: 'pattern', message: 'La contraseña debe tener entre 6 y 18 caracteres.' }
 		],
-		   'foto': [
-		   	{ type: 'required', message: 'La foto es requerida.' },
-		   ]
+		    'foto': [
+		    	{ type: 'required', message: 'La foto es requerida.' },
+		    ]
 	};
 
 
@@ -108,10 +107,14 @@ export class AltaClientePage implements OnInit {
 		if(this.tipo=='socio')
 		{
 			this.form.controls.foto.setValue(base64Str);
+			
+			
 		}
 		if(this.tipo=='anonimo')
 		{
 			this.formAnonimo.controls.foto.setValue(base64Str);
+			
+			
 		}
 		
 	});
@@ -149,46 +152,38 @@ registrar() {
 		this.socio.foto = this.form.get('foto').value;
 		this.socio.habilitado = false;
 
+		
+
 		this.auth.Register(this.socio.correo, contrasenia).then(response=>{
 
-			this.socio.id = response.user.id;
+			this.socio.id = response.user.uid;
             let email = response.user.email;
 			
-			if(this.foto)
-            {
-              const filePath = `/cliente/${email}/fotoCliente.png`;
-              const ref = this.storage.ref(filePath);
-              const taks = this.storage.upload(filePath, this.foto).then(()=>{
-  
-                let storages = firebase.storage();
-                let storageRef = storages.ref();
-                let spaceRef = storageRef.child(filePath);
-				
-                spaceRef.getDownloadURL().then(url=>{
-                  this.fotoCargada = url;
-                  this.fotoCargada = `${this.fotoCargada}`;
+			 if(this.socio.foto != null)
+             {
+               const filePath = `/cliente/${email}/fotoCliente.jpg`;
+        
 
-                  console.log(this.fotoCargada);
+				this.subirImagen(filePath, this.socio.foto).then(url => {
+					this.fotoCargada = url;
+					this.socio.foto = this.fotoCargada;
+					this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.socio)));
+				});
+               
+               	   this.form.reset();
 
-                  this.socio.foto = this.fotoCargada;
-                
-                   this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.socio)));
-
-                   this.form.reset();
-
-				   this.Toast('success','Se ha registrado correctamente!')
+			 	   this.Toast('success','Se ha registrado correctamente!')
                  
-				   if(this.perfilLogeado==5)
-				   {
-					  this.router.navigateByUrl('home-metre');
-				   }
-				   else
-				   {
-					   this.router.navigateByUrl('login');
-				   }
-                });
-              });
-            }
+			 	   if(this.perfilLogeado==5)
+			 	   {
+			 		  this.router.navigateByUrl('home-metre');
+			 	   }
+			 	   else
+			 	   {
+			 		   this.router.navigateByUrl('login');
+			 	   }
+          
+             }
 		})
 	}
 	else
@@ -203,27 +198,21 @@ registrar() {
 			this.auth.signAnonimo().then((response : any)=>{
 				
 			this.anonimo.id = response.user.uid;
-
-			 if(this.foto)
+			
+			 if(this.anonimo.foto != null)
              {
                const filePath = `/anonimo/${this.anonimo.id}/fotoAnonimo.png`; //cambiar por email
-               const ref = this.storage.ref(filePath);
-               const taks = this.storage.upload(filePath, this.foto).then(()=>{
+               
+			   this.subirImagen(filePath, this.socio.foto).then(url => {
+				this.fotoCargada = url;
+				this.anonimo.foto = this.fotoCargada;
+				this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
+				localStorage.setItem('anonimo',JSON.stringify(this.anonimo.nombre));
+			});
   
-                 let storages = firebase.storage();
-                 let storageRef = storages.ref();
-                 let spaceRef = storageRef.child(filePath);
-
-                 spaceRef.getDownloadURL().then(url=>{
-                   this.fotoCargada = url;
-                   this.fotoCargada = `${this.fotoCargada}`;
-
-                   console.log(this.fotoCargada);
-
-                   this.anonimo.foto = this.fotoCargada;
                 
-                    this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
-			  	    localStorage.setItem('anonimo',JSON.stringify(this.anonimo.nombre));
+                    
+			  	    
 				
                     this.formAnonimo.reset();
 
@@ -238,8 +227,6 @@ registrar() {
 				   
                  
 
-                 });
-               });
              }
 
 			
@@ -252,11 +239,12 @@ registrar() {
 	
 }
 
-onUploadFoto($event) {
-    console.log($event)
-    this.foto = $event.target.files[0];
-
+public subirImagen(ruta: string, data: any) {
+    return this.storage.ref(ruta).putString(data, 'data_url').then(data => {
+      return data.ref.getDownloadURL().then(x => x);
+    });
   }
+
 
   async Toast(color: string, mensaje: string, duration: number = 2000) {
     const toast = await this.toastController.create({
