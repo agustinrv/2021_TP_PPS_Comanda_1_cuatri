@@ -33,9 +33,9 @@ export class LoginPage implements OnInit {
   }
   ngOnInit(): void {
     this.initForm();
-    this.unUsuario = new Usuario();
   }
   async onLogin() {
+    this.unUsuario = new Usuario();
     this.unUsuario.correo = this.userForm.value.email;
     this.unUsuario.clave = this.userForm.value.password;
     console.log('estoy en login');
