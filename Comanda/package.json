@@ -41,6 +41,7 @@
     "cordova-plugin-splashscreen": "^6.0.0",
     "emailjs-com": "^2.6.4",
     "firebase": "^8.6.3",
+    "jetifier": "^2.0.0",
     "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.12",
