@@ -78,6 +78,10 @@ const routes: Routes = [
     path: 'menu-espera-cliente',
     loadChildren: () => import('./paginas/cliente/menu-espera-cliente/menu-espera-cliente.module').then( m => m.MenuEsperaClientePageModule)
   },
+  {
+    path: 'estado-pedido',
+    loadChildren: () => import('./paginas/cliente/estado-pedido/estado-pedido.module').then( m => m.EstadoPedidoPageModule)
+  },
 
  
 
