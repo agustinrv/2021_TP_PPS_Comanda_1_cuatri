@@ -1,8 +1,9 @@
 import { EestadoPedido } from './../../../enumerados/EestadoPedido/eestado-pedido';
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido/pedido';
-import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
+import { ModalController } from '@ionic/angular';
+import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido.component';
 
 @Component({
   selector: 'app-pedidos-cocinero',
@@ -11,9 +12,11 @@ import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 })
 export class PedidosCocineroPage implements OnInit {
 
-  public listaPedidos:Pedido[]=[];
-  public EestadoPedido:EestadoPedido=EestadoPedido.Recibido
-  constructor(private servicioPedido:PedidosService) { 
+  public listaPedidosRecibidos:Pedido[]=[];
+  public listaPedidosPreparando:Pedido[]=[];
+  public EestadoPedido=EestadoPedido;
+  constructor(private servicioPedido:PedidosService,
+              private modalController: ModalController) { 
 
   }
 
@@ -21,13 +24,31 @@ export class PedidosCocineroPage implements OnInit {
       this.CargarPedidos();
   }
 
-  public CargarPedidos()
+  private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
-      this.listaPedidos=data;
+      this.listaPedidosRecibidos=data.filter((value,index,array)=>{
+        return value.CocineroTermino==false;
+      });
     });
+
+    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+      this.listaPedidosPreparando=data.filter((value,index,array)=>{
+         return value.CocineroTermino==false;
+      })
+    })
   }
 
+  public async SeleccionarPedido(unPedido?:Pedido)
+  {
+    const modal = await this.modalController.create({
+      component: CompModalPedidoComponent,
+      componentProps: {
+        'pedidoSeleccionado': unPedido,
+      }
+    });
+    await modal.present();
+  }
 
 
 }

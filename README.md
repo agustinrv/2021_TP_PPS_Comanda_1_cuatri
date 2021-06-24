@@ -39,4 +39,25 @@
 <img src="https://i.imgur.com/qz7htkC.png" >
 </p>
 
+<h1 align="center"> SEMANA 4 </h1> 
 
+<p align="center">
+<img src="https://i.imgur.com/lKPK0Vq.png" >
+</p>
+
+<h1 align="center"> SEMANA 5 </h1> 
+
+<p align="center">
+<img src="https://i.imgur.com/5ydK7ti.png" >
+</p>
+
+# Workflow 
+**Recorrido desde que ingresa un cliente, se toma el pedido que sera recibido por el metre, hasta que el cliente paga.**
+
+<p align="center">
+<img src="https://i.imgur.com/rGHI9wn.png" >
+</p>
+
+<p align="center">
+<img src="https://i.imgur.com/xaBdcvo.png" >
+</p>

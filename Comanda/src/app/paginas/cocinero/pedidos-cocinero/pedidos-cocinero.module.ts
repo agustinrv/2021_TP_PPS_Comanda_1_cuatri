@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PedidosCocineroPageRoutingModule } from './pedidos-cocinero-routing.module';
 
 import { PedidosCocineroPage } from './pedidos-cocinero.page';
+import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,10 @@ import { PedidosCocineroPage } from './pedidos-cocinero.page';
     IonicModule,
     PedidosCocineroPageRoutingModule
   ],
-  declarations: [PedidosCocineroPage]
+  declarations: [
+    PedidosCocineroPage,
+    CompModalPedidoComponent
+
+  ]
 })
 export class PedidosCocineroPageModule {}

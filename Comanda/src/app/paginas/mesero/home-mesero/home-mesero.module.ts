@@ -1,3 +1,4 @@
+import { ModalDetallesPedidosComponent } from './../modal-detalles-pedidos/modal-detalles-pedidos.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,9 @@ import { HomeMeseroPage } from './home-mesero.page';
     IonicModule,
     HomeMeseroPageRoutingModule
   ],
-  declarations: [HomeMeseroPage]
+  declarations: [
+    HomeMeseroPage,
+    ModalDetallesPedidosComponent
+  ]
 })
 export class HomeMeseroPageModule {}

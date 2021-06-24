@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-bartender"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pedidos Pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+
+
+  <ion-list style='background:#ffc60986' class='ml-2 mt-2 mr-2'>
+
+      <ion-item *ngFor='let unPedido of this.listaPedidosPreparando' (click)='SeleccionarPedido(unPedido)' style='--background:#75172200;--border-color:black'>
+          <ion-avatar slot="start" >
+            <img [src]='unPedido.cliente.foto'>
+          </ion-avatar>
+          <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+          <ion-icon class='bg-dark text-warning rounded' name="alert-circle" slot="end"></ion-icon>
+      </ion-item>
+      
+      <ion-item *ngFor='let unPedido of this.listaPedidosRecibidos' (click)='SeleccionarPedido(unPedido)' style='--background:#75172200;--border-color:black'>
+        <ion-avatar slot="start" >
+          <img [src]='unPedido.cliente.foto'>
+        </ion-avatar>
+        <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-icon class='bg-dark text-danger rounded' name="alert-circle" slot="end"></ion-icon>
+        
+    </ion-item>
+
+  </ion-list>
+ 
+</ion-content>

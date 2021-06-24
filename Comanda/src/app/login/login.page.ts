@@ -51,7 +51,9 @@ export class LoginPage implements OnInit {
         let usuarioLogin: any = {};
         usuarioLogin.correo = this.unUsuario.correo;
         usuarioLogin.perfil = datosUsuario[0].perfil;
-
+        usuarioLogin.nombre = datosUsuario[0].nombre;
+        usuarioLogin.habilitado = datosUsuario[0].habilitado;
+        
 
         localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioLogin));
         console.log(usuarioLogin);
@@ -74,19 +76,30 @@ export class LoginPage implements OnInit {
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.Cliente:
-            this.router.navigateByUrl('/home-cliente');
+            if(usuarioLogin.habilitado)
+            {
+              this.router.navigateByUrl('/home-cliente');
+            }
+            else
+            {
+              this.presentAlert('Aun no fue habilitado por un supervisor');
+            }
+            
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.Cocinero:
             this.router.navigateByUrl('/home-cocinero');
             console.log(usuarioLogin.perfil);
             break;
+          case Eperfil.BarTender:
+            this.router.navigateByUrl('/home-bartender');
+            break;
           case Eperfil.Mozo:
             this.router.navigateByUrl('home-mesero');
             console.log(usuarioLogin.perfil);
             break;
           ///Agregar los otros homes
-          ///Cuando se agregue el menu del cliente verificar que haya sido habilitado.
+          
 
         }
         //this.router.navigateByUrl('/home');

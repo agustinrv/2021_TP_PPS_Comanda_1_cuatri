@@ -41,7 +41,7 @@ export class AuthService {
 
   
   Register(email: string, password: string) {
-
+    
     return new Promise<any>((resolve, rejected) => {
       this.firebaseAuth.createUserWithEmailAndPassword(email, password).then((response: any) => {
         this.EnviarMailDeVerificacion();
@@ -64,7 +64,7 @@ export class AuthService {
   {
 
     return new Promise((resolve, rejected) => {
-      this.firebaseAuth.signInAnonymously().then(response => {
+      this.firebaseAuth.signInAnonymously().then((response:any) => {
         
         resolve(response);
       }, (error: any) => {

@@ -1,8 +1,8 @@
 {
-  "name": "Comanda",
+  "name": "El Mazacote",
   "integrations": {
-    "cordova": {},
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

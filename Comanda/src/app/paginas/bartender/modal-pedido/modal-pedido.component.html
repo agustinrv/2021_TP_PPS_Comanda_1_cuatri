@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)='CerrarModal()'>
+      <ion-back-button defaultHref="pedidos-bartender"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor='let unProducto of this.pedidoSeleccionado.listaProductos'>
+      <ion-item *ngIf='unProducto.tipo==="bebida"'style='--border-color:white' >
+        <ion-avatar slot="start" > 
+          <img [src]='unProducto.fotoUno'>
+        </ion-avatar>
+        <ion-label color='light'>{{unProducto.cantidad +' '+ unProducto.nombre}}</ion-label>
+        <ion-button *ngIf='unProducto.terminado' color='success' style='width: 25px;height: 25px' (click)='this.CambiarEstado(unProducto.nombre)'>✔</ion-button>
+        <ion-button *ngIf='!unProducto.terminado' color='dark' style='width: 25px;height: 25px' (click)='this.CambiarEstado(unProducto.nombre)'>❌</ion-button>
+      </ion-item>    
+    </div>   
+  </ion-list>
+
+   <div>
+     <ion-button  (click)="this.FinalizarPedido()" [disabled]='this.colorBoton==="dark"' [color]='this.colorBoton' expand='block' class='pl-2 pr-2'>Finalizar Pedido</ion-button>
+   </div>
+
+
+</ion-content>

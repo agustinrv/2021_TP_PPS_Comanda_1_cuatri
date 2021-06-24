@@ -15,7 +15,6 @@ const routes: Routes = [
     redirectTo: 'splash',
     pathMatch: 'full'
   },
-  
   {
     path: 'home-super',
     loadChildren: () => import('./paginas/supervisor/home-super/home-super.module').then( m => m.HomeSuperPageModule)
@@ -55,9 +54,18 @@ const routes: Routes = [
   {
     path: 'pedidos-cocinero',
     loadChildren: () => import('./paginas/cocinero/pedidos-cocinero/pedidos-cocinero.module').then( m => m.PedidosCocineroPageModule)
-  },  {
+  },
+  {
     path: 'modal-pedido',
     loadChildren: () => import('./paginas/cliente/modal-pedido/modal-pedido.module').then( m => m.ModalPedidoPageModule)
+  },
+  {
+    path: 'home-bartender',
+    loadChildren: () => import('./paginas/bartender/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
+  },
+  {
+    path: 'pedidos-bartender',
+    loadChildren: () => import('./paginas/bartender/pedidos-bartender/pedidos-bartender.module').then( m => m.PedidosBartenderPageModule)
   },
   {
     path: 'home-mesero',
@@ -66,20 +74,16 @@ const routes: Routes = [
   {
     path: 'chat-mesero',
     loadChildren: () => import('./paginas/mesero/chat-mesero/chat-mesero.module').then( m => m.ChatMeseroPageModule)
+  },  {
+    path: 'menu-espera-cliente',
+    loadChildren: () => import('./paginas/cliente/menu-espera-cliente/menu-espera-cliente.module').then( m => m.MenuEsperaClientePageModule)
   },
-
 
  
 
-  
 
-
-
-  
-
-
-  
 ];
+
 
 @NgModule({
   imports: [

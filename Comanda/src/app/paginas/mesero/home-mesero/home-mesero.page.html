@@ -23,6 +23,31 @@
 
 <ion-content class="background">
 
-  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-router-outlet id="main">
+    
+    
+
+  </ion-router-outlet>
+
+  
+  <ion-tabs >
+    <ion-tab-bar slot="bottom" style='background:#751722dc' >
+  
+      <ion-tab-button tab="pedidos-pendientes" style='background:#751722'>
+        <ion-icon color='light' name="person-circle"></ion-icon>
+        <ion-label color='light'>PENDIENTES</ion-label>
+      </ion-tab-button> 
+  
+      <ion-tab-button tab="pedidos-terminados" style='background:#751722;'>
+        <ion-icon color='light' name="information-circle"></ion-icon>
+        <ion-label color='light'>FINALIZADOS</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+  </ion-tabs>
+
+  
+  
 
 </ion-content>
+
