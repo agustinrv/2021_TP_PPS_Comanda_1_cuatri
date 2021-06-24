@@ -162,7 +162,7 @@ registrar() {
                 let storages = firebase.storage();
                 let storageRef = storages.ref();
                 let spaceRef = storageRef.child(filePath);
-
+				
                 spaceRef.getDownloadURL().then(url=>{
                   this.fotoCargada = url;
                   this.fotoCargada = `${this.fotoCargada}`;
