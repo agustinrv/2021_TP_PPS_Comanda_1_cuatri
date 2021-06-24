@@ -53,7 +53,7 @@ export class UsuarioService {
   public AgregarUsuario(usuario: any) {
 
     this.coleccionUsuarios.doc(usuario.id).set({ ...usuario });
-    this.router.navigateByUrl('bienvenida/login');
+    
   }
 
   public TraerTodos() {
