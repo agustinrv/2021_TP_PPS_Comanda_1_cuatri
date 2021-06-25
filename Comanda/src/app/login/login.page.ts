@@ -8,6 +8,7 @@ import { AuthService } from '../servicios/auth/auth.service';
 import { UsuarioService } from '../servicios/usuario/usuario.service';
 import { Eperfil } from '../enumerados/Eperfil/eperfil';
 import { AlertController, LoadingController } from '@ionic/angular';
+import {take} from 'rxjs/operators'
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,7 @@ export class LoginPage implements OnInit {
 
     this.authServicie.Login(this.unUsuario.correo, this.unUsuario.clave).then(() => {
 
-      this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().subscribe((data) => {
+      this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().pipe(take(1)).subscribe((data)=> {
         let datosUsuario: any = data;
 
         let usuarioLogin: any = {};
