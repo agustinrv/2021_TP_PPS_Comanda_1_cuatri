@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore/';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -7,5 +8,26 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 })
 export class EncuestaService {
 
-  constructor() { }
+  public pathEncuesta = '/encuestas';
+  public coleccionEncuesta: AngularFirestoreCollection<any>;
+  public listaEncuestas;
+
+  constructor(private bd: AngularFirestore,private router:Router) {
+
+    this.coleccionEncuesta = this.bd.collection(this.pathEncuesta);
+   }
+
+
+  public AgregarEncuesta(encuesta: any) {
+
+    this.coleccionEncuesta.add({ ...encuesta });
+    
+  }
+
+  public TraerTodos() {
+    return this.coleccionEncuesta;
+  }
+
+  
+
 }

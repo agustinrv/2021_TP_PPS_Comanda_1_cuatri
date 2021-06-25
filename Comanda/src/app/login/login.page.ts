@@ -33,10 +33,6 @@ export class LoginPage implements OnInit {
   }
   ngOnInit(): void {
     this.initForm();
-<<<<<<< HEAD
-    
-=======
->>>>>>> beta
   }
   async onLogin() {
     this.unUsuario = new Usuario();

@@ -1,7 +1,7 @@
 <ion-content class="background">
   <ion-item-group>
     <ion-item-divider>
-      <ion-label color="light" style="font-size: 1.2em;">¿Como calificaría la atención y el servicio brindado?</ion-label>
+      <ion-label color="light" >¿Como calificaría la atención y el servicio brindado?</ion-label>
     </ion-item-divider>
   
     <ion-item color = "dark">
@@ -15,7 +15,7 @@
   
   <ion-item-group >
     <ion-item-divider >
-      <ion-label color="light" style="font-size: 1.2em;">¿Como fue su experiencia con nuestra aplicación?</ion-label>
+      <ion-label color="light" >¿Como fue su experiencia con nuestra aplicación?</ion-label>
     </ion-item-divider>
     <ion-list >
       <ion-radio-group value="radio1" (ionChange)="radioEvento1($event)">
@@ -40,7 +40,7 @@
 
   <ion-item-group >
     <ion-item-divider >
-      <ion-label color="light" style="font-size: 1.1em;">¿Recomendaría nuestro restaurante a otras personas?</ion-label>
+      <ion-label color="light" >¿Recomendaría nuestro restaurante a otras personas?</ion-label>
     </ion-item-divider>
     <ion-list >
       <ion-radio-group value="radio2" (ionChange)="radioEvento2($event)" >
@@ -59,7 +59,7 @@
   </ion-item-group>
 
   <ion-item>
-    <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" [(ngModel)]="resenia"></ion-textarea>
+    <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" rows=4 maxlength=300 [(ngModel)]="resenia"></ion-textarea>
   </ion-item>
   
   <ion-button expand="full" style="font-weight: bold;" (click)="enviarEncuesta()">Enviar encuesta</ion-button>

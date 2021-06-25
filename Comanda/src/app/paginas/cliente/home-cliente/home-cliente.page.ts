@@ -72,11 +72,7 @@ export class HomeClientePage implements OnInit {
     }));
 
     //Busco si el cliente ya realizo una solicitud
-<<<<<<< HEAD
-
-=======
  /*
->>>>>>> 2c2884b74f3debf0c2179be6247589de65523a16
     this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
       this.SolicitudDeMesaEnBD = user[0];
       if(this.SolicitudDeMesaEnBD != null){
