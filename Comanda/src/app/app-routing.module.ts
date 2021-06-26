@@ -74,7 +74,8 @@ const routes: Routes = [
   {
     path: 'chat-mesero',
     loadChildren: () => import('./paginas/mesero/chat-mesero/chat-mesero.module').then( m => m.ChatMeseroPageModule)
-  },  {
+  },
+  {
     path: 'menu-espera-cliente',
     loadChildren: () => import('./paginas/cliente/menu-espera-cliente/menu-espera-cliente.module').then( m => m.MenuEsperaClientePageModule)
   },

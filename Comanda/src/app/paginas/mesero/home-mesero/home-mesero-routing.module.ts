@@ -9,6 +9,10 @@ const routes: Routes = [
     component: HomeMeseroPage,
     children: [
       {
+        path: 'pedidos-sin-confirmar',
+        loadChildren: () => import('../pedidos-sin-confirmar/pedidos-sin-confirmar.module').then( m => m.PedidosSinConfirmarPageModule)
+      },
+      {
         path: 'pedidos-pendientes',
         loadChildren: () => import('../pedidos-pendientes/pedidos-pendientes.module').then( m => m.PedidosPendientesPageModule)
       },
