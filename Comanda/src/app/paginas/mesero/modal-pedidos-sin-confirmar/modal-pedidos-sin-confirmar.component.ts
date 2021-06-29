@@ -61,7 +61,7 @@ export class ModalPedidosSinConfirmarComponent implements OnInit {
           'Eliminado',
           'El cliente debe volver a cargar el pedido',
           'success'
-          )
+          );
           this.CerrarModal();
       }
     });
