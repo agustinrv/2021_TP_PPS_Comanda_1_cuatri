@@ -26,6 +26,7 @@ export class ModalPedidosSinConfirmarComponent implements OnInit {
       
   }
 
+  
   public CerrarModal() {
 
     this.modalController.dismiss({
