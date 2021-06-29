@@ -1,0 +1,34 @@
+<ion-content class="background">
+  <ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="encuesta-cliente" color="light"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Estadisticas</ion-title>  
+     </ion-toolbar>
+  </ion-header> 
+
+  <ion-item>
+    <ion-label>Grafico</ion-label>
+    <ion-select value=1 cancel-text="Cerrar" interface="action-sheet" (ionChange)="selectCategoria($event);">
+      <ion-select-option value=1>Calificación del servicio</ion-select-option>
+      <ion-select-option value=2>Experiencia con aplicación</ion-select-option>
+      <ion-select-option value=3>Recomendaría restaurante</ion-select-option>
+      <ion-select-option value=4>Preferencia del menu</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <h3 style="text-align: center;">{{titulo}}</h3>
+  <div *ngIf='cargo'>
+    <div>
+      <div style="display: block;">
+        <canvas width="400" height="400" baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType" [options]="options"
+          class="bg-dark">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  
+
+</ion-content>

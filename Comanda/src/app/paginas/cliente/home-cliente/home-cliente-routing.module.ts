@@ -16,10 +16,10 @@ const routes: Routes = [
         path: 'chat',
         loadChildren: () => import('../../../paginas/cliente/chat-cliente/chat-cliente.module').then( m => m.ChatClientePageModule)
       },
-      {
-        path: 'encuesta',
-        loadChildren: () => import('../../../paginas/cliente/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
-      },
+      // {
+      //   path: 'encuesta',
+      //   loadChildren: () => import('../../../paginas/cliente/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
+      // },
       {
         path: '',
         redirectTo: 'pedir'

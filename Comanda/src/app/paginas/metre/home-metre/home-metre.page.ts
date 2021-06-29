@@ -16,6 +16,13 @@ export class HomeMetrePage implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.auth.firebaseAuth.authState.subscribe(user=>{
+      if(user!=null)
+      {
+        console.log(user.email);
+      }
+      
+    })
 
   }
 

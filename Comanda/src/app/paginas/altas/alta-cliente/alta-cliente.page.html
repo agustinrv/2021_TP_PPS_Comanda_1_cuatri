@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="login" *ngIf="tipo=='ninguno' && perfilLogeado!=5"></ion-back-button>
       <ion-back-button defaultHref="home-metre" *ngIf="tipo=='ninguno' && perfilLogeado==5"></ion-back-button>
-      <a *ngIf="tipo=='socio' || tipo =='anonimo'" (click)="setTipoNinguno()"><ion-icon name="arrow-back-outline" style="font-size: large;"></ion-icon></a>
+      <button *ngIf="tipo=='socio' || tipo =='anonimo'" (click)="setTipoNinguno()" style="background-color: #222428;"><ion-icon name="arrow-back-outline" style="font-size: 1.25em; display: flex;"></ion-icon></button>
     </ion-buttons>
     <ion-title  *ngIf="tipo=='ninguno'">¿Que desea registrar?</ion-title>
     <ion-title  *ngIf="tipo=='socio'">REGISTRO SOCIO</ion-title>

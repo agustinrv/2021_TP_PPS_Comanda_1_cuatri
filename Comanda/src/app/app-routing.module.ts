@@ -83,6 +83,16 @@ const routes: Routes = [
     path: 'estado-pedido',
     loadChildren: () => import('./paginas/cliente/estado-pedido/estado-pedido.module').then( m => m.EstadoPedidoPageModule)
   },
+  {
+    path: 'encuesta-cliente',
+    loadChildren: () => import('./paginas/cliente/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
+  },  {
+    path: 'graficos-cliente',
+    loadChildren: () => import('./paginas/cliente/graficos-cliente/graficos-cliente.module').then( m => m.GraficosClientePageModule)
+  },
+
+  
+
 
  
 

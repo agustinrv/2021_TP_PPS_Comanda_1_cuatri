@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
 
         let usuarioLogin: any = {};
         usuarioLogin.correo = this.unUsuario.correo;
+        usuarioLogin.clave = this.unUsuario.clave;
         usuarioLogin.perfil = datosUsuario[0].perfil;
         usuarioLogin.nombre = datosUsuario[0].nombre;
         usuarioLogin.habilitado = datosUsuario[0].habilitado;
