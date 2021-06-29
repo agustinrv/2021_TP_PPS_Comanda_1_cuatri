@@ -59,7 +59,7 @@ export class ModalPedidoPage implements OnInit {
     }
 
     this.pedido.tiempoEstimadoTotal = tiempoAux;
-    this.pedido.estadoPedido = EestadoPedido.Recibido;
+    this.pedido.estadoPedido = EestadoPedido.PedidoEnviadoCli;
     console.log(this.pedido);
     this.PedidoSvc.AgregarUno(this.pedido);
     //Limpio el Pedido, para pueda crear otro nuevo si desea.

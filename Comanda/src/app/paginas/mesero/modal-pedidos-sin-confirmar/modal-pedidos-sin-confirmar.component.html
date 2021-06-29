@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)='CerrarModal()'>
+      <ion-back-button defaultHref="pedidos-pendientes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor='let unProducto of this.pedidoSeleccionado.listaProductos' id='item_{{unProducto.id}}'>
+      <ion-item style='--border-color:white'  >
+
+        <ion-avatar slot="start" > 
+          <img [src]='unProducto.fotoUno'>
+        </ion-avatar>
+        <ion-label color='light'>{{unProducto.cantidad +' '+ unProducto.nombre}}</ion-label>
+        <ion-button (click)='this.QuitarProducto(unProducto)' color='dark'><ion-icon color='light'  name="trash-sharp"></ion-icon></ion-button> 
+        
+      </ion-item>    
+    </div>   
+  </ion-list>
+
+   <div>
+     <ion-button (click)="this.NoConfirmarPedido()" color='light' expand='block' class='pl-2 pr-2'>No confirmar</ion-button>
+     <ion-button (click)="this.ConfirmarPedido()" color='warning' expand='block' class='pl-2 pr-2'>Confirmar Pedido</ion-button>
+   </div>
+
+
+</ion-content>

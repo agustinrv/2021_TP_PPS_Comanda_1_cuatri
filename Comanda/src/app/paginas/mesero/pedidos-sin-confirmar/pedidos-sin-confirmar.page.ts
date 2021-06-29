@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
-import { ModalDetallesPedidosComponent } from '../modal-detalles-pedidos/modal-detalles-pedidos.component';
+import { ModalPedidosSinConfirmarComponent } from '../modal-pedidos-sin-confirmar/modal-pedidos-sin-confirmar.component';
 
 @Component({
   selector: 'app-pedidos-sin-confirmar',
@@ -36,10 +36,12 @@ export class PedidosSinConfirmarPage implements OnInit {
   }
 
 
+
+
   public async SeleccionarPedido(unPedido?:Pedido)
   {
     const modal = await this.modalController.create({
-      component: ModalDetallesPedidosComponent,
+      component: ModalPedidosSinConfirmarComponent,
       componentProps: {
         'pedidoSeleccionado': unPedido,
       }

@@ -29,7 +29,7 @@ export class PedidosService {
     return this.coleccionPedidos;    
   }
 
-  public ModificarUno(unaPedido)
+  public ModificarUno(unaPedido:Pedido)
   {
     return this.coleccionPedidos.doc(unaPedido.id).set({...unaPedido});
   }

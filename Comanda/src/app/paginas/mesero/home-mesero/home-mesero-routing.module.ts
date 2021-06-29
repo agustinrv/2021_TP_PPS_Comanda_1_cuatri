@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'pedidos-pendientes'
+        redirectTo: 'pedidos-sin-confirmar'
       }
     ]
   },

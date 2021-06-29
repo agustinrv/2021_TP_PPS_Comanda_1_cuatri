@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeMeseroPageRoutingModule } from './home-mesero-routing.module';
 
 import { HomeMeseroPage } from './home-mesero.page';
+import { ModalPedidosSinConfirmarComponent } from '../modal-pedidos-sin-confirmar/modal-pedidos-sin-confirmar.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { HomeMeseroPage } from './home-mesero.page';
   ],
   declarations: [
     HomeMeseroPage,
-    ModalDetallesPedidosComponent
+    ModalDetallesPedidosComponent,
+    ModalPedidosSinConfirmarComponent
   ]
 })
 export class HomeMeseroPageModule {}

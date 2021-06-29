@@ -15,15 +15,15 @@
           <img [src]='unProducto.fotoUno'>
         </ion-avatar>
         <ion-label color='light'>{{unProducto.cantidad +' '+ unProducto.nombre}}</ion-label>
-        <ion-button *ngIf='unProducto.terminado' color='success' style='width: 25px;height: 25px'>✔</ion-button>
-        <ion-button *ngIf='!unProducto.terminado' color='dark' style='width: 25px;height: 25px'>❌</ion-button>
+        <span *ngIf='this.pedidoSeleccionado.estadoPedido!==EestadoPedido.PedidoEnviadoCli'>
+          <ion-button *ngIf='unProducto.terminado' color='success' style='width: 25px;height: 25px'>✔</ion-button>
+          <ion-button *ngIf='!unProducto.terminado' color='dark' style='width: 25px;height: 25px'>❌</ion-button> 
+        </span>        
       </ion-item>    
     </div>   
   </ion-list>
 
-   <div>
-     <ion-button  (click)="this.EntregarPedido()" [disabled]='this.colorBoton==="dark"' [color]='this.colorBoton' expand='block' class='pl-2 pr-2'>Entregar Pedido</ion-button>
-   </div>
+     <ion-button (click)="this.EntregarPedido()" [disabled]='this.colorBoton==="dark"' [color]='this.colorBoton' expand='block' class='pl-2 pr-2 '>Entregar Pedido</ion-button>
 
 
 </ion-content>

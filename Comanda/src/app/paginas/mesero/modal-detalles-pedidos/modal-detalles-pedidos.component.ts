@@ -14,6 +14,7 @@ export class ModalDetallesPedidosComponent implements OnInit {
   @Input() pedidoSeleccionado:Pedido;  
 
   public colorBoton;
+  public EestadoPedido=EestadoPedido;
 
 
   constructor(private modalController:ModalController,
@@ -47,6 +48,7 @@ export class ModalDetallesPedidosComponent implements OnInit {
 
     return tienePedidosSinTerminar;
   }
+
 
   public EntregarPedido(){
       this.pedidoSeleccionado.estadoPedido=EestadoPedido.Entregado;      
