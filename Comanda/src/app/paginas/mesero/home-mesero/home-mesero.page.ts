@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, ModalController } from '@ionic/angular';
-import { Pedido } from 'src/app/clases/pedido/pedido';
-import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
-import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
-import { ModalDetallesPedidosComponent } from '../modal-detalles-pedidos/modal-detalles-pedidos.component';
 
 @Component({
   selector: 'app-home-mesero',

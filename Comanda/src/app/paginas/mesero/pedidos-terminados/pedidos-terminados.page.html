@@ -1,7 +1,7 @@
 
 <ion-content class="background">
-
-  <ion-list style='background:#ffc60986' class='mt-2 ml-2 mr-2'>
+  
+  <ion-list style='background:#ffffffc4' class='mt-2 ml-2 mr-2'>
     <ion-item  style='--background:#ffc60900;' lines='none'>
       <ion-title class='text-center'  color='dark'>Pedidos Terminados</ion-title>
     </ion-item>
@@ -11,10 +11,14 @@
         <ion-avatar slot="start" >
           <img [src]='unPedido.cliente.foto'>
         </ion-avatar>
-        <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-label color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
         <ion-icon class="text-success" name="checkmark-circle" slot="end"></ion-icon>
     </ion-item>
   </ion-list>
+
+  <!--div *ngIf='this.listaPedidosTerminados.length===0'>
+    <h3 class="text-center">No hay pedidos Terminados</h3>
+</div-->
 
 
 </ion-content>
