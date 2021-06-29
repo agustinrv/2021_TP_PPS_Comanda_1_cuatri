@@ -34,10 +34,6 @@ export class PedidosTerminadosPage implements OnInit {
     });
   }
 
-  
-
-  
-
   public async SeleccionarPedido(unPedido?:Pedido)
   {
     const modal = await this.modalController.create({
