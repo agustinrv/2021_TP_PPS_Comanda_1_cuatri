@@ -9,11 +9,23 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="background">
   
-    <ion-button class="botonesMenu" expand="block" color="warning" (click)='VerSolicitudes()'>Solicitudes De Mesas</ion-button>
-    <ion-button class="botonesMenu" expand="block" color="warning" (click)='CargarCliente()'>Registrar Cliente</ion-button>
-
-   
+    <div >
+      <ion-card class="cardSelect" (click)='VerSolicitudes()'>
+        <img src="assets/metre/perfiles.svg" alt="" height="10%" width="70%">
+        <ion-card-content>
+          <ion-card-title color='light' >Solicitudes De Mesas</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    <br>
+      <ion-card class="cardSelect" (click)='CargarCliente()'>
+        <img src="assets/metre/agregar-usuario.svg" alt="" height="10%" width="70%">
+        <ion-card-header>
+          <ion-card-title color='light'>Registrar Cliente</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    
  
 </ion-content>
