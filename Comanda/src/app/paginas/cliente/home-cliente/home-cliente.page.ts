@@ -30,9 +30,9 @@ export class HomeClientePage implements OnInit {
 
 
   ///Banderas normal: true, false, false
-  BanderaMostrarBienvenido = true;
-  BanderaMostrarEspera = true;
-  BanderaMenuCliente = false;
+  BanderaMostrarBienvenido = false;
+  BanderaMostrarEspera = false;
+  BanderaMenuCliente = true;
 
 
   //Auxiliares

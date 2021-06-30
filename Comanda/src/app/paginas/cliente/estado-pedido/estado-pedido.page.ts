@@ -13,7 +13,7 @@ import { ModalEstadoPedidoComponent } from '../modal-estado-pedido/modal-estado-
 export class EstadoPedidoPage implements OnInit {
 
   public listaPedidos:Pedido[]=[];
-  public EestadoPedido:EestadoPedido;
+  public estadoPedido=EestadoPedido;
   public usuarioLogeado;
 
 
@@ -30,13 +30,16 @@ export class EstadoPedidoPage implements OnInit {
   private CargarPedidos()
   {
     this.servicioPedido.TraerPedidosDeUnCliente(this.usuarioLogeado.correo).valueChanges().subscribe((data:Pedido[])=>{
-        this.listaPedidos=data;
+        this.listaPedidos=data.filter((value,index,array)=>{
+          return value.estadoPedido!=EestadoPedido.ConfirmarRecibido;
+        });
     });
   }
 
 
   public async SeleccionarPedido(unPedido:Pedido)
   {
+    
     const modal = await this.modalController.create({
       component: ModalEstadoPedidoComponent,
       componentProps: {

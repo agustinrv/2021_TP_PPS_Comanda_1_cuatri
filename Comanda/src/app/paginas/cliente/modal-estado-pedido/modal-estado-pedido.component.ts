@@ -17,6 +17,7 @@ export class ModalEstadoPedidoComponent implements OnInit {
   public EestadoPedido=EestadoPedido;
   public pedidoMostrar:Pedido;
   public porcentajeBarra="width: 0%";
+  public porcentajeNumericoBarra='0%';
 
   ///Estados
   public estadoDelPedido:ClaseEstadoPedido;
@@ -59,6 +60,7 @@ export class ModalEstadoPedidoComponent implements OnInit {
       case EestadoPedido.Recibido:
         this.estadoDelPedido.confirmacionMozo=true;
         this.porcentajeBarra="width: 15%";
+        this.porcentajeNumericoBarra='15%';
         break;
 
       case EestadoPedido.Preparando:
@@ -66,21 +68,25 @@ export class ModalEstadoPedidoComponent implements OnInit {
         this.estadoDelPedido.confirmacionMozo=true;
         this.estadoDelPedido.enPreparacion=true;
         this.porcentajeBarra='width: 25%';
+        this.porcentajeNumericoBarra='25%';
 
         if(this.pedidoMostrar.BarTenderTermino)
         {
           this.estadoDelPedido.bartenderTermino=true;
           this.porcentajeBarra='width: 50%';
+          this.porcentajeNumericoBarra='50%';
         }
         if(this.pedidoMostrar.CocineroTermino)
         {
           this.estadoDelPedido.cocineroTermino=true;
           this.porcentajeBarra='width: 50%';
+          this.porcentajeNumericoBarra='50%';
         }
 
         if(this.pedidoMostrar.CocineroTermino && this.pedidoMostrar.BarTenderTermino)
         {
           this.porcentajeBarra='width: 90%';
+          this.porcentajeNumericoBarra='90%';
         }
 
         break;
@@ -93,6 +99,7 @@ export class ModalEstadoPedidoComponent implements OnInit {
         this.estadoDelPedido.cocineroTermino=true;
         this.estadoDelPedido.terminado=true;
         this.porcentajeBarra='width: 95%';
+        this.porcentajeNumericoBarra='95%';
         break;
 
       case EestadoPedido.Entregado:
@@ -105,9 +112,17 @@ export class ModalEstadoPedidoComponent implements OnInit {
         this.colorBoton='warning'
 
         this.porcentajeBarra='width: 100%';
+        this.porcentajeNumericoBarra='100%';
       break;
       
     }
+  }
+
+  public ConfirmarEntrega()
+  {
+    this.pedidoSeleccionado.estadoPedido=EestadoPedido.ConfirmarRecibido;
+    this.servicioPedido.ModificarUno(this.pedidoSeleccionado);
+    this.CerrarModal();
   }
 
 }
