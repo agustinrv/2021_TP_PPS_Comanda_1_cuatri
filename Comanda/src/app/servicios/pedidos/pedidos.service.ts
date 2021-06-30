@@ -35,6 +35,7 @@ export class PedidosService {
   }
 
   public BorrarUno(unPedido:Pedido) {
+    
     this.coleccionPedidos.doc(unPedido.id).delete();
   }
 
@@ -52,6 +53,16 @@ export class PedidosService {
 
   public TraerPedidosTerminado(){
     return this.bd.collection(this.pathPedido, ref=>ref.where("estadoPedido", "==", EestadoPedido.Terminado));    
+  }
+
+  public TraerPedidosDeUnCliente(correo:string)
+  {
+    return this.bd.collection(this.pathPedido, ref=>ref.where("cliente.correo", "==", correo));//Falta validar que el pedido sea del dia o instancia
+  }
+
+  public TraerUnPedidoID(id:string)
+  {
+    return this.bd.collection(this.pathPedido, ref=>ref.where("id", "==", id));//Falta validar que el pedido sea del dia o instancia
   }
 
   

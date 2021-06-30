@@ -7,9 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content class="background">
+  
+  <ion-list style='background:#ffffffc4' class='mt-2 ml-2 mr-2'>
+    <ion-item  style='--background:#ffc60900;' lines='none'>
+      <ion-title class='text-center'  color='dark'>Solicitudes de pedidos - {{this.listaPedidos.length}}</ion-title>
+    </ion-item>
+    <hr class='bg-dark'>
 
-
+    <ion-item *ngFor='let unPedido of this.listaPedidos' (click)='SeleccionarPedido(unPedido)' style='--background:#ffc60900;--border-color:black'>
+        <ion-avatar slot="start" >
+          <img [src]='unPedido.cliente.foto'>
+        </ion-avatar>
+        <ion-label color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-icon class="text-success" name="checkmark-circle" slot="end"></ion-icon>
+    </ion-item>
+    
+  </ion-list>
 
 </ion-content>
