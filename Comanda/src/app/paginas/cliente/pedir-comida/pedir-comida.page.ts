@@ -143,8 +143,7 @@ export class PedirComidaPage implements OnInit {
 
   ScanQRProductos() {
     let auxProd: any;
-    this.router.navigateByUrl('menu-espera-cliente');
-    
+        
     this.scanner.scan().then(data => {
       auxProd = data["text"];
       if(auxProd==this.solicitudDeMesaEncontrada.numMesa){
