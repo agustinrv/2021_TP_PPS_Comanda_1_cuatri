@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
+import { Productos } from 'src/app/clases/Productos/productos';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-modal-detalles-pedidos',
-  templateUrl: './modal-detalles-pedidos.component.html',
-  styleUrls: ['./modal-detalles-pedidos.component.scss'],
+  selector: 'app-modal-pedidos-sin-confirmar',
+  templateUrl: './modal-pedidos-sin-confirmar.component.html',
+  styleUrls: ['./modal-pedidos-sin-confirmar.component.scss'],
 })
-export class ModalDetallesPedidosComponent implements OnInit {
+export class ModalPedidosSinConfirmarComponent implements OnInit {
 
   @Input() pedidoSeleccionado:Pedido;  
 
@@ -22,14 +23,10 @@ export class ModalDetallesPedidosComponent implements OnInit {
               private servicioPedidos:PedidosService) { }
 
   ngOnInit() {
-      if(this.QuedanPedidosSinTerminar()){
-        this.colorBoton='dark';
-      }
-      else{
-        this.colorBoton='warning';
-      }
+      
   }
 
+  
   public CerrarModal() {
 
     this.modalController.dismiss({
@@ -37,20 +34,28 @@ export class ModalDetallesPedidosComponent implements OnInit {
     });    
 
   }
-
-  public QuedanPedidosSinTerminar():boolean
+  
+  public ConfirmarPedido()
   {
-    let tienePedidosSinTerminar=true;
+    this.Confirmar('Confirmar Pedido?','','Si,Continuar').then((result) => {
+      if(result.isConfirmed)
+      {
+        Swal.fire(
+          'Confirmado!!',
+          '',
+          'success'
+          )
+        this.pedidoSeleccionado.estadoPedido=EestadoPedido.Recibido;
+        this.servicioPedidos.ModificarUno(this.pedidoSeleccionado);
+        this.CerrarModal();
+      }
+      
+    });
     
-    if(this.pedidoSeleccionado.BarTenderTermino && this.pedidoSeleccionado.CocineroTermino)
-    {
-      tienePedidosSinTerminar=false;
-    }
-
-    return tienePedidosSinTerminar;
   }
-  public CancelarPedido(){
-    this.Confirmar('Si lo cancela no podra recuperarlo',"Desea continuar?",'Si,Eliminalo').then((result) => {
+
+  public NoConfirmarPedido(){
+      this.Confirmar('Si no confirma el elemento se eliminara',"Desea continuar?",'Si,Eliminalo').then((result) => {
       if (result.isConfirmed) {
         this.servicioPedidos.BorrarUno(this.pedidoSeleccionado);  
         Swal.fire(
@@ -61,14 +66,22 @@ export class ModalDetallesPedidosComponent implements OnInit {
           this.CerrarModal();
       }
     });
+
   }
 
-
-  public EntregarPedido(){
-      this.pedidoSeleccionado.estadoPedido=EestadoPedido.Entregado;      
+  public QuitarProducto(unProducto:Productos)
+  {
+      let input=document.getElementById('item_'+unProducto.id);
+      input.className='QuitarElemento';
+           
+     setTimeout(() => {
+      this.pedidoSeleccionado.listaProductos=this.pedidoSeleccionado.listaProductos.filter((value,index,array)=>{
+        return value.nombre!=unProducto.nombre;
+       })
       this.servicioPedidos.ModificarUno(this.pedidoSeleccionado);
-      this.CerrarModal();
-  }
+     },500);
+      
+  } 
 
   public Confirmar(titulo:string,texto:string,botonConfirmar:string){
     return Swal.fire({
@@ -83,5 +96,4 @@ export class ModalDetallesPedidosComponent implements OnInit {
     });
 
   }
-
 }

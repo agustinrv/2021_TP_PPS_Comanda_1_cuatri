@@ -3,7 +3,7 @@
 
   <ion-list style='background:#ffc60986' class='mt-2 ml-2 mr-2'>
     <ion-item style='--background:#75172200;' lines='none'>
-      <ion-title class='text-center'  color='dark'>Pedidos Pendientes</ion-title>
+      <ion-title class='text-center'  color='dark'>Pedidos en proceso</ion-title>
     </ion-item>
     <hr class='bg-dark'>
 
@@ -11,7 +11,7 @@
       <ion-avatar slot="start" >
         <img [src]='unPedido.cliente.foto'>
       </ion-avatar>
-      <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+      <ion-label color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
       <ion-icon  class='text-warning bg-dark rounded' name="alert-circle" slot="end"></ion-icon>
   </ion-item>
 
@@ -19,10 +19,13 @@
         <ion-avatar slot="start" >
           <img [src]='unPedido.cliente.foto'>
         </ion-avatar>
-        <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-label color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
         <ion-icon  class='text-danger bg-dark rounded' name="alert-circle" slot="end"></ion-icon>
     </ion-item>
   </ion-list>
 
+  <div *ngIf='this.listaPedidosPreparando.length===0 && this.listaPedidosRecibidos.length===0'>
+    <h3 class="text-center">No hay pedidos En Proceso</h3>
+</div>
 
 </ion-content>

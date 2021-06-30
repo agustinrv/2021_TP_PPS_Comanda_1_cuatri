@@ -1,11 +1,22 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu-espera-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Encuesta</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
 <ion-content class="background">
+
+  <form [formGroup]='form' novalidate class="encuesta-form needs-validation" (ngSubmit)="enviarEncuesta()">
   <ion-item-group>
     <ion-item-divider>
-      <ion-label color="light" >¿Como calificaría la atención y el servicio brindado?</ion-label>
+      <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >¿Como calificaría la atención y el servicio brindado?</ion-label>
     </ion-item-divider>
   
     <ion-item color = "dark">
-      <ion-range min="1" max="5"  snaps="true" pin="true" (ionChange)="rangoEvento($event)">
+      <ion-range min="1" max="5"  snaps="true" pin="true" formControlName="rango" >
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">5</ion-label>
       </ion-range>
@@ -15,35 +26,24 @@
   
   <ion-item-group >
     <ion-item-divider >
-      <ion-label color="light" >¿Como fue su experiencia con nuestra aplicación?</ion-label>
+      <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >¿Como fue su experiencia con nuestra aplicación?</ion-label>
     </ion-item-divider>
     <ion-list >
-      <ion-radio-group value="radio1" (ionChange)="radioEvento1($event)">
-        <ion-item color = "dark">
-          <ion-label>Excelente</ion-label>
-          <ion-radio slot="start" value="excelente"></ion-radio>
-        </ion-item>
-    
-        <ion-item color = "dark">
-          <ion-label>Buena</ion-label>
-          <ion-radio slot="start" value="buena"></ion-radio>
-        </ion-item>
-    
-        <ion-item color = "dark">
-          <ion-label>Mala</ion-label>
-          <ion-radio slot="start" value="mala"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
+        <ion-select  okText="Ok" cancelText="Cancelar" placeholder="Seleccionar opción" formControlName="select">
+         <ion-select-option value="Excelente">Excelente</ion-select-option>
+         <ion-select-option value="Buena">Buena</ion-select-option>
+         <ion-select-option value="Mala">Mala</ion-select-option>
+        </ion-select>
     </ion-list>
 
   </ion-item-group>
 
   <ion-item-group >
     <ion-item-divider >
-      <ion-label color="light" >¿Recomendaría nuestro restaurante a otras personas?</ion-label>
+      <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >¿Recomendaría nuestro restaurante a otras personas?</ion-label>
     </ion-item-divider>
     <ion-list >
-      <ion-radio-group value="radio2" (ionChange)="radioEvento2($event)" >
+      <ion-radio-group formControlName="radio" >
         <ion-item color = "dark">
           <ion-label>Si</ion-label>
           <ion-radio slot="start" value="si" ></ion-radio>
@@ -58,11 +58,49 @@
 
   </ion-item-group>
 
-  <ion-item>
-    <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" rows=4 maxlength=300 [(ngModel)]="resenia"></ion-textarea>
-  </ion-item>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >¿Que fue lo que más le gustó de nuestro menu?</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-checkbox color="light" style="margin-right: 5px;"  formControlName="checkComidas"></ion-checkbox> 
+      <ion-label >Comidas</ion-label>
+      <ion-checkbox color="light" style="margin-right: 5px;"  formControlName="checkPostres"></ion-checkbox>
+      <ion-label>Postres</ion-label>
+      <ion-checkbox color="light" style="margin-right: 5px;"  formControlName="checkTragos"></ion-checkbox>
+      <ion-label>Tragos</ion-label>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-list>
+    <ion-item>
+          <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" rows=3 maxlength=300 formControlName="resenia" ></ion-textarea>
+    </ion-item>
+    <ion-item-divider>
+      <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >CARGAR FOTOS (3 como máximo)</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input type="file" id="files" multiple formControlName="fotos" (change)='onUpload($event)' clearInput accept="image/png, image/jpeg"></ion-input>
+    </ion-item>
+  </ion-list>
+  </ion-item-group>
   
-  <ion-button expand="full" style="font-weight: bold;" (click)="enviarEncuesta()">Enviar encuesta</ion-button>
+  <ion-button class="botones" expand="full" size="medium"  type="submit"  [disabled]="form.invalid">Enviar</ion-button>
+  <ion-button class="botones" expand="full" size="medium" [routerLink]="['../graficos-cliente']" >Estadisticas</ion-button>
+
+  <!-- <ion-row>
+     <ion-col>
+      <ion-button class="botones" expand="full" size="medium" [routerLink]="['../menu-espera-cliente']" (click)="this.form.reset()" >Cerrar</ion-button>
+    </ion-col> 
+    <ion-col>
+      <ion-button class="botones" expand="full" size="medium"  type="submit"  [disabled]="form.invalid">Enviar</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button class="botones" expand="full" size="medium" [routerLink]="['../graficos-cliente']" >Estadisticas</ion-button>
+    </ion-col>
+  </ion-row>  -->
+</form>
 
 
 </ion-content>

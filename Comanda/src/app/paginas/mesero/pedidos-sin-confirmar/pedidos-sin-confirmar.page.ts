@@ -3,17 +3,19 @@ import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
-import { ModalDetallesPedidosComponent } from '../modal-detalles-pedidos/modal-detalles-pedidos.component';
+import { ModalPedidosSinConfirmarComponent } from '../modal-pedidos-sin-confirmar/modal-pedidos-sin-confirmar.component';
 
 @Component({
-  selector: 'app-pedidos-terminados',
-  templateUrl: './pedidos-terminados.page.html',
-  styleUrls: ['./pedidos-terminados.page.scss'],
+  selector: 'app-pedidos-sin-confirmar',
+  templateUrl: './pedidos-sin-confirmar.page.html',
+  styleUrls: ['./pedidos-sin-confirmar.page.scss'],
 })
-export class PedidosTerminadosPage implements OnInit {
+export class PedidosSinConfirmarPage implements OnInit {
 
-  public listaPedidosTerminados:Pedido[]=[];
-  public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
+
+  public listaPedidosSinConfirmar:Pedido[]=[];
+  
+  public EestadoPedido=EestadoPedido;
 
 
   constructor(  
@@ -28,16 +30,18 @@ export class PedidosTerminadosPage implements OnInit {
 
   private CargarPedidos()
   {
-
-    this.servicioPedido.TraerPedidosTerminado().valueChanges().subscribe((data:Pedido[])=>{
-        this.listaPedidosTerminados=data;
-    });
+      this.servicioPedido.TraerPedidosPorEstado(EestadoPedido.PedidoEnviadoCli).valueChanges().subscribe((data:Pedido[])=>{
+          this.listaPedidosSinConfirmar=data;
+      });
   }
+
+
+
 
   public async SeleccionarPedido(unPedido?:Pedido)
   {
     const modal = await this.modalController.create({
-      component: ModalDetallesPedidosComponent,
+      component: ModalPedidosSinConfirmarComponent,
       componentProps: {
         'pedidoSeleccionado': unPedido,
       }

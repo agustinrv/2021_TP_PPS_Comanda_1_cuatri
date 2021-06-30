@@ -73,14 +73,14 @@ export class HomeClientePage implements OnInit {
 
     //Busco si el cliente ya realizo una solicitud
  
-    this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
-      this.SolicitudDeMesaEnBD = user[0];
-      if(this.SolicitudDeMesaEnBD != null){
-        this.BanderaMostrarBienvenido = false;
-        this.BanderaMostrarEspera = true;
-        this.BanderaMenuCliente = false;
-      }
-    });
+    // this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
+    //   this.SolicitudDeMesaEnBD = user[0];
+    //   if(this.SolicitudDeMesaEnBD != null){
+    //     this.BanderaMostrarBienvenido = false;
+    //     this.BanderaMostrarEspera = true;
+    //     this.BanderaMenuCliente = false;
+    //   }
+    // });
   }
 
   //TERMINAR DE DESARROLLAR

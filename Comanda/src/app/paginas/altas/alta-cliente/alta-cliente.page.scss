@@ -26,6 +26,16 @@ ion-item{
     
 }
 
+ion-input{
+    --placeholder-color: whitesmoke;
+    color:whitesmoke;
+}
+
+.error-message
+{
+    color:whitesmoke;
+}
+
 .cardSelect{
     position: relative; 
     align-items: center;

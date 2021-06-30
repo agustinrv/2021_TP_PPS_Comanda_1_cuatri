@@ -10,6 +10,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { Usuario } from 'src/app/clases/Usuario/usuario';
 
 
 @Component({
@@ -23,7 +24,11 @@ export class AltaClientePage implements OnInit {
   fotoCargada: any;
   socio : Cliente = new Cliente();
   anonimo : Anonimo = new Anonimo();
+
+  //currentUser
   perfilLogeado : number;
+  correoLogeado : string;
+  claveLogeado : string;
 
   public formAnonimo: FormGroup = this.formBuilder.group({
 		nombre: [null, [Validators.required, Validators.pattern('^[a-zA-ZñÑ ]{3,25}$'),this.noWhitespaceValidator]],
@@ -86,6 +91,8 @@ export class AltaClientePage implements OnInit {
 	{
 		let usuario = JSON.parse(localStorage.getItem('usuarioLogeado'));
 		this.perfilLogeado = usuario.perfil;
+		this.correoLogeado = usuario.correo;
+		this.claveLogeado = usuario.clave;
 	}
 	
 	
@@ -176,6 +183,7 @@ registrar() {
                  
 			 	   if(this.perfilLogeado==5)
 			 	   {
+					  this.auth.Login(this.correoLogeado,this.claveLogeado);
 			 		  this.router.navigateByUrl('home-metre');
 			 	   }
 			 	   else
@@ -218,6 +226,7 @@ registrar() {
 
 			 	   if(this.perfilLogeado==5)
 			 	   {
+					  this.auth.Login(this.correoLogeado,this.claveLogeado);
 			 		  this.router.navigateByUrl('home-metre');
 			 	   }
 			 	   else

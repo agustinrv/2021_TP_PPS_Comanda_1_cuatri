@@ -51,6 +51,10 @@
 <img src="https://i.imgur.com/5ydK7ti.png" >
 </p>
 
+# Primer video
+**Demostración desde que se abre la app, recorrido desde que el cliente se registra y se pone en lista de espera hasta que es asignado por un metre.**
+Link: <a>https://drive.google.com/file/d/1Tja-Nf0M94lIrWs1d9FKJ51kqLjeMQW2/view</a>
+
 # Workflow 
 **Recorrido desde que ingresa un cliente, se toma el pedido que sera recibido por el metre, hasta que el cliente paga.**
 

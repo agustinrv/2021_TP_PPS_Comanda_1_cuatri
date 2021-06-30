@@ -1,20 +1,39 @@
 ion-content.background {
     --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    // --background:rgb(22, 22, 22);
     background-size: contain;
 }
-  
+
+ion-title{
+
+    display: flex; 
+    text-align: center;
+    font-size: large;
+    margin-right: 45px;
+}
+
+
+*{
+    --placeholder-color: white;
+    
+}
 
 ion-button{
     --background: #751722;
-    position: fixed;
-    left: 0;
-    bottom: 10px;
-    right: 0;
+    position:static;
+    // left: 0;
+    // bottom: 10px;
+    // right: 0;
+}
+
+ion-item-divider{
+    --background: #751722;
 }
 
 ion-radio{
     --color-checked: #751722;
 }
+
 
 ion-range{
     --bar-background:gray;
@@ -22,6 +41,13 @@ ion-range{
     --bar-background-active: #751722;
     --pin-background: #751722;
     --pin-color: white;
+    
+}
+
+.botones{
+    
+    font-size: medium; 
+    color: whitesmoke;
     
 }
 
