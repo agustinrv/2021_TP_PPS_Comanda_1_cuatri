@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-espera-cliente.page.scss'],
 })
 export class MenuEsperaClientePage implements OnInit {
-
-  constructor() { }
+  
+  
+  constructor() {
+   }
 
   ngOnInit() {
-  }
+
+ 
+  } 
+  
+
 
 }

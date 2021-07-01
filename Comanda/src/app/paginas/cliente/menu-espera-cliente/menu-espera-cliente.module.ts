@@ -13,7 +13,9 @@ import { MenuEsperaClientePage } from './menu-espera-cliente.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuEsperaClientePageRoutingModule
+    MenuEsperaClientePageRoutingModule,
+ 
+
   ],
   declarations: [MenuEsperaClientePage]
 })
