@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="juegos-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Adivinar el numero</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
+<ion-content >
+<ion-card class="card-center">
+  <h2 *ngIf="estado==true" style="color: lawngreen;">GANASTE!!!</h2>
+  <h2 *ngIf="estado==false" style="color: red;">PERDISTE!</h2>
+  <h1 *ngIf="numero==0">?</h1>
+  <h1 *ngIf="numero!=0">{{numero}}</h1>
+  <ion-card-header>
+    <ion-card-title *ngIf="numero==0">Seleccione un numero:</ion-card-title>
+    <ion-card-title *ngIf="numero!=0">Su numero: {{elegido}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+   <ion-grid *ngIf="estado==null">
+    <ion-row>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,1)" color = "warning">1</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,2)" color = "warning">2</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,3)" color = "warning">3</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="btnNum" class="btnNum" expand="block" (click)="random(1,10,4)" color = "warning">4</ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,5)" color = "warning">5</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,6)" color = "warning">6</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,7)" color = "warning">7</ion-button>
+      </ion-col>
+      <ion-col col-6>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,8)" color = "warning">8</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,9)" color = "warning">9</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="btnNum" expand="block" (click)="random(1,10,10)" color = "warning">10</ion-button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+
+    <div style="text-align: center;" *ngIf="estado!=null">
+      <ion-card-content>
+        <p *ngIf="estado==false">No pudo ganar el descuento. Puede jugar nuevamente pero ya no recibira el premio.</p>
+        <p *ngIf="estado==true">Felicidades! El descuento fue aplicado a su compra. Puede jugar nuevamente pero ya no recibira otro premio.</p>
+      </ion-card-content>
+      <ion-button class="btnOpt" expand="block" (click)="reiniciar()" color = "tertiary">Jugar denuevo</ion-button>
+    </div> 
+    
+    
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

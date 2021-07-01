@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'graficos-cliente',
     loadChildren: () => import('./paginas/cliente/graficos-cliente/graficos-cliente.module').then( m => m.GraficosClientePageModule)
   },
+  {
+    path: 'juegos-cliente',
+    loadChildren: () => import('./paginas/cliente/juegos-cliente/juegos-cliente.module').then( m => m.JuegosClientePageModule)
+  },
 
   
 
