@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="menu-espera-cliente" color="light"></ion-back-button>
     </ion-buttons>
-    <ion-title>Encuesta</ion-title>  
+    <ion-title color="light">Encuesta</ion-title>  
    </ion-toolbar>
 </ion-header> 
 
@@ -62,7 +62,7 @@
     <ion-item-divider>
       <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >¿Que fue lo que más le gustó de nuestro menu?</ion-label>
     </ion-item-divider>
-    <ion-item>
+    <ion-item color="dark">
       <ion-checkbox color="light" style="margin-right: 5px;"  formControlName="checkComidas"></ion-checkbox> 
       <ion-label >Comidas</ion-label>
       <ion-checkbox color="light" style="margin-right: 5px;"  formControlName="checkPostres"></ion-checkbox>
@@ -73,14 +73,14 @@
   </ion-item-group>
 
   <ion-item-group>
-    <ion-list>
-    <ion-item>
+    <ion-list >
+    <ion-item color="dark">
           <ion-textarea placeholder="Dejar una breve reseña... (Opcional)" rows=3 maxlength=300 formControlName="resenia" ></ion-textarea>
     </ion-item>
     <ion-item-divider>
       <ion-label class="ion-text-wrap" color="light" style="font-size: 1em;" >CARGAR FOTOS (3 como máximo)</ion-label>
     </ion-item-divider>
-    <ion-item>
+    <ion-item color="dark">
       <ion-input type="file" id="files" multiple formControlName="fotos" (change)='onUpload($event)' clearInput accept="image/png, image/jpeg"></ion-input>
     </ion-item>
   </ion-list>
@@ -89,17 +89,6 @@
   <ion-button class="botones" expand="full" size="medium"  type="submit"  [disabled]="form.invalid">Enviar</ion-button>
   <ion-button class="botones" expand="full" size="medium" [routerLink]="['../graficos-cliente']" >Estadisticas</ion-button>
 
-  <!-- <ion-row>
-     <ion-col>
-      <ion-button class="botones" expand="full" size="medium" [routerLink]="['../menu-espera-cliente']" (click)="this.form.reset()" >Cerrar</ion-button>
-    </ion-col> 
-    <ion-col>
-      <ion-button class="botones" expand="full" size="medium"  type="submit"  [disabled]="form.invalid">Enviar</ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button class="botones" expand="full" size="medium" [routerLink]="['../graficos-cliente']" >Estadisticas</ion-button>
-    </ion-col>
-  </ion-row>  -->
 </form>
 
 

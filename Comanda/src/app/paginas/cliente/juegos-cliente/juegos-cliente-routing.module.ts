@@ -11,7 +11,15 @@ const routes: Routes = [
   {
     path: 'juego-adivinar',
     loadChildren: () => import('./juego-adivinar/juego-adivinar.module').then( m => m.JuegoAdivinarPageModule)
+  },  {
+    path: 'juego-tateti',
+    loadChildren: () => import('./juego-tateti/juego-tateti.module').then( m => m.JuegoTatetiPageModule)
+  },
+  {
+    path: 'juego-ppt',
+    loadChildren: () => import('./juego-ppt/juego-ppt.module').then( m => m.JuegoPptPageModule)
   }
+
 ];
 
 @NgModule({

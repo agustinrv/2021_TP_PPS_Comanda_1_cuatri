@@ -9,4 +9,13 @@ export class Mesa {
     public tipo:EtipoMesa;
     public asignada:boolean;
 
+    //juegos
+    public juego1 : boolean = false; //adivinar numero (Si es true: jugó una vez)
+    public gano1 : boolean = false; //si es true: 10% descuento en precio total de la compra
+
+    public juego2 : boolean = false; //tateti (Si es true: jugó una vez)
+    public gano2 : boolean = false; //una bebida gratis (si es true: se descuenta de la compra si es que pidio bebida)
+
+    public juego3 : boolean = false; //piedra papel tijera (Si es true: jugó una vez)
+    public gano3 : boolean = false; //un postre gratis (si es true: se descuenta de la compra si es que pidio postre)
 }

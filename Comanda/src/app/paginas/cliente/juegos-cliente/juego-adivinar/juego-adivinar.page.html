@@ -61,8 +61,8 @@
 
     <div style="text-align: center;" *ngIf="estado!=null">
       <ion-card-content>
-        <p *ngIf="estado==false">No pudo ganar el descuento. Puede jugar nuevamente pero ya no recibira el premio.</p>
-        <p *ngIf="estado==true">Felicidades! El descuento fue aplicado a su compra. Puede jugar nuevamente pero ya no recibira otro premio.</p>
+        <p *ngIf="estado==false && intento==false">No pudo ganar el descuento. Puede jugar nuevamente pero ya no recibira el premio.</p>
+        <p *ngIf="estado==true && intento==false">Felicidades! El descuento fue aplicado a su compra. Puede jugar nuevamente pero ya no recibira otro premio.</p>
       </ion-card-content>
       <ion-button class="btnOpt" expand="block" (click)="reiniciar()" color = "tertiary">Jugar denuevo</ion-button>
     </div> 
