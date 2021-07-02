@@ -1,4 +1,4 @@
-export enum EestadoPedido {Recibido,Preparando,Terminado,Entregado,ConfirmarRecibido,SolitaCuenta,Pagado,PedidoEnviadoCli}
+export enum EestadoPedido {Recibido,Preparando,Terminado,Entregado,ConfirmarRecibido,ClientePaga,MozoConfirmaPaga,PedidoEnviadoCli}
 /*
 PedidoEnviadoCli=Cuando el cliente solicita un nuevo pedido
 Recibido=el cocinero y barteneder lo ven en este estado(El mozo lo coloca en este estado)

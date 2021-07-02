@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
+import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
+import { ConfirmarPagoPage } from '../confirmar-pago/confirmar-pago.page';
 
 @Component({
   selector: 'app-home-mesero',
@@ -17,6 +20,8 @@ export class HomeMeseroPage implements OnInit {
   listadoMesasOrdenada : any;
 
 
+  cantMsg = 0;
+  listadoChat : any[];
 
 
   constructor(
@@ -25,7 +30,9 @@ export class HomeMeseroPage implements OnInit {
     private modalCtrl: ModalController,
     private auth : AuthService,
     private router : Router,
-  
+    private chatSvc : MsgConsultaService,
+    private localNotifications: LocalNotifications,
+    private modalController : ModalController
   ) { }
 
   ngOnInit() {
@@ -33,7 +40,9 @@ export class HomeMeseroPage implements OnInit {
       this.listadoMesasOrdenada = mesa;
     });
 
-    
+    this.chatSvc.TraerChat().valueChanges().subscribe(msgs => {
+      this.listadoChat = msgs;
+    });
   }
 
   CerrarSesion(){
@@ -102,6 +111,30 @@ export class HomeMeseroPage implements OnInit {
 
     return await modal.present();
   }
+
+
+  VerMensajesNuevos(){
+    this.cantMsg = 0;
+    this.listadoChat.forEach(element => {
+      if(element.estado == "EnviadoCliente"){
+        this.cantMsg ++;
+        //Lanzar notication
+        this.LanzarNotificacion(element.mesa);
+        //this.Toast("success","Aca se mandaria una notificacion!");
+      }
+    });
+  }
+
+  LanzarNotificacion(numMesa){
+    this.localNotifications.schedule([{
+      id: numMesa,
+      title: 'El Mazacote',
+      text: 'Le llego un mensaje de la mesa: ' + numMesa,
+      sound: true ? 'file://sound.mp3': 'file://beep.caf',
+      icon: '../../../assets/splash/center.png'
+     }]);
+  }
+  
 
   
 }

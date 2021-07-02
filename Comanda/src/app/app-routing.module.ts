@@ -86,13 +86,26 @@ const routes: Routes = [
   {
     path: 'encuesta-cliente',
     loadChildren: () => import('./paginas/cliente/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
-  },  {
+  },
+  {
     path: 'graficos-cliente',
     loadChildren: () => import('./paginas/cliente/graficos-cliente/graficos-cliente.module').then( m => m.GraficosClientePageModule)
   },
   {
     path: 'juegos-cliente',
     loadChildren: () => import('./paginas/cliente/juegos-cliente/juegos-cliente.module').then( m => m.JuegosClientePageModule)
+  },
+  {
+    path: 'pide-cuenta',
+    loadChildren: () => import('./paginas/cliente/pide-cuenta/pide-cuenta.module').then( m => m.PideCuentaPageModule)
+  },
+  {
+    path: 'confirmar-pago',
+    loadChildren: () => import('./paginas/mesero/confirmar-pago/confirmar-pago.module').then( m => m.ConfirmarPagoPageModule)
+  },
+  {
+    path: 'detalles-pedidos',
+    loadChildren: () => import('./paginas/mesero/detalles-pedidos/detalles-pedidos.module').then( m => m.DetallesPedidosPageModule)
   },
 
   

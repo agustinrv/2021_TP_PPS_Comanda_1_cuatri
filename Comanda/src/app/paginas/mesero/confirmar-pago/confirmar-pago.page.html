@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title align="center">Pagos Registrados</ion-title>
+    <ion-buttons slot="start" style="position: absolute;">
+      <ion-button routerLink="../home-mesero/pedidos-sin-confirmar" color="light">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+
+
+  <div *ngFor="let mesa of this.listaMesas">
+    <ion-card *ngIf="mesa.pagado">
+      <ion-card-header>
+        <img src={{mesa.cliente.foto}}>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card-title>Nombre: {{mesa.cliente.nombre}} {{mesa.cliente.apellido}}</ion-card-title>
+        <ion-card-title>Precio Total Pagado: ${{mesa.precioPagado}}</ion-card-title>
+        <ion-card-title>Mesa: {{mesa.numero}}</ion-card-title>
+        <br>
+        <ion-button color="warning" expand="block" (click)="ModalDetalles(mesa)">Ver Detalles</ion-button>
+        <ion-button color="success" expand="block" (click)="EliminarPedidos(mesa)">Confirmar Pago</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

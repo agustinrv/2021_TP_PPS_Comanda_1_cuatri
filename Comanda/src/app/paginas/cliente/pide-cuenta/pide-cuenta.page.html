@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title align="center">Cuenta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+    <ion-list *ngFor="let prod of this.listaProductosFiltrados">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src={{prod.fotoUno}}>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{prod.nombre}}</h2>
+          <p>Cantidad: {{prod.cantidad}}</p>
+          <p>Precio Unitario: ${{prod.precio}}</p>
+          <h3 style="position: relative; text-align: end;">Precio Total: ${{prod.precio * prod.cantidad}}</h3>
+        </ion-label>
+      </ion-item>
+      
+    </ion-list>
+    <ion-list>
+      <!--ion-item>
+        <ion-label>Descuentos por Juegos:</ion-label>
+        <ion-label style="text-align: end; position: relative;">-$100</ion-label>
+      </ion-item-->
+      <ion-item>
+        <ion-label>
+          <h2>Quiere dejar una propina?</h2>
+          <p>Pagate algo raton!</p>
+          <ion-input [(ngModel)]="propina">Propina: </ion-input>
+        </ion-label>
+        <ion-button slot="end" color="warning" (click)="AgregarPropina()">Agregar</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total:</ion-label>
+        <ion-label style="text-align: end; position: relative;">${{this.precioTotal}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button color="success" expand="block" (click)="presentAlertConfirm()">Pagar</ion-button>
+</ion-content>
