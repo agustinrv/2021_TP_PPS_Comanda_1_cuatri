@@ -90,6 +90,18 @@ const routes: Routes = [
     path: 'graficos-cliente',
     loadChildren: () => import('./paginas/cliente/graficos-cliente/graficos-cliente.module').then( m => m.GraficosClientePageModule)
   },
+  {
+    path: 'pide-cuenta',
+    loadChildren: () => import('./paginas/cliente/pide-cuenta/pide-cuenta.module').then( m => m.PideCuentaPageModule)
+  },
+  {
+    path: 'confirmar-pago',
+    loadChildren: () => import('./paginas/mesero/confirmar-pago/confirmar-pago.module').then( m => m.ConfirmarPagoPageModule)
+  },
+  {
+    path: 'detalles-pedidos',
+    loadChildren: () => import('./paginas/mesero/detalles-pedidos/detalles-pedidos.module').then( m => m.DetallesPedidosPageModule)
+  },
 
   
 

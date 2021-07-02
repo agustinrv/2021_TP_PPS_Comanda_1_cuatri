@@ -1,0 +1,10 @@
+ion-toolbar{
+    --background: black;
+    color: white;
+    font-size: 30px;
+}
+
+ion-content.background {
+    --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
+}
