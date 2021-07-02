@@ -12,6 +12,7 @@ import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { Mesa } from 'src/app/clases/Mesa/mesa';
 import { ActionSheetController, ToastController } from '@ionic/angular';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-solicitudes-mesas',
@@ -37,12 +38,15 @@ export class SolicitudesMesasPage implements OnInit {
 
   public mesaSeleccionada:Mesa;
 
+  public inicio=false;
+
   constructor(
     private servicioSolicitudMesas: SolicitudMesaService,
     private servicioUsuarios:UsuarioService,
     private servicioMesas:MesaService,
     public toastController: ToastController,
-    public actionSheetController:ActionSheetController){ }
+    public actionSheetController:ActionSheetController,
+    public localNotifications:LocalNotifications){ }
 
   ngOnInit() {
     this.CargarSolicitudes();
@@ -73,7 +77,23 @@ export class SolicitudesMesasPage implements OnInit {
     this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
       this.listadoSolicitudes = solicitudes;
       this.cantidaSolicitudes=this.listadoSolicitudes.length;
+
+      if(this.inicio)
+      {
+        this.LanzarNotificacion(this.listadoSolicitudes.length);
+      }
+      this.inicio=true;
     });
+  }
+
+  LanzarNotificacion(numeroId:number){
+    this.localNotifications.schedule([{
+      id: numeroId,
+      title:'El Mazacote',
+      text: 'Nuevo cliente en lista',
+      sound:'../../../../assets/mp3/notificacion.mp3',
+      icon: '../../../../assets/splash/center.png'
+     }]);
   }
 
   public AsignarMesa(solicitudMesa:SolicitudMesa,mesaSeleccionada:Mesa){
@@ -96,6 +116,7 @@ export class SolicitudesMesasPage implements OnInit {
         
       });
       this.servicioSolicitudMesas.ModificarUno(solicitudMesa);
+      this.inicio=false;
     }
     else
     {

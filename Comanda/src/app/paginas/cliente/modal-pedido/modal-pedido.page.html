@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-title align="center">Pedido</ion-title>
-    <ion-buttons slot="start" style="position: absolute;">
-      <ion-button (click)="dismiss()" color="danger">
-        Cerrar
-      </ion-button>
-    </ion-buttons>
+      <ion-buttons slot="start" (click)="dismiss()">
+        <ion-back-button defaultHref="home-cliente"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+
+
 
 <ion-content>
   <ion-list *ngFor="let item of this.pedido.listaProductos">
@@ -26,5 +27,5 @@
     </ion-item>
   </ion-list>
   <ion-button color="success" expand="block" (click)="ConfirmarCompra()"
-    [disabled]="this.pedido.listaProductos.length == 0">Confirmar Compra</ion-button>
+    [disabled]="this.pedido.listaProductos.length === 0">Confirmar Compra</ion-button>
 </ion-content>

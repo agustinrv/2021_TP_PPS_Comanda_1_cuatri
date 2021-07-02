@@ -58,6 +58,7 @@ export class LoginPage implements OnInit {
 
         localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioLogin));
         console.log(usuarioLogin);
+        this.Reproducir('assets/mp3/correcto.mp3');
 
         switch (usuarioLogin.perfil) {
           case Eperfil.Dueño:
@@ -111,6 +112,18 @@ export class LoginPage implements OnInit {
       })
     });
 
+  }
+
+  public Reproducir (pathSonido:string) {
+    
+    
+    let audio = new Audio();
+    console.log(pathSonido);
+    audio.src = pathSonido;
+    
+    audio.load();
+    audio.play();
+    
   }
 
   public Login(_correo, _password) {

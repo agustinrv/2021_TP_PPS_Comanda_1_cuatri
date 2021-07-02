@@ -23,7 +23,7 @@
         <ion-icon  class='text-danger bg-dark rounded' name="alert-circle" slot="end"></ion-icon>
     </ion-item>
 
-    <ion-item *ngIf='this.listaPedidosPreparando.length===0' lines='none' style='--background:#75172200;--border-color:black'>
+    <ion-item *ngIf='this.listaPedidosPreparando.length===0 && this.listaPedidosRecibidos.length===0' lines='none' style='--background:#75172200;--border-color:black'>
       <ion-title class="text-center ">No hay pedidos en proceso</ion-title>
     </ion-item>
 

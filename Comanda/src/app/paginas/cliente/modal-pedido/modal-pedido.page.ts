@@ -65,7 +65,23 @@ export class ModalPedidoPage implements OnInit {
     //Limpio el Pedido, para pueda crear otro nuevo si desea.
     this.pedido = new Pedido();
     this.pedido.precioTotal = 0;
+
+    this.Reproducir('assets/mp3/nuevo_pedido.mp3');
+
+
     this.dismiss();
+  }
+
+  public Reproducir (pathSonido:string) {
+    
+    
+    let audio = new Audio();
+    console.log(pathSonido);
+    audio.src = pathSonido;
+    
+    audio.load();
+    audio.play();
+    
   }
 
   BorrarProducto(producto){

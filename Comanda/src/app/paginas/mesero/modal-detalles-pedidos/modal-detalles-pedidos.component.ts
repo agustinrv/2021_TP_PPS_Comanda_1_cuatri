@@ -49,6 +49,19 @@ export class ModalDetallesPedidosComponent implements OnInit {
 
     return tienePedidosSinTerminar;
   }
+
+  public Reproducir (pathSonido:string) {
+    
+    
+    let audio = new Audio();
+    console.log(pathSonido);
+    audio.src = pathSonido;
+    
+    audio.load();
+    audio.play();
+    
+  }
+
   public CancelarPedido(){
     this.Confirmar('Si lo cancela no podra recuperarlo',"Desea continuar?",'Si,Eliminalo').then((result) => {
       if (result.isConfirmed) {
@@ -67,6 +80,8 @@ export class ModalDetallesPedidosComponent implements OnInit {
   public EntregarPedido(){
       this.pedidoSeleccionado.estadoPedido=EestadoPedido.Entregado;      
       this.servicioPedidos.ModificarUno(this.pedidoSeleccionado);
+      this.Reproducir('assets/mp3/correcto.mp3');
+
       this.CerrarModal();
   }
 
