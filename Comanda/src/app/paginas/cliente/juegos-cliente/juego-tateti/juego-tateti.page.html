@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="juegos-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Ta-Te-Ti</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+  <div>
+    <section style="text-align: center;">
+      
+      <ion-button type="button" expand="block" size="large" [disabled]="gameOver==false"  (click)="newGame()">
+        Comenzar nueva partida
+      </ion-button>
+    </section>
+    <section *ngIf="board">
+      <div class="status">
+        {{ statusMessage }}
+        ({{ playerScore}} : {{aiScore}})
+      </div>
+      <div class="board">
+        <div *ngFor="let row of [0, 1, 2]" class="board-row">
+          <app-celda
+            *ngFor="let col of [0, 1, 2]"
+            [row]="row"
+            [col]="col"
+            [piece]="board[row][col]"
+            (click)="move(row, col)"
+          ></app-celda>
+        </div>
+      </div>
+      <br>
+      <div style="display:flex; text-align: center; justify-content: center;">
+        <ion-button  type="button" expand="block" size="large"  (click)="resetScore()">Reiniciar Puntaje</ion-button>
+      </div>
+    </section>
+  </div>
+
+</ion-content>
