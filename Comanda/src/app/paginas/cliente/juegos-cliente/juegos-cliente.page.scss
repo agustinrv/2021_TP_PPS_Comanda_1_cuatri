@@ -1,0 +1,47 @@
+ion-content.background {
+    // --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    --background:rgb(22, 22, 22);
+    background-size: contain;
+}
+
+ion-title{
+
+    display: flex; 
+    text-align: center;
+    font-size: large;
+    margin-right: 40px;
+}
+
+ion-slide{
+    margin-top: 30px;
+    display: flex;
+    
+}
+
+p{
+    text-align: center;
+}
+
+.slide1 img {
+    width: auto; 
+    max-width: 77%;
+    height: auto;
+    max-height: 77%;
+    // width: 100p;
+}
+
+.slide2 img {
+    width: auto; 
+    max-width: 77%;
+    height: auto;
+    max-height: 77%;
+    // width: 100p;
+}
+
+.slide3 img {
+    width: auto; 
+    max-width: 77%;
+    height: auto;
+    max-height: 77%;
+    // width: 100p;
+}

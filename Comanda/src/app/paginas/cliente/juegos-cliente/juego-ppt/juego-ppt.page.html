@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="juegos-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Piedra-Papel-Tijera</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
+<ion-content class="background">
+  <div class="row">
+    <div class="score-board">
+      <div id="user-label" class="badge">Jugador</div>
+      <div id="computer-label" class="badge">Bot</div>
+      <span id="user-score">{{ scores[0] }}</span>&nbsp;:&nbsp;<span id="computer-score">{{ scores[1] }}</span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4">
+      
+      <div class="content1">
+          
+      </div>
+      <h3 > Elija su arma: </h3>
+      
+      <div  class="content2">
+          <button (click)="pick(0)" [ngClass]="{'selectedWeapon':(playerSelected === 0)}" ><img src="./../../../../../assets/imagenes/piedra.png" width="150" height="100" class="center"></button>
+          <button (click)="pick(1)" [ngClass]="{'selectedWeapon':(playerSelected === 1)}" ><img src="./../../../../../assets/imagenes/papel.png" width="150" height="100" class="center"></button>
+          <button (click)="pick(2)" [ngClass]="{'selectedWeapon':(playerSelected === 2)}" ><img src="./../../../../../assets/imagenes/tijera.png" width="150" height="100" class="center"></button>
+       </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="result">
+          <div *ngIf="!loading && isResultShow" class="flex-container flex-center" style="flex-direction: column">
+              <div [ngSwitch]="theResult">
+            <ng-template [ngSwitchCase]= "0" > <h1 style="background-color:green;"> Ganaste! :) </h1></ng-template>
+            <ng-template [ngSwitchCase]= "1" > <h1 style="background-color:red;"> Perdiste :( </h1> </ng-template>
+            <ng-template [ngSwitchCase]= "2" > <h1 style="background-color:gray;"> Empate </h1> </ng-template>
+            <ng-template ngSwitchDefault> </ng-template>
+          </div> 
+              <p *ngIf="theResult != -1"> Elija denuevo para continuar...</p>
+              <br><br>
+          </div>
+      </div>
+      
+    </div>
+    <div class="col-md-4">
+      <div class="computer-choice">
+        <div class="content1">
+          <h3 style="text-align: start;">  Arma del bot: </h3>
+      </div>
+    
+      <div *ngIf="enemySelected !== -1" class="flex-container flex-center" >
+        <button class=comp-selected *ngIf="enemySelected === 0" ><img src="./../../../../../assets/imagenes/piedra.png" width="150" height="100" class="center"></button>
+        <button class=comp-selected *ngIf="enemySelected === 1" ><img src="./../../../../../assets/imagenes/papel.png" width="150" height="100" class="center"></button>
+        <button class=comp-selected *ngIf="enemySelected === 2" ><img src="./../../../../../assets/imagenes/tijera.png" width="150" height="100" class="center"></button>           
+      </div>
+    </div>
+  </div>
+  </div>
+  <div style="text-align: center;">
+    <ion-button  expand="block" size="large" (click)="reset()" color="warning" style="font-size: large;">Reiniciar Puntaje</ion-button>
+  </div>
+  
+ 
+
+</ion-content>

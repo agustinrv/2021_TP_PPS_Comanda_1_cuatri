@@ -6,11 +6,36 @@
     </ion-button>
   </ion-toolbar>
 </ion-header>-->
+
+<ion-fab vertical="center" horizontal="start" slot="fixed">
+  <ion-fab-button color="dark">
+    <ion-icon name="apps-outline"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="bottom">
+    <ion-fab-button color='dark' (click)="this.IrMenuBienvenida()">
+      <ion-icon name="play-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color='dark' (click)="this.IrMenuEspera()">
+      <ion-icon name="time"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color='dark' (click)="this.IrMenuCliente()">
+      <ion-icon name="fast-food-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color='dark' (click)="this.IrMenuEsperaCliente()">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+
+
 <ion-fab horizontal="start" vertical="top">
   <ion-fab-button color="dark" (click)="CerrarSesion()">
     <ion-icon src='assets/puerta.svg'></ion-icon>
   </ion-fab-button>
 </ion-fab>
+
+
 
 <ion-content class="background">
   <br>
@@ -73,11 +98,6 @@
         <ion-icon color="light" name="chatbubbles"></ion-icon>
         <ion-label color="light">Chat</ion-label>
         <!--<ion-badge>6</ion-badge>-->
-      </ion-tab-button>
-
-      <ion-tab-button tab="encuesta">
-        <ion-icon color="light" name="information-circle"></ion-icon>
-        <ion-label color="light">Encuesta</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

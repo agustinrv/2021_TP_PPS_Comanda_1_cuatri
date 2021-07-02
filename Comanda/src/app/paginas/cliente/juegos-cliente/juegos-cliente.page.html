@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu-espera-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Juegos</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
+<ion-content class="background">
+
+  <ion-slides>
+
+    <ion-slide>
+      <div class="slide1">
+        <img src="../../../../assets/imagenes/adivinanum.png"/>
+        <h2>Adivina el numero</h2>
+        <p><b>Adivine un numero</b> al azar desde el 1 al 10 para ganar un 10% de descuento en su compra</p>
+        <ion-button routerLink="/juegos-cliente/juego-adivinar" color="warning" fill="outline" size="large" >JUGAR</ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide2">
+        <img src="../../../../assets/imagenes/tateti.png"/>
+        <h2>Ta-Te-Ti</h2>
+        <p>Gane una partida de <b>Ta-Te-Ti</b> para obtener una bebida gratis (Se descontará el precio de la bebida)</p>
+        <ion-button routerLink="/juegos-cliente/juego-tateti" color="warning" fill="outline" size="large">JUGAR</ion-button>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide3">
+        <img src="../../../../assets/imagenes/ppt.png">
+        <h2>Piedra-Papel-Tijera</h2>
+        <p>Gane una partida de <b>Piedra-Papel-Tijera</b> para obtener un postre gratis (Se descontará el precio del postre)</p>
+        <ion-button routerLink="/juegos-cliente/juego-ppt" color="warning" fill="outline" size="large">JUGAR</ion-button>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

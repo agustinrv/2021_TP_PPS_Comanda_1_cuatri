@@ -10,7 +10,7 @@
         <fieldset>
           <div class="form-group">
             <label for="exampleInputEmail1" style="color:white">Correo</label>
-            <input type="email" class="form-control" id="email" placeholder="Correo Electronico" formControlName="email"
+            <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" formControlName="email"
               [class]="isValidField('email')" />
             <div class="invalid-feedback" style="font-family: sans-serif; color: white;">
               <span style="color:white" *ngIf="userForm.get('email').errors?.required">

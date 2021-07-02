@@ -8,22 +8,43 @@
 </ion-header>
 
 <ion-content>
+  
 
-  <ion-grid>
+
+  <ion-grid >
     <ion-row>
-      <ion-col>
-        <ion-button routerLink="/estado-pedido" class="botonesMenu" expand="block" color="warning">Vea el estado del pedido</ion-button>
+      <ion-col class="text-center">
+          <ion-button class='botonEstado'  style="height: 20vh;" expand='block' routerLink="/estado-pedido"  color='dark'>
+              <img src="assets/cliente/cliente-estado-1.gif" >            
+              <h6>Estado de <br>los Pedidos</h6>    
+          </ion-button>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col>
-        <ion-button routerLink="/encuesta-cliente" class="botonesMenu" expand="block" color="warning">Encuesta</ion-button>
+      <ion-col class="text-center">
+          <ion-button class='botonEstado'   style="height: 19vh;" expand='block' routerLink="/encuesta-cliente"  color='dark'>
+              <img src="assets/cliente/encuesta.svg" style="height: 15vh;" >            
+              <h6 class="pl-3">Encuesta </h6>
+          </ion-button>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col>
-        <ion-button class="botonesMenu" expand="block" color="warning">Pedir Cuenta</ion-button>
+      <ion-col class="text-center">
+          <ion-button class='botonEstado'   style="height: 19vh;" expand='block' routerLink="/juegos-cliente"  color='dark'>
+            <ion-icon name="game-controller" style="font-size:15vh" ></ion-icon>         
+              <h6 class="pl-3">Juegue y <br> gane promociones</h6>    
+          </ion-button>
       </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+        <ion-button [disabled]='' style="height: 18vh;" class="botonEstado" expand="block" color="warning">
+          <img src='assets/cliente/pago.svg' style="height: 14vh;">
+          <h6 class="pl-3">Pedir Cuenta</h6>
+        </ion-button>
+      </ion-col>  
     </ion-row>
 
   </ion-grid>

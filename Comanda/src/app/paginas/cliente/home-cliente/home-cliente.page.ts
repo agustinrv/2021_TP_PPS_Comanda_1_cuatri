@@ -161,6 +161,33 @@ export class HomeClientePage implements OnInit {
     toast.present();
   }
 
+  public IrMenuBienvenida()
+  {
+      this.BanderaMostrarBienvenido=true;
+      this.BanderaMostrarEspera=false;
+      this.BanderaMenuCliente=false;
+  }
+
+  public IrMenuEspera(){
+      this.BanderaMostrarBienvenido=false;
+      this.BanderaMostrarEspera=true;
+      this.BanderaMenuCliente=false;
+  }
+  public IrMenuCliente(){
+      this.BanderaMostrarBienvenido=false;
+      this.BanderaMostrarEspera=false;
+      this.BanderaMenuCliente=true;
+  }
+
+  public IrMenuEsperaCliente()
+  {
+    this.BanderaMostrarBienvenido=false;
+    this.BanderaMostrarEspera=false;
+    this.BanderaMenuCliente=true;
+
+    this.router.navigateByUrl('menu-espera-cliente');
+  }
+
 
   public CerrarSesion() {
     localStorage.removeItem('usuarioLogeado');

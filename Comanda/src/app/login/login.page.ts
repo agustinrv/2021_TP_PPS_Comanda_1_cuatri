@@ -61,11 +61,11 @@ export class LoginPage implements OnInit {
 
         switch (usuarioLogin.perfil) {
           case Eperfil.Dueño:
-            this.router.navigateByUrl('/home-super');
+            this.router.navigateByUrl('/habilitar-cliente');
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.Supervisor:
-            this.router.navigateByUrl('/home-super');
+            this.router.navigateByUrl('/habilitar-cliente');
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.Anonimo:
@@ -89,11 +89,11 @@ export class LoginPage implements OnInit {
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.Cocinero:
-            this.router.navigateByUrl('/home-cocinero');
+            this.router.navigateByUrl('/pedidos-cocinero');
             console.log(usuarioLogin.perfil);
             break;
           case Eperfil.BarTender:
-            this.router.navigateByUrl('/home-bartender');
+            this.router.navigateByUrl('/pedidos-bartender');
             break;
           case Eperfil.Mozo:
             this.router.navigateByUrl('home-mesero');

@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home-bartender"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Pedidos Pendientes</ion-title>
+    <ion-button class="botonSalir " slot="start" (click)="CerrarSesion()">
+      <ion-icon class="icono" color='light' src='assets/puerta.svg'></ion-icon>
+    </ion-button>
+    <ion-title style="text-align: center;">Pedidos Pendientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -28,6 +28,11 @@
         <ion-icon class='bg-dark text-danger rounded' name="alert-circle" slot="end"></ion-icon>
         
     </ion-item>
+
+    <ion-item *ngIf='this.listaPedidosRecibidos.length===0 && this.listaPedidosPreparando.length===0'  style='--background:#75172200;--border-color:black'>
+      <ion-title class='text-center'>No hay pedidos</ion-title>
+    </ion-item>
+
 
   </ion-list>
  

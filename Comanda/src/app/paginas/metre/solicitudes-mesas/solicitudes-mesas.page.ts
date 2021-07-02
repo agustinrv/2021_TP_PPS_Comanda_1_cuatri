@@ -109,21 +109,7 @@ export class SolicitudesMesasPage implements OnInit {
     this.servicioSolicitudMesas.BorrarUno(solicitudMesa);
   }
 
-  public ReiniciarMesas()
-  {
-    this.listadoMesas.forEach((element)=>{
-    
-      element.asignada=false;
 
-      this.servicioMesas.ModificarUno(element);
-    });
-
-  }
-
-  public ReiniciarSolicitudes()
-  {
-      this.servicioSolicitudMesas.BorrarTodos();
-  }
 
   async SeleccionarMesa(unaSolicitud:SolicitudMesa) {
     
@@ -155,6 +141,61 @@ export class SolicitudesMesasPage implements OnInit {
         };
         
         listaBotones.push(unBoton);
+      });
+      
+      let botonCancelar:any={};
+      
+      botonCancelar.text='Cancelar';
+      botonCancelar.role='cancel';
+      botonCancelar.icon='close';
+      botonCancelar.handler=()=>{
+        console.log('Cancel clicked');
+      }
+      
+      listaBotones.push(botonCancelar)
+  
+      menu.buttons=listaBotones;
+
+
+      return menu;
+  
+  }
+
+  public async AbrirMenuReiniciarMesas()
+  {
+     let menu = this.GenerarMenuReiniciarMesas();
+     const actionSheet = await this.actionSheetController.create(menu);
+     await actionSheet.present();
+ 
+     const { role } = await actionSheet.onDidDismiss();
+  }
+
+  
+  public ReiniciarMesa(unaMesa:Mesa)
+  {
+    unaMesa.asignada=false;
+    this.servicioMesas.ModificarUno(unaMesa);
+  }
+
+  public GenerarMenuReiniciarMesas()
+  {
+    let menu:any={};
+
+    menu.header='Que mesa quiere limpiar?';
+    menu.cssClass='menuMesas';
+    
+    let listaBotones:any[]=[];
+
+    
+    this.listadoMesas.forEach(element => {
+      
+        let unBoton:any={};
+        unBoton.text='Mesa '+ element.numero;
+        unBoton.handler=()=>{
+          this.ReiniciarMesa(element);        
+        }
+        listaBotones.push(unBoton);
+
       });
       
       let botonCancelar:any={};

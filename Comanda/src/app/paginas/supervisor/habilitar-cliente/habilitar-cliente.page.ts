@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { init } from "emailjs-com";
+import { Router } from '@angular/router';
 init("user_zMd1PHHGOv2xVOv0fEPbl");
 
 @Component({
@@ -17,7 +18,8 @@ export class HabilitarClientePage implements OnInit {
 
   constructor(
     private fire: UsuarioService,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.fire.TraerTodos().valueChanges().subscribe((users)=>{
@@ -26,6 +28,13 @@ export class HabilitarClientePage implements OnInit {
     });
 
   }
+
+  CerrarSesion(){
+    localStorage.removeItem('usuarioLogeado');
+    this.auth.LogOutCurrentUser();
+    this.router.navigateByUrl('/login');
+  }
+
 
   AceptarCliente(user){
     user.habilitado = true;

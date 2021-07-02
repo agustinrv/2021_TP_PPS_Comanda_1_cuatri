@@ -15,9 +15,9 @@
       <ion-icon  class='text-warning ' name="alert-circle" slot="end"></ion-icon>
     </ion-item>
 
-    <div *ngIf='this.listaPedidosSinConfirmar.length===0'>
-        <h3 class="text-center text-white">No hay pedidos sin confirmar</h3>
-    </div>
+    <ion-item *ngIf='this.listaPedidosSinConfirmar.length===0' lines='none' style='--background:#75172200;--border-color:black'>
+        <ion-title class="text-center text-white">No hay pedidos sin confirmar</ion-title>
+    </ion-item>
 
     
   </ion-list>

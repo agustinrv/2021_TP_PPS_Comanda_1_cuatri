@@ -1,0 +1,51 @@
+
+ion-content {
+    --background: url("../../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
+    
+}
+
+
+.card-center{    
+    
+    height: 95%; 
+    // display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+ion-title{
+
+    display: flex; 
+    text-align: center;
+    font-size: large;
+    margin-right: 40px;
+}
+
+h1{
+    text-align: center;
+    color: white;
+    font-size: 10em;
+
+}
+
+h2{
+    text-align: center;
+    font-size: 3em;
+}
+
+.btnNum{
+    font-size: 2em;
+}
+
+.btnOpt{
+    font-size: large;
+}
+
+p{
+    font-size:medium;
+}
+
+ion-card-title{
+    font-size: large;
+}
