@@ -21,7 +21,14 @@
 
 <ion-content>
 
-  
+  <ion-item  style="visibility: hidden;position:absolute">
+    <ion-label>Que mesa desea limpiar?</ion-label>
+    <ion-select [value]="1" okText="Limpiar" cancelText="Cancelar" id='selectLimpiarMesa'>
+      <ion-select-option [value]="1">Mesa 1</ion-select-option>
+      <ion-select-option [value]="2">Mesa 2</ion-select-option>
+      <ion-select-option [value]="3">Mesa 3</ion-select-option>
+    </ion-select>
+  </ion-item>
 
   
   <div *ngFor="let unaSolicitud of this.listadoSolicitudes">
@@ -36,24 +43,28 @@
         </ion-card-header>
     
         <ion-card-content>
-          
-          <ion-button color="success" (click)="SeleccionarMesa(unaSolicitud)">Asignar Mesa</ion-button>
-          <ion-button color="danger" (click)="RechazarCliente(unaSolicitud)">Rechazar</ion-button>
-          
+          <ion-button color="warning" expand='block' (click)="SeleccionarMesa(unaSolicitud)">Asignar Mesa</ion-button>
         </ion-card-content>
+
+
+      </ion-card>
+  </div>
+  <div *ngIf='this.listadoSolicitudes.length===0'>
+
+    <!--3 Es igual a cliente-->
+    
+      <ion-card color="dark" class="text-center">
+        <img src='assets/metre/cronometro.svg' class="w-75 h-75">
+        <ion-card-header>
+          <ion-card-title class="text-center">No han llegado clientes nuevos</ion-card-title>
+        </ion-card-header>
       </ion-card>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="refresh-outline"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button color='primary' (click)='this.ReiniciarMesas()'><ion-icon name="list"></ion-icon></ion-fab-button>
-    </ion-fab-list>
-    <ion-fab-list side="start">
-      <ion-fab-button color='primary' (click)='this.ReiniciarSolicitudes()' ><ion-icon name="person"></ion-icon></ion-fab-button>
-    </ion-fab-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">    
+    
+      <ion-fab-button color='warning' (click)='this.AbrirMenuReiniciarMesas()'><ion-icon name="refresh-outline"></ion-icon></ion-fab-button>
+    
   </ion-fab>
 
 
