@@ -83,3 +83,20 @@
   --button-color-focused: white;
   --button-color-selected:white;
 }
+
+.alert-wrapper.sc-ion-alert-md {
+  --background: #1f1f1f;
+
+
+}
+
+.alert-radio-label.sc-ion-alert-md
+{
+  color:white;
+  
+  
+}
+
+[aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md{
+  color:white;
+}

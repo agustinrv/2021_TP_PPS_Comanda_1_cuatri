@@ -5,7 +5,7 @@ import { Usuario } from 'src/app/clases/Usuario/usuario';
 import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { take } from 'rxjs/operators';
-import { AngularFireStorage, BUCKET } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/app';
 
@@ -135,18 +135,22 @@ export class EncuestaClientePage implements OnInit {
 
                 spaceRef.getDownloadURL().then(url=>{
              
-                  this.encuesta.fotos[i] = url;
+                  this.encuesta.fotos.push(url);
                   
-                  if(this.encuesta.fotos.length == this.fotos.length)
-                  {
-                    this.encuestSvc.AgregarEncuesta(JSON.parse(JSON.stringify(this.encuesta)));
-                    this.Toast('success','Gracias por enviar su encuesta!');
-                  }
-
+                    if(this.encuesta.fotos.length == this.fotos.length)
+                    {
+                    
+                        this.encuestSvc.AgregarEncuesta(JSON.parse(JSON.stringify(this.encuesta)));
+                        
+                        this.Toast('success','Gracias por enviar su encuesta!');
+                        this.form.reset();
+                    }
+                
                 });
 
               });
-
+              
+              this.encuesta.fotos.splice(0,this.encuesta.fotos.length);
              }
             
            }
@@ -175,14 +179,3 @@ export class EncuestaClientePage implements OnInit {
 
 }
 
-export class FileItem{
-  public name:string;
-  public uploading = false;
-  public uploadPercent : Observable<number>;
-  public downloadURL: Observable<string>;
-
-  constructor(public file: File = file)
-  {
-    this.name = file.name;
-  }
-}
