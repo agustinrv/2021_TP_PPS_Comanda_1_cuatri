@@ -1,16 +1,17 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="encuesta-cliente" color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Estadisticas</ion-title>  
+   </ion-toolbar>
+</ion-header> 
+
 <ion-content class="background">
-  <ion-header>
-    <ion-toolbar color="dark">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="encuesta-cliente" color="light"></ion-back-button>
-      </ion-buttons>
-      <ion-title color="light">Estadisticas</ion-title>  
-     </ion-toolbar>
-  </ion-header> 
 
   <ion-item color="dark">
     <ion-label color="light">Grafico</ion-label>
-    <ion-select value=1 cancel-text="Cerrar" interface="action-sheet" (ionChange)="selectCategoria($event);">
+    <ion-select class="custom-options" value=1 cancel-text="Cerrar" interface="action-sheet" (ionChange)="selectCategoria($event);">
       <ion-select-option value=1>Calificación del servicio</ion-select-option>
       <ion-select-option value=2>Experiencia con aplicación</ion-select-option>
       <ion-select-option value=3>Recomendaría restaurante</ion-select-option>

@@ -206,23 +206,21 @@ registrar() {
 			this.auth.signAnonimo().then((response : any)=>{
 				
 			this.anonimo.id = response.user.uid;
-			
+			this.anonimo.correo = response.user.uid + '@anonimo.com';
+
 			 if(this.anonimo.foto != null)
              {
-               const filePath = `/anonimo/${this.anonimo.id}/fotoAnonimo.png`; //cambiar por email
+               const filePath = `/anonimo/${this.anonimo.correo}/fotoAnonimo.png`; 
                
-			   this.subirImagen(filePath, this.socio.foto).then(url => {
+			   this.subirImagen(filePath, this.anonimo.foto).then(url => {
 				this.fotoCargada = url;
 				this.anonimo.foto = this.fotoCargada;
 				this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
-				localStorage.setItem('anonimo',JSON.stringify(this.anonimo.nombre));
+				localStorage.setItem('usuarioLogeado',JSON.stringify(this.anonimo));
 			});
   
-                
-                    
-			  	    
 				
-                    this.formAnonimo.reset();
+                   this.formAnonimo.reset();
 
 			 	   if(this.perfilLogeado==5)
 			 	   {
