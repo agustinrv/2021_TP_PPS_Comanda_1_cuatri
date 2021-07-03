@@ -51,6 +51,10 @@
 <img src="https://i.imgur.com/5ydK7ti.png" >
 </p>
 
+<p align="center">
+<img src="https://i.imgur.com/4HOVAMv.png" >
+</p>
+
 # Primer video
 **Demostración desde que se abre la app, recorrido desde que el cliente se registra y se pone en lista de espera hasta que es asignado por un metre.**
 Link: <a>https://drive.google.com/file/d/1Tja-Nf0M94lIrWs1d9FKJ51kqLjeMQW2/view</a>
@@ -64,4 +68,10 @@ Link: <a>https://drive.google.com/file/d/1Tja-Nf0M94lIrWs1d9FKJ51kqLjeMQW2/view<
 
 <p align="center">
 <img src="https://i.imgur.com/xaBdcvo.png" >
+</p>
+
+<h1 align="center"> SEMANA 6 </h1> 
+
+<p align="center">
+<img src="https://i.imgur.com/Cnx0hag.png" >
 </p>
