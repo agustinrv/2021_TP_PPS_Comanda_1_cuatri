@@ -80,7 +80,7 @@ export class ConfirmarPagoPage implements OnInit {
         this.pedidoSvc.BorrarUno(pedido);
       }
     });
-    //this.EliminarSolicitudMesa(mesa);
+    this.EliminarSolicitudMesa(mesa);
     this.ModificarMesa(mesa);
   }
 

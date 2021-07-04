@@ -19,6 +19,7 @@ export class PideCuentaPage implements OnInit {
   listadoProductos: any;
   usuarioLogeado: any;
   listaProductosFiltrados = [];
+  mesaEncontrada: any;
   precioTotal = 0;
   propina = 0;
 
@@ -31,27 +32,23 @@ export class PideCuentaPage implements OnInit {
 
   ngOnInit() {
     this.usuarioLogeado = JSON.parse(localStorage.getItem('usuarioLogeado'));
-    this.CargarPedidos();
+    
+    this.mesaSvc.TraerTodos().valueChanges().subscribe(mesas => {
+      this.listaMesas = mesas;
+      this.BuscarMesa();
+    }); 
+    this.pedidoSvc.TraerPedidosDeUnCliente(this.usuarioLogeado.correo).valueChanges().subscribe((data: Pedido[]) => {
+      this.listaPedidos = data.filter((value) => {
+        return value.estadoPedido == EestadoPedido.ConfirmarRecibido;
+      });
+      
+      this.CrearListadoProductos();
+    });
   }
 
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
-    });
-  }
-
-  private CargarPedidos() {
-    this.pedidoSvc.TraerPedidosDeUnCliente(this.usuarioLogeado.correo).valueChanges().subscribe((data: Pedido[]) => {
-      //this.listadoProductos = [];
-      this.listaPedidos = data.filter((value) => {
-        return value.estadoPedido == EestadoPedido.ConfirmarRecibido;
-      });
-
-      this.mesaSvc.TraerTodos().valueChanges().subscribe(mesas => {
-        this.listaMesas = mesas;
-      }); 
-      
-      this.CrearListadoProductos();
     });
   }
 
@@ -89,7 +86,7 @@ export class PideCuentaPage implements OnInit {
     });
     ///Restar los descuentos aca!
     //Ejemplo
-    //this.precioTotal -= 100;
+    this.CalcularDescuentos();
   }
 
   AgregarPropina(){
@@ -156,5 +153,35 @@ export class PideCuentaPage implements OnInit {
     if(sweetAlert.isConfirmed){
       this.dismiss();
     } 
+  }
+
+  BuscarMesa(){
+    this.listaMesas.forEach(mesa => {
+      if(mesa.cliente.correo == this.usuarioLogeado.correo){
+        this.mesaEncontrada = mesa;
+      }
+    });
+  }
+
+  CalcularDescuentos(){
+    if(this.mesaEncontrada.gano1){
+      this.precioTotal -= this.precioTotal * 0.10;
+    }
+    
+    if(this.mesaEncontrada.gano2){
+      this.listaProductosFiltrados.forEach(prod =>{
+        if(prod.tipo == "bebida"){
+          this.precioTotal -= prod.precio;
+        }
+      });
+    }
+    
+    if(this.mesaEncontrada.gano3){
+      this.listaProductosFiltrados.forEach(prod =>{
+        if(prod.tipo == "postre"){
+          this.precioTotal -= prod.precio;
+        }
+      });
+    }
   }
 }

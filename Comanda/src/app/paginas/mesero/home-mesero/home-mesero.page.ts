@@ -42,6 +42,7 @@ export class HomeMeseroPage implements OnInit {
 
     this.chatSvc.TraerChat().valueChanges().subscribe(msgs => {
       this.listadoChat = msgs;
+      this.VerMensajesNuevos();
     });
   }
 
@@ -135,6 +136,9 @@ export class HomeMeseroPage implements OnInit {
      }]);
   }
   
+  ConfirmarPago(){
+    this.router.navigateByUrl('confirmar-pago');
+  }
 
   
 }
