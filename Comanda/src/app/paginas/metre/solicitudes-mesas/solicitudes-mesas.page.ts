@@ -13,6 +13,7 @@ import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { Mesa } from 'src/app/clases/Mesa/mesa';
 import { ActionSheetController, ToastController } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-solicitudes-mesas',
@@ -46,7 +47,8 @@ export class SolicitudesMesasPage implements OnInit {
     private servicioMesas:MesaService,
     public toastController: ToastController,
     public actionSheetController:ActionSheetController,
-    public localNotifications:LocalNotifications){ }
+    public localNotifications:LocalNotifications,
+    public vibracion:Vibration){ }
 
   ngOnInit() {
     this.CargarSolicitudes();
@@ -62,9 +64,7 @@ export class SolicitudesMesasPage implements OnInit {
 
       this.listaMesasDisponibles=this.listadoMesas.filter((value,index,array)=>{
         return !value.asignada;
-      });
-
-    
+      });   
 
     });
   }
@@ -91,9 +91,10 @@ export class SolicitudesMesasPage implements OnInit {
       id: numeroId,
       title:'El Mazacote',
       text: 'Nuevo cliente en lista',
-      sound:'../../../../assets/mp3/notificacion.mp3',
-      icon: '../../../../assets/splash/center.png'
+      sound:'assets/mp3/notificacion.mp3',
+      icon: 'assets/splash/center.png'
      }]);
+     this.vibracion.vibrate([300,300,300]);
   }
 
   public AsignarMesa(solicitudMesa:SolicitudMesa,mesaSeleccionada:Mesa){
@@ -236,11 +237,6 @@ export class SolicitudesMesasPage implements OnInit {
       return menu;
   
   }
-
-
-
-
-  
 
   async Toast(color:string,mensaje:string,duration:number=2000) {
     const toast = await this.toastController.create({

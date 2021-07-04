@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalPedidoComponent } from '../modal-pedido/modal-pedido.component';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Router } from '@angular/router';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-pedidos-bartender',
@@ -29,7 +30,8 @@ export class PedidosBartenderPage implements OnInit {
               private modalController: ModalController,
               private auth: AuthService,
               private router:Router,
-              private localNotifications:LocalNotifications) { 
+              private localNotifications:LocalNotifications,
+              private vibracion:Vibration) { 
 
   }
 
@@ -53,7 +55,7 @@ export class PedidosBartenderPage implements OnInit {
       if(!this.cargoPedidosRecibidos)
       {
         this.cantPedidosRecibidos=this.listaPedidosRecibidos.length;
-        this.cargoPedidosPreparando=true;
+        this.cargoPedidosRecibidos=true;
       }
       
       if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
@@ -88,9 +90,10 @@ export class PedidosBartenderPage implements OnInit {
       id: numeroId,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      sound:'../../../../assets/mp3/notificacion.mp3',
-      icon: '../../../../assets/splash/center.png'
+      sound:'assets/mp3/notificacion.mp3',
+      icon: 'assets/splash/center.png'
      }]);
+     this.vibracion.vibrate([300,300,300]);
   }
 
   public async SeleccionarPedido(unPedido?:Pedido)
