@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="encuesta-cliente" color="light"></ion-back-button>
+      <ion-back-button defaultHref="home-cliente" (click)='CerrarModal()'></ion-back-button>
     </ion-buttons>
     <ion-title color="light">Estadisticas</ion-title>  
    </ion-toolbar>
@@ -16,6 +16,7 @@
       <ion-select-option value=2>Experiencia con aplicación</ion-select-option>
       <ion-select-option value=3>Recomendaría restaurante</ion-select-option>
       <ion-select-option value=4>Preferencia del menu</ion-select-option>
+      
     </ion-select>
   </ion-item>
 

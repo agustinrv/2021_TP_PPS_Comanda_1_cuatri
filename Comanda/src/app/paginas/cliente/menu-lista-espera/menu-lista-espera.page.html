@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">Que desea hacer?</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+
+<ion-content class="background">
+  
+    <div >
+      <ion-card class="cardSelect" (click)='SolicitarMesa()' coplo>
+        <img src="assets/cliente/mesa.svg" alt="" height="10%" width="70%">
+        <ion-card-content>
+          <ion-card-title color='light' >Solicitar Mesa</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    <br>
+      <ion-card class="cardSelect" (click)='VerEstadisticas()'>
+        <img src="assets/cliente/encuesta.svg" alt="" class="mt-2" height="10%" width="70%">
+        <ion-card-header>
+          <ion-card-title color='light'>Ver estadisticas</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+    
+ 
+</ion-content>

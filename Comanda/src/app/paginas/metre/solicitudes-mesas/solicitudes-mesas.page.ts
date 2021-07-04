@@ -38,7 +38,14 @@ export class SolicitudesMesasPage implements OnInit {
 
   public mesaSeleccionada:Mesa;
 
-  public inicio=false;
+  public cantidadSolicitudes:number;
+  public eligioCantidad:boolean=false;
+
+  //subscribe
+
+  public subscribeMesas;
+  public subscribeSolicitudes;
+
 
   constructor(
     private servicioSolicitudMesas: SolicitudMesaService,
@@ -53,11 +60,22 @@ export class SolicitudesMesasPage implements OnInit {
     this.CargarMesas();
     
   }
+
+  ngOnDestroy() {
+    this.subscribeMesas.unsubscribe();
+    this.subscribeSolicitudes.unsubscribe();
+  }
+
+  public Volver(){
+    localStorage.removeItem('usuarioLogeado');
+    this.ngOnDestroy();
+  }
   
   private CargarMesas()
   {
-    this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
+    this.subscribeMesas=this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
       this.listadoMesas=data;
+
       this.cantidaMesasDisponibles=0;
 
       this.listaMesasDisponibles=this.listadoMesas.filter((value,index,array)=>{
@@ -74,15 +92,20 @@ export class SolicitudesMesasPage implements OnInit {
   private CargarSolicitudes()
   {
     
-    this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
+    this.subscribeSolicitudes=this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
       this.listadoSolicitudes = solicitudes;
-      this.cantidaSolicitudes=this.listadoSolicitudes.length;
+      
+      if(!this.eligioCantidad)
+      {
+        this.cantidadSolicitudes=this.listadoSolicitudes.length;
+        this.eligioCantidad=true;
+      }
 
-      if(this.inicio)
+      if(this.cantidadSolicitudes<this.listadoSolicitudes.length)
       {
         this.LanzarNotificacion(this.listadoSolicitudes.length);
       }
-      this.inicio=true;
+      
     });
   }
 
@@ -116,7 +139,7 @@ export class SolicitudesMesasPage implements OnInit {
         
       });
       this.servicioSolicitudMesas.ModificarUno(solicitudMesa);
-      this.inicio=false;
+      
     }
     else
     {
@@ -237,10 +260,6 @@ export class SolicitudesMesasPage implements OnInit {
   
   }
 
-
-
-
-  
 
   async Toast(color:string,mensaje:string,duration:number=2000) {
     const toast = await this.toastController.create({
