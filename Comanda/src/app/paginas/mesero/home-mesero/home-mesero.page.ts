@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Vibration } from '@ionic-native/vibration/ngx';
+
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
-import { ConfirmarPagoPage } from '../confirmar-pago/confirmar-pago.page';
 
 @Component({
   selector: 'app-home-mesero',
@@ -33,7 +32,6 @@ export class HomeMeseroPage implements OnInit {
     private router : Router,
     private chatSvc : MsgConsultaService,
     private localNotifications: LocalNotifications,    
-    private vibracion:Vibration
   ) { }
 
   ngOnInit() {
@@ -135,7 +133,6 @@ export class HomeMeseroPage implements OnInit {
       icon: '../../../assets/splash/center.png'
      }]);
 
-     this.vibracion.vibrate([300,300,300]);
   }
   
 

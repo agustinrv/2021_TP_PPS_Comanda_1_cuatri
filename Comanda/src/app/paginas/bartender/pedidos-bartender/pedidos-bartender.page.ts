@@ -1,20 +1,20 @@
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { EestadoPedido } from './../../../enumerados/EestadoPedido/eestado-pedido';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalController } from '@ionic/angular';
 import { ModalPedidoComponent } from '../modal-pedido/modal-pedido.component';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Router } from '@angular/router';
-import { Vibration } from '@ionic-native/vibration/ngx';
+
 
 @Component({
   selector: 'app-pedidos-bartender',
   templateUrl: './pedidos-bartender.page.html',
   styleUrls: ['./pedidos-bartender.page.scss'],
 })
-export class PedidosBartenderPage implements OnInit {
+export class PedidosBartenderPage implements OnInit,OnDestroy {
 
   public listaPedidosRecibidos:Pedido[]=[];
   public listaPedidosPreparando:Pedido[]=[];
@@ -26,12 +26,20 @@ export class PedidosBartenderPage implements OnInit {
   public cargoPedidosPreparando=false;
 
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
+
+
+
+  //sUBSCRIBE
+
+
+  public subscribePedidosRecibidos;
+  public subscribePedidosPreparados;
+
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController,
               private auth: AuthService,
               private router:Router,
-              private localNotifications:LocalNotifications,
-              private vibracion:Vibration) { 
+              private localNotifications:LocalNotifications) { 
 
   }
 
@@ -39,15 +47,22 @@ export class PedidosBartenderPage implements OnInit {
       this.CargarPedidos();
   }
 
+  ngOnDestroy() {
+    this.subscribePedidosRecibidos.unsubscribe();
+    this.subscribePedidosPreparados.unsubscribe();
+    
+  }
+
   public CerrarSesion(){
     localStorage.removeItem('usuarioLogeado');
     this.auth.LogOutCurrentUser();
     this.router.navigateByUrl('/login');
+    this.ngOnDestroy();
   }
 
   private CargarPedidos()
   {
-    this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosRecibidos=this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosRecibidos=data.filter((value,index,array)=>{
         return value.BarTenderTermino==false;
       });
@@ -65,7 +80,7 @@ export class PedidosBartenderPage implements OnInit {
 
     });
 
-    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosPreparados=this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosPreparando=data.filter((value,index,array)=>{
         return value.BarTenderTermino==false;
       });
@@ -93,7 +108,6 @@ export class PedidosBartenderPage implements OnInit {
       sound:'assets/mp3/notificacion.mp3',
       icon: 'assets/splash/center.png'
      }]);
-     this.vibracion.vibrate([300,300,300]);
   }
 
   public async SeleccionarPedido(unPedido?:Pedido)

@@ -26,10 +26,15 @@ export class HomeMetrePage implements OnInit {
 
   }
 
+  public ngOnDestroy() {
+    
+  }
+
   public CerrarSesion(){
     localStorage.removeItem('usuarioLogeado');
     this.auth.LogOutCurrentUser();
     this.router.navigateByUrl('/login');
+    this.ngOnDestroy();
   }
 
   public VerSolicitudes()

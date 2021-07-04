@@ -13,7 +13,6 @@ import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { Mesa } from 'src/app/clases/Mesa/mesa';
 import { ActionSheetController, ToastController } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-solicitudes-mesas',
@@ -41,30 +40,49 @@ export class SolicitudesMesasPage implements OnInit {
 
   public inicio=false;
 
+  //subscribe
+
+  public subscribeMesas;
+  public subscribeSolicitudes;
+
+
   constructor(
     private servicioSolicitudMesas: SolicitudMesaService,
     private servicioUsuarios:UsuarioService,
     private servicioMesas:MesaService,
     public toastController: ToastController,
     public actionSheetController:ActionSheetController,
-    public localNotifications:LocalNotifications,
-    public vibracion:Vibration){ }
+    public localNotifications:LocalNotifications){ }
 
   ngOnInit() {
     this.CargarSolicitudes();
     this.CargarMesas();
     
   }
+
+  ngOnDestroy() {
+    this.subscribeMesas.unsubscribe();
+    this.subscribeSolicitudes.unsubscribe();
+  }
+
+  public Volver(){
+    localStorage.removeItem('usuarioLogeado');
+    this.ngOnDestroy();
+  }
   
   private CargarMesas()
   {
-    this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
+    this.subscribeMesas=this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
       this.listadoMesas=data;
+
+      console.log('estoy en subscribe mesas');
       this.cantidaMesasDisponibles=0;
 
       this.listaMesasDisponibles=this.listadoMesas.filter((value,index,array)=>{
         return !value.asignada;
-      });   
+      });
+
+    
 
     });
   }
@@ -74,8 +92,9 @@ export class SolicitudesMesasPage implements OnInit {
   private CargarSolicitudes()
   {
     
-    this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
+    this.subscribeSolicitudes=this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
       this.listadoSolicitudes = solicitudes;
+      console.log('estoy en subscribe solicitudes')
       this.cantidaSolicitudes=this.listadoSolicitudes.length;
 
       if(this.inicio)
@@ -94,7 +113,6 @@ export class SolicitudesMesasPage implements OnInit {
       sound:'assets/mp3/notificacion.mp3',
       icon: 'assets/splash/center.png'
      }]);
-     this.vibracion.vibrate([300,300,300]);
   }
 
   public AsignarMesa(solicitudMesa:SolicitudMesa,mesaSeleccionada:Mesa){
@@ -237,6 +255,7 @@ export class SolicitudesMesasPage implements OnInit {
       return menu;
   
   }
+
 
   async Toast(color:string,mensaje:string,duration:number=2000) {
     const toast = await this.toastController.create({

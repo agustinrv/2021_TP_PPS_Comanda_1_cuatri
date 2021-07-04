@@ -1,5 +1,5 @@
 import { EestadoPedido } from './../../../enumerados/EestadoPedido/eestado-pedido';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalController } from '@ionic/angular';
@@ -14,7 +14,7 @@ import { Vibration } from '@ionic-native/vibration/ngx';
   templateUrl: './pedidos-cocinero.page.html',
   styleUrls: ['./pedidos-cocinero.page.scss'],
 })
-export class PedidosCocineroPage implements OnInit {
+export class PedidosCocineroPage implements OnInit,OnDestroy {
 
   public listaPedidosRecibidos:Pedido[]=[];
   public listaPedidosPreparando:Pedido[]=[];
@@ -26,14 +26,19 @@ export class PedidosCocineroPage implements OnInit {
   public cargoPedidosRecibidos=false;
   public cargoPedidosPreparando=false;
 
+  //subscribe
+
+  public subscribePedidosRecibidos;
+  public subscribePedidosPreparados;
+
 
 
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController,
               private auth: AuthService,
               private router:Router,
-              private localNotifications:LocalNotifications,
-              private vibracion:Vibration) { 
+              private localNotifications:LocalNotifications
+              ) { 
 
   }
 
@@ -41,13 +46,20 @@ export class PedidosCocineroPage implements OnInit {
       this.CargarPedidos();
   }
 
+  ngOnDestroy() {
+    this.subscribePedidosRecibidos.unsubscribe();
+    this.subscribePedidosPreparados.unsubscribe();
+    
+  }
+
+
   private CargarPedidos()
   {
-    this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosRecibidos= this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosRecibidos=data.filter((value,index ,array)=>{
         return value.CocineroTermino==false;
       });
-
+      console.log('estoy en subscribe recibidios');
       if(!this.cargoPedidosRecibidos)
       {
         this.cantPedidosRecibidos=this.listaPedidosRecibidos.length;
@@ -60,11 +72,11 @@ export class PedidosCocineroPage implements OnInit {
       }
     });
 
-    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosPreparados=this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosPreparando=data.filter((value,index,array)=>{
          return value.CocineroTermino==false;
       })
-
+      console.log('estoy en subscribe Preparados');
       if(!this.cargoPedidosPreparando)
       {
         this.cantPedidosPreparando=this.listaPedidosRecibidos.length;
@@ -101,15 +113,18 @@ export class PedidosCocineroPage implements OnInit {
       sound:'assets/mp3/notificacion.mp3',
       icon: 'assets/splash/center.png'
      }]);
-     this.vibracion.vibrate([300,300,300]);
+     
   }
 
   public CerrarSesion(){
+   
     localStorage.removeItem('usuarioLogeado');
     this.auth.LogOutCurrentUser();
     this.router.navigateByUrl('/login');
+    this.ngOnDestroy();
     
   }
 
+ 
 
 }
