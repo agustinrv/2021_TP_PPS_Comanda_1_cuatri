@@ -1,0 +1,32 @@
+ion-toolbar{
+    --ion-background-color: #000000 !important;
+    color: white;
+}
+
+ion-content.background {
+    //--background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    --background: url("../../../../assets/fondoLogin.png")center center fixed no-repeat;
+    background-size: contain;
+}
+  
+  
+
+.botonSalir{
+    --background: rgb(34, 34, 32);
+    --border-radius:50%;
+    width:50px;
+    height:50px;
+ }
+
+
+ .cardSelect{
+    position: relative; 
+    align-items: center;
+    justify-content: center;
+     align-self: center;
+     text-align: center;
+     width: 80% !important;
+     left: 8%;
+     background-color: #751722;;
+     color: whitesmoke;
+}

@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { Mesa } from 'src/app/clases/Mesa/mesa';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
 import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-mesa.service';
 import { SolicitudMesa } from 'src/app/clases/solicitudMesa/solicitud-mesa';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { EestadoSolicitudMesa } from 'src/app/enumerados/EestadoSolicitudMesa/eestado-solicitud-mesa';
+import { ModalGraficosEsperaComponent } from '../modal-graficos-espera/modal-graficos-espera.component';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class HomeClientePage implements OnInit {
   BanderaMostrarBienvenido = true;
   BanderaMostrarEspera = false;
   BanderaMenuCliente = false;
+  BanderaListaEspera = false;
 
 
   //Auxiliares
@@ -49,7 +51,8 @@ export class HomeClientePage implements OnInit {
     private scanner: BarcodeScanner,
     private mesaSvc: MesaService,
     private soliSvc: SolicitudMesaService,
-    private userSvc: UsuarioService
+    private userSvc: UsuarioService,
+    private modalController: ModalController,
   ) {
     this.barcodeScannerOptions = {
       showTorchButton: true,
@@ -118,7 +121,7 @@ export class HomeClientePage implements OnInit {
   ScanQRBienvenido() {
     this.scanner.scan().then(data => {
       if (data["text"] == 'inicio') {
-        this.AgregarListaDeEspera();
+        this.IrMenuListaEspera();
       }
       else {
         this.Toast('danger', 'El QR escaneado no es valido!');
@@ -140,8 +143,7 @@ export class HomeClientePage implements OnInit {
       this.soliSvc.AgregarUno(this.auxSolicitudDeMesa);
 
       //Cambio vista de la IU
-      this.BanderaMostrarBienvenido = false;
-      this.BanderaMostrarEspera = true;
+      this.IrMenuEspera();
       this.Toast('success', 'Ya se encuentra en la lista de espera, espere a que lo atienda un Metre');
 
     } catch (error) {
@@ -166,17 +168,20 @@ export class HomeClientePage implements OnInit {
       this.BanderaMostrarBienvenido=true;
       this.BanderaMostrarEspera=false;
       this.BanderaMenuCliente=false;
+      this.BanderaListaEspera=false;
   }
 
   public IrMenuEspera(){
       this.BanderaMostrarBienvenido=false;
       this.BanderaMostrarEspera=true;
       this.BanderaMenuCliente=false;
+      this.BanderaListaEspera=false;
   }
   public IrMenuCliente(){
       this.BanderaMostrarBienvenido=false;
       this.BanderaMostrarEspera=false;
       this.BanderaMenuCliente=true;
+      this.BanderaListaEspera=false;
   }
 
   public IrMenuEsperaCliente()
@@ -184,8 +189,27 @@ export class HomeClientePage implements OnInit {
     this.BanderaMostrarBienvenido=false;
     this.BanderaMostrarEspera=false;
     this.BanderaMenuCliente=true;
-
+    this.BanderaListaEspera=false;
     this.router.navigateByUrl('menu-espera-cliente');
+  }
+
+  public IrMenuListaEspera()
+  {
+    this.BanderaMostrarBienvenido=false;
+    this.BanderaMostrarEspera=false;
+    this.BanderaMenuCliente=false;
+    this.BanderaListaEspera=true;
+  }
+
+  public async IrGraficos()
+  {
+    const modal = await this.modalController.create({
+      component: ModalGraficosEsperaComponent,
+      componentProps: {
+        
+      }
+    });
+    await modal.present();   
   }
 
 

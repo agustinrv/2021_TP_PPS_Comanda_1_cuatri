@@ -75,7 +75,6 @@ export class SolicitudesMesasPage implements OnInit {
     this.subscribeMesas=this.servicioMesas.TraerOrdenado().valueChanges().subscribe((data:Mesa[])=>{
       this.listadoMesas=data;
 
-      console.log('estoy en subscribe mesas');
       this.cantidaMesasDisponibles=0;
 
       this.listaMesasDisponibles=this.listadoMesas.filter((value,index,array)=>{
@@ -94,7 +93,6 @@ export class SolicitudesMesasPage implements OnInit {
     
     this.subscribeSolicitudes=this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
       this.listadoSolicitudes = solicitudes;
-      console.log('estoy en subscribe solicitudes')
       this.cantidaSolicitudes=this.listadoSolicitudes.length;
 
       if(this.inicio)
