@@ -38,7 +38,8 @@ export class SolicitudesMesasPage implements OnInit {
 
   public mesaSeleccionada:Mesa;
 
-  public inicio=false;
+  public cantidadSolicitudes:number;
+  public eligioCantidad:boolean=false;
 
   //subscribe
 
@@ -93,13 +94,18 @@ export class SolicitudesMesasPage implements OnInit {
     
     this.subscribeSolicitudes=this.servicioSolicitudMesas.TraerSolicitudesPendientes().valueChanges().subscribe((solicitudes:SolicitudMesa[])=>{
       this.listadoSolicitudes = solicitudes;
-      this.cantidaSolicitudes=this.listadoSolicitudes.length;
+      
+      if(!this.eligioCantidad)
+      {
+        this.cantidadSolicitudes=this.listadoSolicitudes.length;
+        this.eligioCantidad=true;
+      }
 
-      if(this.inicio)
+      if(this.cantidadSolicitudes<this.listadoSolicitudes.length)
       {
         this.LanzarNotificacion(this.listadoSolicitudes.length);
       }
-      this.inicio=true;
+      
     });
   }
 
@@ -108,8 +114,8 @@ export class SolicitudesMesasPage implements OnInit {
       id: numeroId,
       title:'El Mazacote',
       text: 'Nuevo cliente en lista',
-      sound:'assets/mp3/notificacion.mp3',
-      icon: 'assets/splash/center.png'
+      sound:'../../../../assets/mp3/notificacion.mp3',
+      icon: '../../../../assets/splash/center.png'
      }]);
   }
 
@@ -133,7 +139,7 @@ export class SolicitudesMesasPage implements OnInit {
         
       });
       this.servicioSolicitudMesas.ModificarUno(solicitudMesa);
-      this.inicio=false;
+      
     }
     else
     {
