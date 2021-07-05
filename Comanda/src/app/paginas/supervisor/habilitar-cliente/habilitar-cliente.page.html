@@ -11,9 +11,6 @@
   
     <div *ngFor="let item of this.listadoUsuarios">
 
-
-      <!--3 Es igual a cliente-->
-      <div *ngIf="item.perfil == 3 && !item.habilitado">
         <ion-card color="dark">
           <img src={{item.foto}}>
           <ion-card-header>
@@ -28,14 +25,10 @@
             <ion-button color="danger" [disabled]="item.habilitado" (click)="RechazarCliente(item)">Rechazar</ion-button>
           </ion-card-content>
         </ion-card>
-      </div>
       
     </div>
 
-    <div *ngIf='this.listadoUsuarios.length===0'>
-
-      <!--3 Es igual a cliente-->
-      
+    <div *ngIf='this.listadoUsuarios.length === 0'>      
         <ion-card color="dark" class="text-center">
           <img src='assets/metre/cronometro.svg' class="w-75 h-75">
           <ion-card-header>
@@ -43,5 +36,6 @@
           </ion-card-header>
         </ion-card>
     </div>
-  
+
+   
 </ion-content>

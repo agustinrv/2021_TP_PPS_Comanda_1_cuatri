@@ -14,7 +14,7 @@ init("user_zMd1PHHGOv2xVOv0fEPbl");
 })
 export class HabilitarClientePage implements OnInit {
   
-  listadoUsuarios : any;
+  listadoUsuarios : any = [];
 
   constructor(
     private fire: UsuarioService,
@@ -24,7 +24,9 @@ export class HabilitarClientePage implements OnInit {
   ngOnInit() {
     this.fire.TraerTodos().valueChanges().subscribe((users)=>{
       console.log(users);
-      this.listadoUsuarios = users;
+      this.listadoUsuarios = users.filter((value)=>{
+        return value.perfil == 3 && !value.habilitado;
+      });
     });
 
   }
