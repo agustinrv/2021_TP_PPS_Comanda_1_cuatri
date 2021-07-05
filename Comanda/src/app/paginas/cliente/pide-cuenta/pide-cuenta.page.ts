@@ -164,22 +164,26 @@ export class PideCuentaPage implements OnInit {
   }
 
   CalcularDescuentos(){
+    let flagDescuentoBebida = 0;
+    let flagDescuentoPostre = 0;
     if(this.mesaEncontrada.gano1){
       this.precioTotal -= this.precioTotal * 0.10;
     }
     
     if(this.mesaEncontrada.gano2){
       this.listaProductosFiltrados.forEach(prod =>{
-        if(prod.tipo == "bebida"){
+        if(prod.tipo == "bebida" && flagDescuentoBebida == 0){
           this.precioTotal -= prod.precio;
+          flagDescuentoBebida = 1;
         }
       });
     }
     
     if(this.mesaEncontrada.gano3){
       this.listaProductosFiltrados.forEach(prod =>{
-        if(prod.tipo == "postre"){
+        if(prod.tipo == "postre" && flagDescuentoPostre == 0){
           this.precioTotal -= prod.precio;
+          flagDescuentoPostre = 1;
         }
       });
     }

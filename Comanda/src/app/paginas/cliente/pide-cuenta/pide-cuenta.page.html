@@ -15,9 +15,9 @@
           <img src={{prod.fotoUno}}>
         </ion-avatar>
         <ion-label>
-          <h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano2 && prod.tipo=='bebida'">Una bebida regalada!</ion-badge></h3>
-          <h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano3 && prod.tipo=='postre'">Un postre regalado!</ion-badge></h3>
-          <h2>{{prod.nombre}}</h2>
+          <!--h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano2 && prod.tipo=='bebida'">Una bebida regalada!</ion-badge></h3>
+          <h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano3 && prod.tipo=='postre'">Un postre regalado!</ion-badge></h3-->
+          <h3>{{prod.nombre}}</h3>
           <p>Cantidad: {{prod.cantidad}}</p>
           <p>Precio Unitario: ${{prod.precio}}</p>
           <h3 style="position: relative; text-align: end;">Precio Total: ${{prod.precio * prod.cantidad}}</h3>
