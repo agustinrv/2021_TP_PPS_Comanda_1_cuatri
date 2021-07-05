@@ -63,7 +63,7 @@ export class HomeClientePage implements OnInit {
 
   ngOnInit() {
     this.usuarioLogeado = JSON.parse(localStorage.getItem('usuarioLogeado'));
-
+    console.log(this.usuarioLogeado);
     //Busco la informacion de usuario Ingresado
     this.userSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
       this.auxUsuarioIngresado = user[0];

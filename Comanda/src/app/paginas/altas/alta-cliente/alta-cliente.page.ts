@@ -197,7 +197,7 @@ export class AltaClientePage implements OnInit {
 				this.auth.signAnonimo().then((response: any) => {
 
 					this.anonimo.id = response.user.uid;
-					this.anonimo.correo = response.user.uid + '@anonimo.com';
+					this.anonimo.correo = this.anonimo.id + '@anonimo.com';
 
 					if (this.anonimo.foto != null) {
 						const filePath = `/anonimo/${this.anonimo.correo}/fotoAnonimo.png`;
@@ -206,7 +206,6 @@ export class AltaClientePage implements OnInit {
 							this.fotoCargada = url;
 							this.anonimo.foto = this.fotoCargada;
 							this.usuarioSvc.AgregarUsuario(JSON.parse(JSON.stringify(this.anonimo)));
-							localStorage.setItem('usuarioLogeado', JSON.stringify(this.anonimo));
 						});
 
 
@@ -217,6 +216,7 @@ export class AltaClientePage implements OnInit {
 							this.router.navigateByUrl('home-metre');
 						}
 						else {
+							localStorage.setItem('usuarioLogeado', JSON.stringify(this.anonimo));
 							this.router.navigateByUrl('home-cliente');
 						}
 
