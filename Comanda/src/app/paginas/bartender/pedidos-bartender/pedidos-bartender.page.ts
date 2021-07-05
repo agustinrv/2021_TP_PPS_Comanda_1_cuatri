@@ -105,8 +105,8 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
       id: numeroId,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      sound:'assets/mp3/notificacion.mp3',
-      icon: 'assets/splash/center.png'
+      sound:'../../../../assets/mp3/notificacion.mp3',
+      icon: '../../../../assets/splash/center.png'
      }]);
   }
 

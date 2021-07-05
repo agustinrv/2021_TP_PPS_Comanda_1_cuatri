@@ -59,7 +59,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
       this.listaPedidosRecibidos=data.filter((value,index ,array)=>{
         return value.CocineroTermino==false;
       });
-      console.log('estoy en subscribe recibidios');
+      
       if(!this.cargoPedidosRecibidos)
       {
         this.cantPedidosRecibidos=this.listaPedidosRecibidos.length;
@@ -76,7 +76,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
       this.listaPedidosPreparando=data.filter((value,index,array)=>{
          return value.CocineroTermino==false;
       })
-      console.log('estoy en subscribe Preparados');
+      
       if(!this.cargoPedidosPreparando)
       {
         this.cantPedidosPreparando=this.listaPedidosRecibidos.length;
@@ -110,8 +110,8 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
       id: numeroId,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      sound:'assets/mp3/notificacion.mp3',
-      icon: 'assets/splash/center.png'
+      sound:'../../../../assets/mp3/notificacion.mp3',
+      icon: '../../../../assets/splash/center.png'
      }]);
      
   }
