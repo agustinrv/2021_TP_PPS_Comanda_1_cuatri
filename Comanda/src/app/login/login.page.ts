@@ -7,7 +7,7 @@ import { Usuario } from '../clases/Usuario/usuario';
 import { AuthService } from '../servicios/auth/auth.service';
 import { UsuarioService } from '../servicios/usuario/usuario.service';
 import { Eperfil } from '../enumerados/Eperfil/eperfil';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import {take} from 'rxjs/operators'
 
 @Component({
@@ -27,7 +27,8 @@ export class LoginPage implements OnInit {
     private authServicie: AuthService,
     private servicioUsuario: UsuarioService,
     private loadingController: LoadingController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private toastController: ToastController
 
   ) {
     //this.unUsuario = new Usuario();
@@ -84,7 +85,7 @@ export class LoginPage implements OnInit {
             }
             else
             {
-              this.presentAlert('Aun no fue habilitado por un supervisor');
+              this.Toast('warning','Aún no fue habilitado por un supervisor',2000);
             }
             
             console.log(usuarioLogin.perfil);
@@ -178,5 +179,16 @@ export class LoginPage implements OnInit {
 
 
   }
+
+  async Toast(color: string, mensaje: string, duration: number = 2000) {
+		const toast = await this.toastController.create({
+			message: mensaje,
+			duration: duration,
+			color: color,
+			position: 'top'
+
+		});
+		toast.present();
+	}
 
 }

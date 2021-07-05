@@ -11,6 +11,7 @@
   
     <div *ngFor="let item of this.listadoUsuarios">
 
+
       <!--3 Es igual a cliente-->
       <div *ngIf="item.perfil == 3 && !item.habilitado">
         <ion-card color="dark">
@@ -31,6 +32,16 @@
       
     </div>
 
+    <div *ngIf='this.listadoUsuarios.length===0'>
 
+      <!--3 Es igual a cliente-->
+      
+        <ion-card color="dark" class="text-center">
+          <img src='assets/metre/cronometro.svg' class="w-75 h-75">
+          <ion-card-header>
+            <ion-card-title class="text-center">No han llegado clientes nuevos</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+    </div>
   
 </ion-content>
