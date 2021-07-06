@@ -115,7 +115,6 @@ export class SolicitudesMesasPage implements OnInit {
       title:'El Mazacote',
       text: 'Nuevo cliente en lista',
       sound:'../../../../assets/mp3/notificacion.mp3',
-      icon: '../../../../assets/splash/center.png'
      }]);
   }
 
