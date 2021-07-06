@@ -127,14 +127,14 @@ export class GraficosClientePage implements OnInit {
           this.doughnutChartLabels.push('Buena');
           this.doughnutChartLabels.push('Mala');
 
-        console.log(data);
+        
 
         let listaExcelente:any[]=[];
         let listaBuena:any[]=[];
         let listaMala:any[]=[];
       
         data.forEach(value=>{
-            console.log(value.pregunta2);
+            
               switch (value.pregunta2) {
   
                case 'Excelente':  

@@ -24,6 +24,9 @@
     <ion-fab-button color='dark' (click)="this.IrMenuEsperaCliente()">
       <ion-icon name="home"></ion-icon>
     </ion-fab-button>
+    <ion-fab-button color='dark' (click)="this.IrMenuListaEspera()">
+      <ion-icon name="list-outline"></ion-icon>
+    </ion-fab-button>
   </ion-fab-list>
 </ion-fab>
 
@@ -85,6 +88,22 @@
       </ion-fab>
     </ion-card-content>
   </ion-card>
+
+  <div *ngIf='BanderaListaEspera'>
+      <ion-card class="cardSelect" (click)='AgregarListaDeEspera()'>
+        <img src="assets/cliente/mesa.svg" height="10%" width="70%">
+        <ion-card-content>
+          <ion-card-title color='light' >Solicitar Mesa</ion-card-title>
+        </ion-card-content>
+      </ion-card>
+    <br>
+      <ion-card class="cardSelect" (click)='IrGraficos()'>
+        <img src="assets/cliente/encuesta.svg"  class="mt-2" height="10%" width="70%">
+        <ion-card-header>
+          <ion-card-title color='light'>Ver estadisticas</ion-card-title>
+        </ion-card-header>
+      </ion-card>    
+  </div>
 
 
   <ion-tabs *ngIf="this.BanderaMenuCliente" class="tabEstilo">

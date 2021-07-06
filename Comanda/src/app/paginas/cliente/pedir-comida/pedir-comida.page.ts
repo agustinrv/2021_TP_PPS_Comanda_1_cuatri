@@ -156,9 +156,10 @@ export class PedirComidaPage implements OnInit {
       this.listadoProductos.forEach(prodBD => {
         if (prodBD.nombre == auxProd) {
           prodBDEncontrado = prodBD;
+          this.presentActionSheet(prodBDEncontrado);
         }
       });
-      this.presentActionSheet(prodBDEncontrado);
+      
     });
 
   }

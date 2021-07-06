@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 import { ChatMeseroPage } from '../chat-mesero/chat-mesero.page';
-import { ConfirmarPagoPage } from '../confirmar-pago/confirmar-pago.page';
 
 @Component({
   selector: 'app-home-mesero',
@@ -31,8 +31,7 @@ export class HomeMeseroPage implements OnInit {
     private auth : AuthService,
     private router : Router,
     private chatSvc : MsgConsultaService,
-    private localNotifications: LocalNotifications,
-    private modalController : ModalController
+    private localNotifications: LocalNotifications,    
   ) { }
 
   ngOnInit() {
@@ -42,6 +41,7 @@ export class HomeMeseroPage implements OnInit {
 
     this.chatSvc.TraerChat().valueChanges().subscribe(msgs => {
       this.listadoChat = msgs;
+      this.VerMensajesNuevos();
     });
   }
 
@@ -133,8 +133,12 @@ export class HomeMeseroPage implements OnInit {
       sound: true ? 'file://sound.mp3': 'file://beep.caf',
       icon: '../../../assets/splash/center.png'
      }]);
+
   }
   
+  ConfirmarPago(){
+    this.router.navigateByUrl('confirmar-pago');
+  }
 
   
 }

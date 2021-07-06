@@ -106,7 +106,11 @@ const routes: Routes = [
   {
     path: 'detalles-pedidos',
     loadChildren: () => import('./paginas/mesero/detalles-pedidos/detalles-pedidos.module').then( m => m.DetallesPedidosPageModule)
+  },  {
+    path: 'menu-lista-espera',
+    loadChildren: () => import('./paginas/cliente/menu-lista-espera/menu-lista-espera.module').then( m => m.MenuListaEsperaPageModule)
   },
+
 
   
 

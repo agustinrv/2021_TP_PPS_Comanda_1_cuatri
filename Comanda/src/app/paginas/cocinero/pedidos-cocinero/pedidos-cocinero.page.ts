@@ -1,5 +1,5 @@
 import { EestadoPedido } from './../../../enumerados/EestadoPedido/eestado-pedido';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalController } from '@ionic/angular';
@@ -7,13 +7,14 @@ import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Router } from '@angular/router';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 @Component({
   selector: 'app-pedidos-cocinero',
   templateUrl: './pedidos-cocinero.page.html',
   styleUrls: ['./pedidos-cocinero.page.scss'],
 })
-export class PedidosCocineroPage implements OnInit {
+export class PedidosCocineroPage implements OnInit,OnDestroy {
 
   public listaPedidosRecibidos:Pedido[]=[];
   public listaPedidosPreparando:Pedido[]=[];
@@ -25,13 +26,19 @@ export class PedidosCocineroPage implements OnInit {
   public cargoPedidosRecibidos=false;
   public cargoPedidosPreparando=false;
 
+  //subscribe
+
+  public subscribePedidosRecibidos;
+  public subscribePedidosPreparados;
+
 
 
   constructor(private servicioPedido:PedidosService,
               private modalController: ModalController,
               private auth: AuthService,
               private router:Router,
-              private localNotifications:LocalNotifications) { 
+              private localNotifications:LocalNotifications
+              ) { 
 
   }
 
@@ -39,17 +46,24 @@ export class PedidosCocineroPage implements OnInit {
       this.CargarPedidos();
   }
 
+  ngOnDestroy() {
+    this.subscribePedidosRecibidos.unsubscribe();
+    this.subscribePedidosPreparados.unsubscribe();
+    
+  }
+
+
   private CargarPedidos()
   {
-    this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosRecibidos= this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosRecibidos=data.filter((value,index ,array)=>{
         return value.CocineroTermino==false;
       });
-
+      
       if(!this.cargoPedidosRecibidos)
       {
         this.cantPedidosRecibidos=this.listaPedidosRecibidos.length;
-        this.cargoPedidosPreparando=true;
+        this.cargoPedidosRecibidos=true;
       }
       
       if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
@@ -58,11 +72,11 @@ export class PedidosCocineroPage implements OnInit {
       }
     });
 
-    this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
+    this.subscribePedidosPreparados=this.servicioPedido.TraerPedidosPreparando().valueChanges().subscribe((data:Pedido[])=>{
       this.listaPedidosPreparando=data.filter((value,index,array)=>{
          return value.CocineroTermino==false;
       })
-
+      
       if(!this.cargoPedidosPreparando)
       {
         this.cantPedidosPreparando=this.listaPedidosRecibidos.length;
@@ -97,15 +111,19 @@ export class PedidosCocineroPage implements OnInit {
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
       sound:'../../../../assets/mp3/notificacion.mp3',
-      icon: '../../../../assets/splash/center.png'
      }]);
+     
   }
 
   public CerrarSesion(){
+   
     localStorage.removeItem('usuarioLogeado');
     this.auth.LogOutCurrentUser();
     this.router.navigateByUrl('/login');
+    this.ngOnDestroy();
+    
   }
 
+ 
 
 }

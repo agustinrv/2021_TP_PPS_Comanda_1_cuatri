@@ -15,7 +15,9 @@
           <img src={{prod.fotoUno}}>
         </ion-avatar>
         <ion-label>
-          <h2>{{prod.nombre}}</h2>
+          <!--h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano2 && prod.tipo=='bebida'">Una bebida regalada!</ion-badge></h3>
+          <h3 style="position: relative; text-align: end;"><ion-badge color="warning" *ngIf="this.mesaEncontrada.gano3 && prod.tipo=='postre'">Un postre regalado!</ion-badge></h3-->
+          <h3>{{prod.nombre}}</h3>
           <p>Cantidad: {{prod.cantidad}}</p>
           <p>Precio Unitario: ${{prod.precio}}</p>
           <h3 style="position: relative; text-align: end;">Precio Total: ${{prod.precio * prod.cantidad}}</h3>
@@ -24,10 +26,16 @@
       
     </ion-list>
     <ion-list>
-      <!--ion-item>
-        <ion-label>Descuentos por Juegos:</ion-label>
-        <ion-label style="text-align: end; position: relative;">-$100</ion-label>
-      </ion-item-->
+      <ion-item>
+        <ion-label *ngIf="this.mesaEncontrada != null">
+          <h2>Descuentos ganados en Juegos:</h2>
+          <h3 *ngIf="this.mesaEncontrada.gano1">Gano un 10% de descuento en el precio Total</h3>
+          <h3 *ngIf="this.mesaEncontrada.gano2">Gano una bebida Gratis!</h3>
+          <h3 *ngIf="this.mesaEncontrada.gano3">Gano un postre Gratis!</h3>
+          <h3 *ngIf="!this.mesaEncontrada.gano1 && !this.mesaEncontrada.gano2 && !this.mesaEncontrada.gano3">No gano ningun descuento</h3>
+          <p>Los descuentos ya estan aplicados al precio total.</p>
+        </ion-label>
+      </ion-item>
       <ion-item>
         <ion-label>
           <h2>Quiere dejar una propina?</h2>

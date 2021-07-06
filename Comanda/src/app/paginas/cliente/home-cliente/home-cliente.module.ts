@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { HomeClientePageRoutingModule } from './home-cliente-routing.module';
 
 import { HomeClientePage } from './home-cliente.page';
+import { ModalGraficosEsperaComponent } from '../modal-graficos-espera/modal-graficos-espera.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeClientePageRoutingModule
+    HomeClientePageRoutingModule,
+    ChartsModule
   ],
-  declarations: [HomeClientePage]
+  declarations: [HomeClientePage,ModalGraficosEsperaComponent]
 })
 export class HomeClientePageModule {}
