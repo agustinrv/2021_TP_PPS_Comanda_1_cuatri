@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
@@ -17,10 +18,16 @@ export class PedidosSinConfirmarPage implements OnInit {
   
   public EestadoPedido=EestadoPedido;
 
+  public cantPedidos:number;
+
+  public cargoPedidos=false;
+
+
 
   constructor(  
     private servicioPedido:PedidosService,
-    private modalController:ModalController
+    private modalController:ModalController,
+    private localNotifications:LocalNotifications
 ) { }
 
   ngOnInit() {
@@ -32,6 +39,17 @@ export class PedidosSinConfirmarPage implements OnInit {
   {
       this.servicioPedido.TraerPedidosPorEstado(EestadoPedido.PedidoEnviadoCli).valueChanges().subscribe((data:Pedido[])=>{
           this.listaPedidosSinConfirmar=data;
+
+          if(!this.cargoPedidos)
+          {
+            this.cantPedidos=this.listaPedidosSinConfirmar.length;
+            this.cargoPedidos=true;
+          }
+    
+          if(this.cantPedidos<this.listaPedidosSinConfirmar.length)
+          {
+             this.LanzarNotificacion(this.listaPedidosSinConfirmar.length);
+          }
       });
   }
 
@@ -47,6 +65,16 @@ export class PedidosSinConfirmarPage implements OnInit {
       }
     });
     await modal.present();
+  }
+
+  public LanzarNotificacion(numeroId:number){
+    this.localNotifications.schedule([{
+      id: numeroId,
+      title:'El Mazacote',
+      text: 'Nuevo pedido sin confirmar',
+      sound:'file://assets/mp3/notificacion.mp3',
+     }]);
+     
   }
 
 

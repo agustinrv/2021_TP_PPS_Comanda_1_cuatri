@@ -1,3 +1,4 @@
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
@@ -14,12 +15,17 @@ init("user_zMd1PHHGOv2xVOv0fEPbl");
 })
 export class HabilitarClientePage implements OnInit {
   
-  listadoUsuarios : any = [];
+  listadoUsuarios : any[] = [];
+
+  public cantListadoUsuarios:number;
+
+  public cargoListadoUsuarios=false;
 
   constructor(
     private fire: UsuarioService,
     private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private localNotifications:LocalNotifications) { }
 
   ngOnInit() {
     this.fire.TraerTodos().valueChanges().subscribe((users)=>{
@@ -27,6 +33,17 @@ export class HabilitarClientePage implements OnInit {
       this.listadoUsuarios = users.filter((value)=>{
         return value.perfil == 3 && !value.habilitado;
       });
+
+      if(!this.cargoListadoUsuarios)
+      {
+        this.cantListadoUsuarios=this.listadoUsuarios.length;
+        this.cargoListadoUsuarios=true;
+      }
+
+      if(this.cantListadoUsuarios<this.listadoUsuarios.length)
+      {
+         this.LanzarNotificacion(this.listadoUsuarios.length);
+      }
     });
 
   }
@@ -49,6 +66,7 @@ export class HabilitarClientePage implements OnInit {
     this.fire.BorrarUno(user);
     this.enviarEmail("registro_rechazado",user.correo,user.nombre);
   }
+  
 
 
   enviarEmail(templateID: string, correo: string, nombre: string){
@@ -59,6 +77,16 @@ export class HabilitarClientePage implements OnInit {
     emailjs.send("gmail", templateID, templateParams)
     .then(res => console.log("Correo enviado.", res.status, res.text))
     .catch(error => console.log("Error al enviar.", error));
+  }
+
+  LanzarNotificacion(numeroId:number){
+    this.localNotifications.schedule([{
+      id: numeroId,
+      title:'El Mazacote',
+      text: 'Nuevo cliente en lista',
+      sound:'file://assets/mp3/notificacion.mp3',
+     }]);
+     
   }
 
   

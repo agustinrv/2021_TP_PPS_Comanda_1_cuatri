@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
@@ -15,10 +16,15 @@ export class PedidosTerminadosPage implements OnInit {
   public listaPedidosTerminados:Pedido[]=[];
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
 
+  public cantPedidos:number;
+
+  public cargoPedidos=false;
+
 
   constructor(  
     private servicioPedido:PedidosService,
-    private modalController:ModalController
+    private modalController:ModalController,
+    private localNotifications:LocalNotifications
 ) { }
 
   ngOnInit() {
@@ -31,6 +37,18 @@ export class PedidosTerminadosPage implements OnInit {
 
     this.servicioPedido.TraerPedidosTerminado().valueChanges().subscribe((data:Pedido[])=>{
         this.listaPedidosTerminados=data;
+
+        
+        if(!this.cargoPedidos)
+        {
+          this.cantPedidos=this.listaPedidosTerminados.length;
+          this.cargoPedidos=true;
+        }
+  
+        if(this.cantPedidos<this.listaPedidosTerminados.length)
+        {
+           this.LanzarNotificacion(this.listaPedidosTerminados.length);
+        }
     });
   }
 
@@ -43,6 +61,16 @@ export class PedidosTerminadosPage implements OnInit {
       }
     });
     await modal.present();
+  }
+
+  public LanzarNotificacion(numeroId:number){
+    this.localNotifications.schedule([{
+      id: numeroId,
+      title:'El Mazacote',
+      text: 'Nuevo pedido Finalizado',
+      sound:'file://assets/mp3/notificacion.mp3',
+     }]);
+     
   }
 
 
