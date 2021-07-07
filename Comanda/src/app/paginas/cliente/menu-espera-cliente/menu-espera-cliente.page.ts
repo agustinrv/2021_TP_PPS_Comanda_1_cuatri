@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { take } from 'rxjs/operators';
+import { Encuesta } from 'src/app/clases/Encuesta/encuesta';
+import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
 import { PideCuentaPage } from '../pide-cuenta/pide-cuenta.page'; 
 
 @Component({
@@ -9,10 +12,33 @@ import { PideCuentaPage } from '../pide-cuenta/pide-cuenta.page';
 })
 export class MenuEsperaClientePage implements OnInit {
 
-  constructor(private modalController : ModalController) { }
+  titulo : string = "Encuesta";
+  ruta : string = "/encuesta-cliente";
+  imagen : string = "assets/cliente/encuesta.svg";
 
-  ngOnInit() {
+  constructor(private encuestaSvc : EncuestaService,private modalController : ModalController) 
+  { 
 
+  }
+
+   ngOnInit() {
+
+    let user = JSON.parse(localStorage.getItem('usuarioLogeado'));
+    let fecha : Date = new Date();
+    
+
+    this.encuestaSvc.TraerTodos().valueChanges().subscribe(encuestas=>{
+      encuestas.forEach((element:Encuesta)=>{
+        
+        if(element.email == user.correo && element.fecha == fecha.toLocaleDateString())
+        {
+          this.titulo = "Estadisticas";
+          this.ruta = "/graficos-cliente";
+          this.imagen = "assets/cliente/estadistica.svg";
+        }
+        
+      })
+    })
  
   } 
   

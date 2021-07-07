@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="encuesta-cliente" color="light"></ion-back-button>
+      <ion-back-button color="light"></ion-back-button>
     </ion-buttons>
     <ion-title color="light">Estadisticas</ion-title>  
    </ion-toolbar>
@@ -23,10 +23,19 @@
   <div *ngIf='cargo'>
     <div>
       <div style="display: block;">
-        <canvas width="400" height="400" baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
-          [chartType]="doughnutChartType" [options]="options"
+        <ng-container *ngIf="cambiarChart==false">
+        <canvas width="400" height="400" baseChart [data]="pieChartData" [labels]="pieChartLabels"
+          [chartType]="pieChartType" [options]="optionsPie " [colors]="pieChartColors"
           class="bg-dark">
         </canvas>
+        </ng-container>
+
+        <ng-container *ngIf="cambiarChart==true">
+        <canvas width="400" height="400" baseChart [data]="barChartData" [labels]="barChartLabels"
+          [chartType]="barChartType" [options]="optionsBar" [colors]="barChartColors"
+          class="bg-dark">
+        </canvas>
+        </ng-container>
       </div>
     </div>
   </div>

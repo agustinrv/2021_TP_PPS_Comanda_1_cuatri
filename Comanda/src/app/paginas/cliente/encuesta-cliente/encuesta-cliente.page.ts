@@ -8,6 +8,7 @@ import { take } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-encuesta-cliente',
@@ -22,7 +23,7 @@ export class EncuestaClientePage implements OnInit {
   encuesta : Encuesta = new Encuesta();
   usuario : Usuario = new Usuario();
  
-  fotos = [];
+  fotos : any[];
 
   public form: FormGroup = this.formBuilder.group({
 		rango: [null, Validators.required],
@@ -40,7 +41,7 @@ export class EncuestaClientePage implements OnInit {
 
   
 
-  constructor(private formBuilder: FormBuilder, private toastController: ToastController,private storage: AngularFireStorage ,private encuestSvc : EncuestaService) { }
+  constructor(private formBuilder: FormBuilder, private toastController: ToastController,private storage: AngularFireStorage ,private encuestSvc : EncuestaService, private router:Router) { }
 
   ngOnInit() {
     
@@ -53,6 +54,7 @@ export class EncuestaClientePage implements OnInit {
 
   onUpload($e)
   {
+    this.fotos = [];
     if($e.target.files.length < 4)
     {
       for(let i = 0; i < $e.target.files.length; i++)
@@ -144,6 +146,7 @@ export class EncuestaClientePage implements OnInit {
                         
                         this.Toast('success','Gracias por enviar su encuesta!');
                         this.form.reset();
+                        this.router.navigateByUrl('menu-espera-cliente');
                     }
                 
                 });
@@ -152,7 +155,15 @@ export class EncuestaClientePage implements OnInit {
               
               this.encuesta.fotos.splice(0,this.encuesta.fotos.length);
              }
-            
+           }
+           else
+           {
+              this.encuestSvc.AgregarEncuesta(JSON.parse(JSON.stringify(this.encuesta)));
+                        
+              this.Toast('success','Gracias por enviar su encuesta!');
+              this.form.reset();
+              this.router.navigateByUrl('menu-espera-cliente');
+              
            }
 
         }
