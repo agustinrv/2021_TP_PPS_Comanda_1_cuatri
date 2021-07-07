@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
+import { ChartDataSets, ChartType } from 'chart.js';
+import { Colors, Label, SingleDataSet } from 'ng2-charts';
 import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
 
 
@@ -12,20 +12,40 @@ import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
 export class GraficosClientePage implements OnInit {
 
    public listaEncuestas:any[]=[];
-   public doughnutChartLabels: Label[] = [];
-   public doughnutChartData: number[] = [];
-   public listaEstadosTurnos:any[]=[];
    public cargo=false;
-   public doughnutChartType: ChartType = 'pie';
+   public pieChartType : ChartType = "pie";
+   public barChartType : ChartType = "bar";
    public titulo: string;
+   public cambiarChart : boolean = false;
 
+   //pieChart
+   public pieChartLabels: Label[] = [];
+   public pieChartData: SingleDataSet = [];
    
-   public options :any = {
-    
+  //barChart   
+   public barChartData: SingleDataSet = [];
+   public barChartLabels: Label[] = [];
 
+   // colores en orden
+   public pieChartColors: Array<any> = [
+    { 
+      backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56','#4bc0c0','#ff9f40']
+    }
+   ]
+
+   public barChartColors: Array<any> = [
+    { 
+      backgroundColor: ['#36a2eb','#ff6384', '#ffcd56','#4bc0c0','#ff9f40']
+    }
+   ]
+   
+   public optionsPie:any = {
+
+  
+    
     plugins: {
       labels: {
-        fontSize: 25,
+        fontSize: 30,
         fontColor: 'white',
         render: 'percentage',
         
@@ -37,13 +57,40 @@ export class GraficosClientePage implements OnInit {
        labels:{
            fontSize: 20,
            fontColor: 'white',
-           
-           
+                
        },
-      
+    },
+  };
+
+  public optionsBar:any = {
+
+    plugins: {
+      labels: {
+        fontSize: 30,
+        fontColor: 'white',
+        render: 'value',
+        
+      },
     },
     
-
+    legend: {
+      display: false,
+       labels:{
+           fontSize: 20,
+           fontColor: 'white',
+                
+       },
+    },
+    scales: {
+      xAxes: [{
+        ticks: { fontColor: 'white',fontSize:20, beginAtZero:true },
+        
+      }],
+      yAxes: [{
+        ticks: { fontColor: 'white', fontSize:20,beginAtZero:true  },
+        
+      }]
+    }
   };
 
    constructor(private encuestaSvc:EncuestaService) { }
@@ -57,18 +104,20 @@ export class GraficosClientePage implements OnInit {
      graficoPregunta1()
      {
       this.titulo = "¿Como calificaría la atención y el servicio brindado?"
-      
-      
+      this.pieChartType = "pie";
+      this.cambiarChart = false;
+
       this.encuestaSvc.TraerTodos().valueChanges().subscribe(data=>{
 
-        this.doughnutChartLabels.splice(0, this.doughnutChartLabels.length);
-        this.doughnutChartData.splice(0, this.doughnutChartData.length);
+        this.pieChartLabels.splice(0,this.pieChartLabels.length);
+        this.pieChartData.splice(0,this.pieChartData.length);
+        
 
-          this.doughnutChartLabels.push('Uno');
-          this.doughnutChartLabels.push('Dos');
-          this.doughnutChartLabels.push('Tres');
-          this.doughnutChartLabels.push('Cuatro');
-          this.doughnutChartLabels.push('Cinco');
+          this.pieChartLabels.push('Uno');
+          this.pieChartLabels.push('Dos');
+          this.pieChartLabels.push('Tres');
+          this.pieChartLabels.push('Cuatro');
+          this.pieChartLabels.push('Cinco');
   
 
         let listaUno:any[]=[];
@@ -99,13 +148,13 @@ export class GraficosClientePage implements OnInit {
               }
          });
   
-          
-          this.doughnutChartData.push(listaUno.length);
-          this.doughnutChartData.push(listaDos.length);
-          this.doughnutChartData.push(listaTres.length);
-          this.doughnutChartData.push(listaCuatro.length);
-          this.doughnutChartData.push(listaCinco.length);
+           this.pieChartData.push(listaUno.length);
+           this.pieChartData.push(listaDos.length);
+           this.pieChartData.push(listaTres.length);
+           this.pieChartData.push(listaCuatro.length);
+           this.pieChartData.push(listaCinco.length);
           this.cargo=true;
+          
         
         });
   
@@ -118,14 +167,19 @@ export class GraficosClientePage implements OnInit {
      graficoPregunta2()
      {
        this.titulo = "¿Como fue su experiencia con nuestra aplicación?"
-       
-       this.encuestaSvc.TraerTodos().valueChanges().subscribe(data=>{
-        this.doughnutChartLabels.splice(0, this.doughnutChartLabels.length);
-        this.doughnutChartData.splice(0, this.doughnutChartData.length);
+       this.barChartType = "horizontalBar";
+       this.cambiarChart = true;
 
-          this.doughnutChartLabels.push('Excelente');
-          this.doughnutChartLabels.push('Buena');
-          this.doughnutChartLabels.push('Mala');
+       this.encuestaSvc.TraerTodos().valueChanges().subscribe(data=>{
+        
+        this.barChartLabels.splice(0,this.barChartLabels.length);
+        this.barChartData.splice(0,this.barChartData.length);
+        
+
+
+          this.barChartLabels.push('Excelente');
+          this.barChartLabels.push('Buena');
+          this.barChartLabels.push('Mala');
 
         
 
@@ -149,11 +203,11 @@ export class GraficosClientePage implements OnInit {
               }
          });
          
-  
+          this.barChartData.push(listaExcelente.length);
+          this.barChartData.push(listaBuena.length);
+          this.barChartData.push(listaMala.length);
           
-          this.doughnutChartData.push(listaExcelente.length);
-          this.doughnutChartData.push(listaBuena.length);
-          this.doughnutChartData.push(listaMala.length);
+  
           
           this.cargo=true;
         
@@ -169,18 +223,21 @@ export class GraficosClientePage implements OnInit {
      graficoPregunta3()
      {
       this.titulo = "¿Recomendaría nuestro restaurante a otras personas?"
-      
-      
+      this.barChartType = "bar";
+      this.cambiarChart = true;
+
       this.encuestaSvc.TraerTodos().valueChanges().subscribe(data=>{
 
-        this.doughnutChartLabels.splice(0, this.doughnutChartLabels.length);
-        this.doughnutChartData.splice(0, this.doughnutChartData.length);
+        this.barChartLabels.splice(0,this.barChartLabels.length);
+        this.barChartData.splice(0,this.barChartData.length);
 
-        this.doughnutChartLabels.push('Si');
-        this.doughnutChartLabels.push('No');
+        
 
-        let listaSi:any[]=[];
-        let listaNo:any[]=[];
+        this.barChartLabels.push('Si');
+        this.barChartLabels.push('No');
+
+        let listaSi:number[]=[];
+        let listaNo:number[]=[];
       
         data.forEach(value=>{
             
@@ -196,9 +253,11 @@ export class GraficosClientePage implements OnInit {
          });
   
           
-          this.doughnutChartData.push(listaSi.length);
-          this.doughnutChartData.push(listaNo.length);
+         
           
+          this.barChartData.push(listaSi.length);
+          this.barChartData.push(listaNo.length);
+
           this.cargo=true;
         
         });
@@ -211,16 +270,18 @@ export class GraficosClientePage implements OnInit {
      graficoPregunta4()
      {
       this.titulo = "¿Que fue lo que más le gustó de nuestro menu?"
-      
-      
+      this.pieChartType = "doughnut";
+      this.cambiarChart = false;
+
       this.encuestaSvc.TraerTodos().valueChanges().subscribe(data=>{
 
-        this.doughnutChartLabels.splice(0, this.doughnutChartLabels.length);
-        this.doughnutChartData.splice(0, this.doughnutChartData.length);
+        this.pieChartLabels.splice(0,this.pieChartLabels.length);
+        this.pieChartData.splice(0,this.pieChartData.length);
+   
 
-        this.doughnutChartLabels.push('Comidas');
-        this.doughnutChartLabels.push('Postres');
-        this.doughnutChartLabels.push('Tragos');
+        this.pieChartLabels.push('Comidas');
+        this.pieChartLabels.push('Postres');
+        this.pieChartLabels.push('Tragos');
 
         let listaComidas:any[]=[];
         let listaPostres:any[]=[];
@@ -246,9 +307,9 @@ export class GraficosClientePage implements OnInit {
          });
   
           
-          this.doughnutChartData.push(listaComidas.length);
-          this.doughnutChartData.push(listaPostres.length);
-          this.doughnutChartData.push(listaTragos.length);
+          this.pieChartData.push(listaComidas.length);
+          this.pieChartData.push(listaPostres.length);
+          this.pieChartData.push(listaTragos.length);
           
           this.cargo=true;
         
@@ -270,15 +331,23 @@ export class GraficosClientePage implements OnInit {
     switch(categoria)
     {
       case '1':
+        this.barChartLabels.splice(0,this.barChartLabels.length);
+        this.barChartData.splice(0,this.barChartData.length);
         this.graficoPregunta1();
         break;
       case '2':
+        this.pieChartLabels.splice(0,this.pieChartLabels.length);
+        this.pieChartData.splice(0,this.pieChartData.length);
         this.graficoPregunta2();
         break;
       case '3':
+        this.pieChartLabels.splice(0,this.pieChartLabels.length);
+        this.pieChartData.splice(0,this.pieChartData.length);
         this.graficoPregunta3();
         break;
       case '4':
+        this.barChartLabels.splice(0,this.barChartLabels.length);
+        this.barChartData.splice(0,this.barChartData.length);
         this.graficoPregunta4();
         break;
 
