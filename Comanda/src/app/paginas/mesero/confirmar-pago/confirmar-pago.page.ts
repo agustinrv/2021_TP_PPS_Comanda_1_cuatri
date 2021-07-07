@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 import { MesaService } from 'src/app/servicios/mesa/mesa.service';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-mesa.service';
@@ -19,6 +20,7 @@ export class ConfirmarPagoPage implements OnInit {
   listaPedidos: any;
   listaSolicitudes: any;
 
+  public perfil=Eperfil;
   constructor(
     private mesaSvc: MesaService,
     private pedidoSvc: PedidosService,

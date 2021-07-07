@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalEstadoPedidoComponent } from '../modal-estado-pedido/modal-estado-pedido.component';
 
@@ -15,6 +16,8 @@ export class EstadoPedidoPage implements OnInit {
   public listaPedidos:Pedido[]=[];
   public estadoPedido=EestadoPedido;
   public usuarioLogeado;
+
+  public perfil=Eperfil;
 
 
   constructor(  

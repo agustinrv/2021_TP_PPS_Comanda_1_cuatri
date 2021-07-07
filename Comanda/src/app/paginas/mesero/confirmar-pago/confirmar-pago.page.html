@@ -18,7 +18,8 @@
         <img src={{mesa.cliente.foto}}>
       </ion-card-header>
       <ion-card-content>
-        <ion-card-title>Nombre: {{mesa.cliente.nombre}} {{mesa.cliente.apellido}}</ion-card-title>
+        <ion-card-title *ngIf="mesa.cliente.perfil===perfil.Cliente">Nombre: {{mesa.cliente.nombre}} {{mesa.cliente.apellido}}</ion-card-title>
+        <ion-card-title *ngIf="mesa.cliente.perfil===perfil.Anonimo">Nombre: {{mesa.cliente.nombre}}</ion-card-title>
         <ion-card-title>Precio Total Pagado: ${{mesa.precioPagado}}</ion-card-title>
         <ion-card-title>Mesa: {{mesa.numero}}</ion-card-title>
         <br>

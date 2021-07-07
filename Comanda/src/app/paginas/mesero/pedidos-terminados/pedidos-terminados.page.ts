@@ -3,6 +3,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalDetallesPedidosComponent } from '../modal-detalles-pedidos/modal-detalles-pedidos.component';
 
@@ -17,6 +18,7 @@ export class PedidosTerminadosPage implements OnInit {
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
 
   public cantPedidos:number;
+  public perfil=Eperfil;
 
   public cargoPedidos=false;
 

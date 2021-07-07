@@ -11,7 +11,8 @@
         <ion-avatar slot="start" >
           <img [src]='unPedido.cliente.foto'>
         </ion-avatar>
-        <ion-label color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-label *ngIf='unPedido.cliente.perfil===perfil.Cliente' color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+      <ion-label *ngIf='unPedido.cliente.perfil===perfil.Anonimo' color='dark'>{{'Mesa ' + unPedido.numMesa+' - '+unPedido.cliente.nombre}}</ion-label>
         <ion-icon class="text-success" name="checkmark-circle" slot="end"></ion-icon>
     </ion-item>
 

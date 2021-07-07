@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { ModalDetallesPedidosComponent } from '../modal-detalles-pedidos/modal-detalles-pedidos.component';
 
@@ -16,6 +17,7 @@ export class PedidosPendientesPage implements OnInit {
   public listaPedidosRecibidos:Pedido[]=[];
   public listaPedidosPreparando:Pedido[]=[];
   public EestadoPedido=EestadoPedido;
+  public perfil=Eperfil;
 
 
   constructor(  
