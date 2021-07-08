@@ -10,6 +10,7 @@ import { SolicitudMesa } from 'src/app/clases/solicitudMesa/solicitud-mesa';
 import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 import { EestadoSolicitudMesa } from 'src/app/enumerados/EestadoSolicitudMesa/eestado-solicitud-mesa';
 import { ModalGraficosEsperaComponent } from '../modal-graficos-espera/modal-graficos-espera.component';
+import { MsgConsultaService } from 'src/app/servicios/msgConsulta/msg-consulta.service';
 
 
 @Component({
@@ -43,6 +44,8 @@ export class HomeClientePage implements OnInit {
   auxUsuarioIngresado: any;
 
   enumEstadosSolicitud = EestadoSolicitudMesa;
+  listadoChat : any;
+  cantMsg = 0;
 
   constructor(
     private auth: AuthService,
@@ -53,6 +56,7 @@ export class HomeClientePage implements OnInit {
     private soliSvc: SolicitudMesaService,
     private userSvc: UsuarioService,
     private modalController: ModalController,
+    private msgSvc : MsgConsultaService
   ) {
     this.barcodeScannerOptions = {
       showTorchButton: true,
@@ -73,6 +77,11 @@ export class HomeClientePage implements OnInit {
     this.mesaSvc.TraerTodos().valueChanges().subscribe((data => {
       this.listadoMesas = data;
     }));
+
+    this.msgSvc.TraerChat().valueChanges().subscribe(msgs => {
+      this.listadoChat = msgs;
+      this.VerMensajesNuevos();
+    });
 
     //Busco si el cliente ya realizo una solicitud
  
@@ -112,7 +121,7 @@ export class HomeClientePage implements OnInit {
 
     }
     else {
-      this.Toast('danger', 'Esta no fue la mesa asignada');
+      this.Toast('danger', 'Esta no es su mesa asignada!');
     }
 
   }
@@ -217,5 +226,16 @@ export class HomeClientePage implements OnInit {
     localStorage.removeItem('usuarioLogeado');
     this.auth.LogOutCurrentUser();
     this.router.navigateByUrl('/login');
+  }
+
+  VerMensajesNuevos(){
+    this.cantMsg = 0;
+    this.listadoChat.forEach(element => {
+      if(element.estado == "EnviadoMozo"){
+        this.cantMsg ++;
+        //Lanzar notication
+        this.Toast("success","Tiene un nuevo mensaje del mozo");
+      }
+    });
   }
 }

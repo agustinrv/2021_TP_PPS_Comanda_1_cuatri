@@ -14,13 +14,14 @@ export class ModalPedidoPage implements OnInit {
 
   @Input() pedido : any;
   algo = "so feo";
+  tiempoEstimado = 0;
 
   constructor(
     private modalCtrl : ModalController,
     private PedidoSvc : PedidosService) { }
 
   ngOnInit() {
-    //console.log(this.pedido);
+    this.CalcularTiempoEstimado();
   }
 
   dismiss(){
@@ -92,6 +93,15 @@ export class ModalPedidoPage implements OnInit {
         this.pedido.listaProductos.splice(i,1);
       }
     }
+    this.CalcularTiempoEstimado();
   }
 
+  CalcularTiempoEstimado(){
+    this.tiempoEstimado = 0;
+    this.pedido.listaProductos.forEach(producto => {
+      if(producto.tiempoDeEspera > this.tiempoEstimado){
+        this.tiempoEstimado = producto.tiempoDeEspera;
+      }
+    });
+  }
 }

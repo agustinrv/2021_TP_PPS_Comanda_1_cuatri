@@ -12,6 +12,8 @@
 
 
 <ion-content>
+  <ion-label *ngIf="this.tiempoEstimado>0">
+    <h5 class="text-center">Tiempo Estimado del pedido: {{this.tiempoEstimado}} min.</h5></ion-label>
   <ion-list *ngFor="let item of this.pedido.listaProductos">
     <ion-item>
       <ion-thumbnail slot="start">

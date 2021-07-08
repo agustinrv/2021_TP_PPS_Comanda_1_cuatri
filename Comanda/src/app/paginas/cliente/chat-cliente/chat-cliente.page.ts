@@ -40,9 +40,9 @@ export class ChatClientePage implements OnInit {
       this.solicitudDeMesaEncontrada = data[0];
     });
 
-    this.msgSvc.TraerChat().valueChanges().subscribe( msgs =>{
+    this.msgSvc.TraerChat().valueChanges().subscribe( async(msgs) =>{
       this.listadoMsg = msgs;
-      //console.log(this.listadoMsg);
+      await this.MarcarComoLeido();
     });
   }
 
@@ -61,6 +61,15 @@ export class ChatClientePage implements OnInit {
 
     setTimeout(() => {
       this.content.scrollToBottom(200);
+    });
+  }
+
+  MarcarComoLeido(){
+    this.listadoMsg.forEach(msg => {
+      if(msg.mesa == this.solicitudDeMesaEncontrada.numMesa && msg.estado == "EnviadoMozo"){
+        msg.estado = "LeidoCliente";
+        this.msgSvc.ModificarMsg(msg);
+      }
     });
   }
 

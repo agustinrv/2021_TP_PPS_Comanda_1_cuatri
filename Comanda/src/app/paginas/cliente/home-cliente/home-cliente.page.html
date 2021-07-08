@@ -73,6 +73,15 @@
       <h1 style="color: white; text-align: center; font-size: xx-large;">Esperando la asignacion de mesa</h1>
       <img class="scale-up-center" src="../../../../assets/splash/center.png">
     </ion-card-header>
+    <ion-card-content *ngIf='this.SolicitudDeMesaEnBD.estadoSolicitud == this.enumEstadosSolicitud.Pendiente'>
+      <br>
+      <br>
+      <ion-fab vertical="bottom" horizontal="center">
+        <ion-fab-button color="success" (click)="ScanQRMesa()">
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-card-content>
     <ion-card-header *ngIf="this.SolicitudDeMesaEnBD.estadoSolicitud == this.enumEstadosSolicitud.Aceptar">
       <h1 style="color: white; text-align: center; font-size: xx-large;">Mesa Asignada!!</h1>
       <h1 style="color: white; text-align: center; font-size: xx-large;">Su mesa es:
@@ -119,7 +128,7 @@
       <ion-tab-button tab="chat">
         <ion-icon color="light" name="chatbubbles"></ion-icon>
         <ion-label color="light">Chat</ion-label>
-        <!--<ion-badge>6</ion-badge>-->
+        <ion-badge *ngIf="cantMsg>0">{{cantMsg}}</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
