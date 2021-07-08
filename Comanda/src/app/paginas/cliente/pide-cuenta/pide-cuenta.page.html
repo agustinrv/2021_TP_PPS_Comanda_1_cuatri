@@ -36,18 +36,17 @@
           <p>Los descuentos ya estan aplicados al precio total.</p>
         </ion-label>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="this.satisfaccion != ''">
         <ion-label>
-          <h2>Quiere dejar una propina?</h2>
-          <p>Pagate algo raton!</p>
-          <ion-input [(ngModel)]="propina">Propina: </ion-input>
+          <ion-text>Satisfacción elegida: {{this.satisfaccion}}</ion-text>
+          <p>La propina sera del {{this.porcentaje}}% del precio total.</p>
         </ion-label>
-        <ion-button slot="end" color="warning" (click)="AgregarPropina()">Agregar</ion-button>
       </ion-item>
       <ion-item>
         <ion-label>Total:</ion-label>
         <ion-label style="text-align: end; position: relative;">${{this.precioTotal}}</ion-label>
       </ion-item>
     </ion-list>
+    <ion-button color="warning" expand="block" (click)="CargarOpciones()">Agregar Propina</ion-button>
     <ion-button color="success" expand="block" (click)="presentAlertConfirm()">Pagar</ion-button>
 </ion-content>
