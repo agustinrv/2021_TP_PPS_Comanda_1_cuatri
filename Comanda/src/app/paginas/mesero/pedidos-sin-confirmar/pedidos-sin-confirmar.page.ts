@@ -29,8 +29,7 @@ export class PedidosSinConfirmarPage implements OnInit {
   constructor(  
     private servicioPedido:PedidosService,
     private modalController:ModalController,
-    private localNotifications:LocalNotifications
-) { }
+    private localNotifications:LocalNotifications) { }
 
   ngOnInit() {
     this.CargarPedidos();

@@ -7,7 +7,8 @@ import { CompModalPedidoComponent } from '../comp-modal-pedido/comp-modal-pedido
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Router } from '@angular/router';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Vibration } from '@ionic-native/vibration/ngx';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
+
 
 @Component({
   selector: 'app-pedidos-cocinero',
@@ -19,6 +20,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
   public listaPedidosRecibidos:Pedido[]=[];
   public listaPedidosPreparando:Pedido[]=[];
   public EestadoPedido=EestadoPedido;
+  public perfil=Eperfil;
 
   public cantPedidosRecibidos:number;
   public cantPedidosPreparando:number;
@@ -66,7 +68,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
         this.cargoPedidosRecibidos=true;
       }
       
-      if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
+      if(this.cantPedidosRecibidos<this.listaPedidosRecibidos.length)
       {
           this.LanzarNotificacion(this.listaPedidosRecibidos[0].numMesa);
       }
@@ -83,7 +85,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
         this.cargoPedidosPreparando=true;
       }
 
-      if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
+      if(this.cantPedidosRecibidos<this.listaPedidosRecibidos.length)
       {
           this.LanzarNotificacion(this.listaPedidosRecibidos[0].numMesa);
       }
@@ -101,16 +103,14 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
       }
     });
      await modal.present();
-
     
   }
 
   LanzarNotificacion(numeroId:number){
     this.localNotifications.schedule([{
-      id: numeroId,
+      id: 3030,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      sound:'../../../../assets/mp3/notificacion.mp3',
      }]);
      
   }
