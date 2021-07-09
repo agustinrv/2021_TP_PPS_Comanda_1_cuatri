@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 import { Encuesta } from 'src/app/clases/Encuesta/encuesta';
+import { Pedido } from 'src/app/clases/pedido/pedido';
+import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
+import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
 import { PideCuentaPage } from '../pide-cuenta/pide-cuenta.page'; 
 
 @Component({
@@ -15,8 +18,9 @@ export class MenuEsperaClientePage implements OnInit {
   titulo : string = "Encuesta";
   ruta : string = "/encuesta-cliente";
   imagen : string = "assets/cliente/encuesta.svg";
+  listaPedidos : any = [];
 
-  constructor(private encuestaSvc : EncuestaService,private modalController : ModalController) 
+  constructor(private encuestaSvc : EncuestaService,private modalController : ModalController, private pedidoSvc : PedidosService) 
   { 
 
   }
@@ -39,6 +43,12 @@ export class MenuEsperaClientePage implements OnInit {
         
       })
     })
+
+    this.pedidoSvc.TraerPedidosDeUnCliente(user.correo).valueChanges().subscribe((data: Pedido[]) => {
+      this.listaPedidos = data.filter((value) => {
+        return value.estadoPedido == EestadoPedido.ConfirmarRecibido;
+      });
+    });
  
   } 
   

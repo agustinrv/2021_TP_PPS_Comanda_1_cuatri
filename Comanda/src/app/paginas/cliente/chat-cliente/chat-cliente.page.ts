@@ -12,47 +12,47 @@ import { UsuarioService } from 'src/app/servicios/usuario/usuario.service';
 export class ChatClientePage implements OnInit {
 
   ///Datos del usuario ingresado
-  usuarioLogeado : any;
-  usuarioDeBD : any;
+  usuarioLogeado: any;
+  usuarioDeBD: any;
   solicitudDeMesaEncontrada: any;
 
   //Listado de Mensajes
-  listadoMsg : any;
+  listadoMsg: any;
 
   newMsg = '';
 
   @ViewChild(IonContent) content: IonContent;
 
   constructor(
-    private userSvc : UsuarioService,
-    private msgSvc : MsgConsultaService,
-    private soliSvc : SolicitudMesaService
+    private userSvc: UsuarioService,
+    private msgSvc: MsgConsultaService,
+    private soliSvc: SolicitudMesaService
   ) { }
 
   ngOnInit() {
     this.usuarioLogeado = JSON.parse(localStorage.getItem('usuarioLogeado'));
     //this.mesaAsignada = JSON.parse(localStorage.getItem('MesaDeUsuario'));
-    this.userSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user =>{
+    this.userSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
       this.usuarioDeBD = user[0];
     });
 
-    this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe( data =>{
+    this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(data => {
       this.solicitudDeMesaEncontrada = data[0];
     });
 
-    this.msgSvc.TraerChat().valueChanges().subscribe( async(msgs) =>{
+    this.msgSvc.TraerChat().valueChanges().subscribe(async (msgs) => {
       this.listadoMsg = msgs;
-      await this.MarcarComoLeido();
+      //await this.MarcarComoLeido();
     });
   }
 
-  EnviarMsg(){
+  EnviarMsg() {
     let msgNuevo = {
       usuario: this.usuarioDeBD.nombre,
       fecha: new Date().getTime(),
       msg: this.newMsg,
       mesa: this.solicitudDeMesaEncontrada.numMesa,
-      estado : "EnviadoCliente"
+      estado: "EnviadoCliente"
     }
 
     this.msgSvc.CrearMsgRT(msgNuevo);
@@ -61,16 +61,19 @@ export class ChatClientePage implements OnInit {
 
     setTimeout(() => {
       this.content.scrollToBottom(200);
-    });
+    }, 2000);
   }
 
-  MarcarComoLeido(){
-    this.listadoMsg.forEach(msg => {
-      if(msg.mesa == this.solicitudDeMesaEncontrada.numMesa && msg.estado == "EnviadoMozo"){
-        msg.estado = "LeidoCliente";
-        this.msgSvc.ModificarMsg(msg);
-      }
-    });
+  MarcarComoLeido() {
+    if(this.solicitudDeMesaEncontrada != null){
+      this.listadoMsg.forEach(msg => {
+        if (msg.mesa == this.solicitudDeMesaEncontrada.numMesa && msg.estado == "EnviadoMozo") {
+          msg.estado = "LeidoCliente";
+          this.msgSvc.ModificarMsg(msg);
+        }
+      });
+    }
+
   }
 
 }

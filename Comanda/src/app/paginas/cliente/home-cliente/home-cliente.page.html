@@ -125,7 +125,7 @@
         <ion-label color="light">Pedir</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="chat">
+      <ion-tab-button tab="chat" (click)="MarcarComoLeido()">
         <ion-icon color="light" name="chatbubbles"></ion-icon>
         <ion-label color="light">Chat</ion-label>
         <ion-badge *ngIf="cantMsg>0">{{cantMsg}}</ion-badge>

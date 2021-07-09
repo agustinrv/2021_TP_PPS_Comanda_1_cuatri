@@ -44,7 +44,7 @@ export class HomeClientePage implements OnInit {
   auxUsuarioIngresado: any;
 
   enumEstadosSolicitud = EestadoSolicitudMesa;
-  listadoChat : any;
+  listadoChat: any;
   cantMsg = 0;
 
   constructor(
@@ -56,7 +56,7 @@ export class HomeClientePage implements OnInit {
     private soliSvc: SolicitudMesaService,
     private userSvc: UsuarioService,
     private modalController: ModalController,
-    private msgSvc : MsgConsultaService
+    private msgSvc: MsgConsultaService
   ) {
     this.barcodeScannerOptions = {
       showTorchButton: true,
@@ -84,10 +84,10 @@ export class HomeClientePage implements OnInit {
     });
 
     //Busco si el cliente ya realizo una solicitud
- 
+
     this.soliSvc.TraerUno(this.usuarioLogeado.correo).valueChanges().subscribe(user => {
       this.SolicitudDeMesaEnBD = user[0];
-      if(this.SolicitudDeMesaEnBD != null){
+      if (this.SolicitudDeMesaEnBD != null) {
         this.BanderaMostrarBienvenido = false;
         this.BanderaMostrarEspera = true;
         this.BanderaMenuCliente = false;
@@ -172,53 +172,49 @@ export class HomeClientePage implements OnInit {
     toast.present();
   }
 
-  public IrMenuBienvenida()
-  {
-      this.BanderaMostrarBienvenido=true;
-      this.BanderaMostrarEspera=false;
-      this.BanderaMenuCliente=false;
-      this.BanderaListaEspera=false;
+  public IrMenuBienvenida() {
+    this.BanderaMostrarBienvenido = true;
+    this.BanderaMostrarEspera = false;
+    this.BanderaMenuCliente = false;
+    this.BanderaListaEspera = false;
   }
 
-  public IrMenuEspera(){
-      this.BanderaMostrarBienvenido=false;
-      this.BanderaMostrarEspera=true;
-      this.BanderaMenuCliente=false;
-      this.BanderaListaEspera=false;
+  public IrMenuEspera() {
+    this.BanderaMostrarBienvenido = false;
+    this.BanderaMostrarEspera = true;
+    this.BanderaMenuCliente = false;
+    this.BanderaListaEspera = false;
   }
-  public IrMenuCliente(){
-      this.BanderaMostrarBienvenido=false;
-      this.BanderaMostrarEspera=false;
-      this.BanderaMenuCliente=true;
-      this.BanderaListaEspera=false;
+  public IrMenuCliente() {
+    this.BanderaMostrarBienvenido = false;
+    this.BanderaMostrarEspera = false;
+    this.BanderaMenuCliente = true;
+    this.BanderaListaEspera = false;
   }
 
-  public IrMenuEsperaCliente()
-  {
-    this.BanderaMostrarBienvenido=false;
-    this.BanderaMostrarEspera=false;
-    this.BanderaMenuCliente=true;
-    this.BanderaListaEspera=false;
+  public IrMenuEsperaCliente() {
+    this.BanderaMostrarBienvenido = false;
+    this.BanderaMostrarEspera = false;
+    this.BanderaMenuCliente = true;
+    this.BanderaListaEspera = false;
     this.router.navigateByUrl('menu-espera-cliente');
   }
 
-  public IrMenuListaEspera()
-  {
-    this.BanderaMostrarBienvenido=false;
-    this.BanderaMostrarEspera=false;
-    this.BanderaMenuCliente=false;
-    this.BanderaListaEspera=true;
+  public IrMenuListaEspera() {
+    this.BanderaMostrarBienvenido = false;
+    this.BanderaMostrarEspera = false;
+    this.BanderaMenuCliente = false;
+    this.BanderaListaEspera = true;
   }
 
-  public async IrGraficos()
-  {
+  public async IrGraficos() {
     const modal = await this.modalController.create({
       component: ModalGraficosEsperaComponent,
       componentProps: {
-        
+
       }
     });
-    await modal.present();   
+    await modal.present();
   }
 
 
@@ -228,14 +224,29 @@ export class HomeClientePage implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  VerMensajesNuevos(){
+  VerMensajesNuevos() {
     this.cantMsg = 0;
-    this.listadoChat.forEach(element => {
-      if(element.estado == "EnviadoMozo"){
-        this.cantMsg ++;
-        //Lanzar notication
-        this.Toast("success","Tiene un nuevo mensaje del mozo");
+    if (this.listadoChat != null) {
+      this.listadoChat.forEach(element => {
+        if (element.estado == "EnviadoMozo") {
+          this.cantMsg++;
+          //Lanzar notication
+          this.Toast("success", "Tiene un nuevo mensaje del mozo");
+        }
+      });
+    }
+  }
+
+  MarcarComoLeido() {
+    console.log(this.numeroMesa);
+    this.cantMsg = 0;
+    this.listadoChat.forEach(msg => {
+      if (msg.mesa == this.numeroMesa && msg.estado == "EnviadoMozo") {
+        msg.estado = "LeidoCliente";
+        this.msgSvc.ModificarMsg(msg);
       }
     });
   }
+
+
 }

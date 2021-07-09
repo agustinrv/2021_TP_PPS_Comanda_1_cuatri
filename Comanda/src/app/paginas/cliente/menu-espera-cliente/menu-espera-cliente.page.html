@@ -42,7 +42,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button [disabled]='' style="height: 18vh;" class="botonEstado" expand="block" color="warning" (click)="ModalPedirCuenta()">
+        <ion-button [disabled]='this.listaPedidos.length == 0' style="height: 18vh;" class="botonEstado" expand="block" color="warning" (click)="ModalPedirCuenta()">
           <img src='assets/cliente/pago.svg' style="height: 14vh;">
           <h6 class="pl-3">Pedir Cuenta</h6>
         </ion-button>
