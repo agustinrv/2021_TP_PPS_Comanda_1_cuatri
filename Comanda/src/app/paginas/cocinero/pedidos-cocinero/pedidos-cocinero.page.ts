@@ -112,7 +112,7 @@ export class PedidosCocineroPage implements OnInit,OnDestroy {
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
      }]);
-     
+
   }
 
   public CerrarSesion(){

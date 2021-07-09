@@ -137,7 +137,7 @@ export class HomeMeseroPage implements OnInit {
       title: 'El Mazacote',
       text: 'Le llego un mensaje de la mesa: ' + numMesa,
       sound: true ? 'file://sound.mp3': 'file://beep.caf',
-      icon: '../../../assets/splash/center.png'
+      //icon: '../../../../assets/splash/center.png'
      }]);
 
   }

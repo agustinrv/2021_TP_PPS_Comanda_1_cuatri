@@ -108,7 +108,8 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
       id: 20000,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      color: 'ffffff'
+      //icon: "file://assets/ic_notifications.png",
+      //smallIcon:"file://assets/ic_notification_small.png",
      }]);
   }
 
