@@ -19,6 +19,8 @@ export class HomeMeseroPage implements OnInit {
   //Mesas
   listadoMesasOrdenada : any;
 
+  public usuarioLogeado:any={};
+
 
   cantMsg = 0;
   listadoChat : any[];
@@ -35,6 +37,9 @@ export class HomeMeseroPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.usuarioLogeado=JSON.parse(localStorage.getItem('usuarioLogeado'));
+
     this.mesaSvc.TraerOrdenado().valueChanges().subscribe(mesa => {
       this.listadoMesasOrdenada = mesa;
     });
@@ -43,6 +48,7 @@ export class HomeMeseroPage implements OnInit {
       this.listadoChat = msgs;
       this.VerMensajesNuevos();
     });
+
   }
 
   CerrarSesion(){
@@ -131,7 +137,7 @@ export class HomeMeseroPage implements OnInit {
       title: 'El Mazacote',
       text: 'Le llego un mensaje de la mesa: ' + numMesa,
       sound: true ? 'file://sound.mp3': 'file://beep.caf',
-      icon: '../../../assets/splash/center.png'
+      //icon: '../../../../assets/splash/center.png'
      }]);
 
   }

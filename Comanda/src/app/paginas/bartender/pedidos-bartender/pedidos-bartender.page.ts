@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalPedidoComponent } from '../modal-pedido/modal-pedido.component';
 import { AuthService } from 'src/app/servicios/auth/auth.service';
 import { Router } from '@angular/router';
+import { Eperfil } from 'src/app/enumerados/Eperfil/eperfil';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
   public cargoPedidosPreparando=false;
 
   public EestadoPedido:EestadoPedido=EestadoPedido.Recibido;
+  public perfil=Eperfil;
 
 
 
@@ -60,6 +62,7 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
     this.ngOnDestroy();
   }
 
+
   private CargarPedidos()
   {
     this.subscribePedidosRecibidos=this.servicioPedido.TraerPedidosRecibidos().valueChanges().subscribe((data:Pedido[])=>{
@@ -73,7 +76,7 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
         this.cargoPedidosRecibidos=true;
       }
       
-      if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
+      if(this.cantPedidosRecibidos<this.listaPedidosRecibidos.length)
       {
           this.LanzarNotificacion(this.listaPedidosRecibidos[0].numMesa);
       }
@@ -91,7 +94,7 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
         this.cargoPedidosPreparando=true;
       }
 
-      if(this.cantPedidosRecibidos>this.listaPedidosRecibidos.length)
+      if(this.cantPedidosRecibidos<this.listaPedidosRecibidos.length)
       {
           this.LanzarNotificacion(this.listaPedidosRecibidos[0].numMesa);
       }
@@ -102,10 +105,11 @@ export class PedidosBartenderPage implements OnInit,OnDestroy {
 
   LanzarNotificacion(numeroId:number){
     this.localNotifications.schedule([{
-      id: numeroId,
+      id: 20000,
       title:'El Mazacote',
       text: 'Nuevo pedido para preparar',
-      sound:'../../../../assets/mp3/notificacion.mp3',
+      //icon: "file://assets/ic_notifications.png",
+      //smallIcon:"file://assets/ic_notification_small.png",
      }]);
   }
 

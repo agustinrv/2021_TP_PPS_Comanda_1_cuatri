@@ -59,29 +59,34 @@ export class LoginPage implements OnInit {
 
         localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioLogin));
         console.log(usuarioLogin);
-        this.Reproducir('assets/mp3/correcto.mp3');
+        
 
         switch (usuarioLogin.perfil) {
           case Eperfil.Dueño:
             this.router.navigateByUrl('/habilitar-cliente');
             console.log(usuarioLogin.perfil);
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.Supervisor:
             this.router.navigateByUrl('/habilitar-cliente');
             console.log(usuarioLogin.perfil);
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.Anonimo:
             this.router.navigateByUrl('/home-anonimo');
             console.log(usuarioLogin.perfil);
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.Metre:
             this.router.navigateByUrl('/home-metre');
             console.log(usuarioLogin.perfil);
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.Cliente:
             if(usuarioLogin.habilitado)
             {
               this.router.navigateByUrl('/home-cliente');
+              this.Reproducir('assets/mp3/correcto.mp3');
             }
             else
             {
@@ -93,12 +98,15 @@ export class LoginPage implements OnInit {
           case Eperfil.Cocinero:
             this.router.navigateByUrl('/pedidos-cocinero');
             console.log(usuarioLogin.perfil);
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.BarTender:
             this.router.navigateByUrl('/pedidos-bartender');
+            this.Reproducir('assets/mp3/correcto.mp3');
             break;
           case Eperfil.Mozo:
             this.router.navigateByUrl('home-mesero');
+            this.Reproducir('assets/mp3/correcto.mp3');
             console.log(usuarioLogin.perfil);
             break;
           ///Agregar los otros homes

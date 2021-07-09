@@ -15,7 +15,8 @@
       <ion-avatar slot="start" >
         <img [src]='unPedido.cliente.foto'>
       </ion-avatar>
-      <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+      <ion-label color='dark' *ngIf='unPedido.cliente.perfil===perfil.Cliente'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+      <ion-label color='dark' *ngIf='unPedido.cliente.perfil===perfil.Anonimo'>{{unPedido.cliente.nombre}}</ion-label>
       <ion-icon  class='bg-dark text-warning rounded' name="alert-circle" slot="end"></ion-icon>
   </ion-item>
 
@@ -23,7 +24,8 @@
         <ion-avatar slot="start" >
           <img [src]='unPedido.cliente.foto'>
         </ion-avatar>
-        <ion-label color='dark'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-label color='dark' *ngIf='unPedido.cliente.perfil===perfil.Cliente'>{{unPedido.cliente.apellido +' '+ unPedido.cliente.nombre}}</ion-label>
+        <ion-label color='dark' *ngIf='unPedido.cliente.perfil===perfil.Anonimo'>{{unPedido.cliente.nombre}}</ion-label>
         <ion-icon  class='bg-dark text-danger rounded' name="alert-circle" slot="end"></ion-icon>
     </ion-item>
 
