@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ActionSheetController, AlertController, ModalController, ToastController } from '@ionic/angular';
 import { Pedido } from 'src/app/clases/pedido/pedido';
@@ -32,7 +33,8 @@ export class PideCuentaPage implements OnInit {
     private mesaSvc: MesaService,
     private actionSheetController: ActionSheetController,
     private scanner: BarcodeScanner,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,10 @@ export class PideCuentaPage implements OnInit {
 
       this.CrearListadoProductos();
     });
+  }
+
+  public ngOnDestroy() {
+    
   }
 
   dismiss() {
@@ -109,6 +115,12 @@ export class PideCuentaPage implements OnInit {
     });
     this.ModificarMesa(numMesa);
     this.Confirmar("Pedido Pagado!", "Su pago fue enviado al Mozo, espere la confirmacion. Gracias!");
+    // setTimeout(() => {
+    //   localStorage.setItem('cerrarSesion', 'si');
+    //   this.router.navigateByUrl('home-cliente');
+    //   this.dismiss();
+    //   this.ngOnDestroy();
+    // }, 2000);
   }
 
   ModificarMesa(num: any) {
@@ -239,20 +251,25 @@ export class PideCuentaPage implements OnInit {
   CargarPropina(opc){
     this.CalcularPrecioTotal();
     this.porcentaje = 0;
+    this.propina = 0;
     if(opc == 'Excelente'){
-      this.precioTotal += this.precioTotal * 0.20;
+      this.propina = this.precioTotal * 0.20;
+      this.precioTotal += this.propina;
       this.porcentaje = 20;
     }
     else if(opc == 'Muy Bien'){
-      this.precioTotal += this.precioTotal * 0.15;
+      this.propina = this.precioTotal * 0.15;
+      this.precioTotal += this.propina;
       this.porcentaje = 15;
     }
     else if(opc == 'Bien'){
-      this.precioTotal += this.precioTotal * 0.10;
+      this.propina = this.precioTotal * 0.10;
+      this.precioTotal += this.propina;
       this.porcentaje = 10;
     }
     else if(opc == 'Regular'){
-      this.precioTotal += this.precioTotal * 0.05;
+      this.propina = this.precioTotal * 0.05;
+      this.precioTotal += this.propina;
       this.porcentaje = 5;
     }
     this.satisfaccion = opc;

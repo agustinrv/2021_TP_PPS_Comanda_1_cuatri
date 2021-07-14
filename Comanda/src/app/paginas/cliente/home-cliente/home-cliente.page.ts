@@ -46,6 +46,7 @@ export class HomeClientePage implements OnInit {
   enumEstadosSolicitud = EestadoSolicitudMesa;
   listadoChat: any;
   cantMsg = 0;
+  val = "";
 
   constructor(
     private auth: AuthService,
@@ -91,6 +92,9 @@ export class HomeClientePage implements OnInit {
         this.BanderaMostrarBienvenido = false;
         this.BanderaMostrarEspera = true;
         this.BanderaMenuCliente = false;
+      }
+      if(user.length == 0){
+        this.IrMenuBienvenida();
       }
     });
   }

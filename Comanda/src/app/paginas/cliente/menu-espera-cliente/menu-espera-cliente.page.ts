@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 import { Encuesta } from 'src/app/clases/Encuesta/encuesta';
@@ -6,6 +7,7 @@ import { Pedido } from 'src/app/clases/pedido/pedido';
 import { EestadoPedido } from 'src/app/enumerados/EestadoPedido/eestado-pedido';
 import { EncuestaService } from 'src/app/servicios/encuesta/encuesta.service';
 import { PedidosService } from 'src/app/servicios/pedidos/pedidos.service';
+import { SolicitudMesaService } from 'src/app/servicios/solicitudMesa/solicitud-mesa.service';
 import { PideCuentaPage } from '../pide-cuenta/pide-cuenta.page'; 
 
 @Component({
@@ -19,8 +21,11 @@ export class MenuEsperaClientePage implements OnInit {
   ruta : string = "/encuesta-cliente";
   imagen : string = "assets/cliente/encuesta.svg";
   listaPedidos : any = [];
-
-  constructor(private encuestaSvc : EncuestaService,private modalController : ModalController, private pedidoSvc : PedidosService) 
+  usuarioLogeado : any;
+  SolicitudDeMesaEnBD : any;
+  constructor(private encuestaSvc : EncuestaService,private modalController : ModalController, private pedidoSvc : PedidosService, 
+    private soliSvc: SolicitudMesaService,
+    private router: Router) 
   { 
 
   }
@@ -49,9 +54,19 @@ export class MenuEsperaClientePage implements OnInit {
         return value.estadoPedido == EestadoPedido.ConfirmarRecibido;
       });
     });
- 
+    
+    this.soliSvc.TraerUno(user.correo).valueChanges().subscribe(user => {
+      this.SolicitudDeMesaEnBD = user;
+      if (this.SolicitudDeMesaEnBD.length == 0) {
+        this.router.navigateByUrl('home-cliente');
+        this.ngOnDestroy();
+      }
+    });
   } 
   
+  ngOnDestroy(){
+
+  }
 
 
   async ModalPedirCuenta() {
