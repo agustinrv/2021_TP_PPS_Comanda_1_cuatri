@@ -71,18 +71,6 @@ export class HabilitarClientePage implements OnInit {
   {
     this.fire.BorrarUno(user);
     this.enviarEmail("registro_rechazado",user.correo,user.nombre);
-
-    this.auth.Login(user.correo,user.clave).then((response:any)=>{
-      console.log(response.user.email);
-      response.user.delete();
-      console.log("Eliminado de auth");
-
-      this.auth.Login(this.usuarioLogeado.correo, this.usuarioLogeado.clave).then((response:any)=>{
-        console.log(response.user.email);
-      });
-
-    })
-    
   }
   
 

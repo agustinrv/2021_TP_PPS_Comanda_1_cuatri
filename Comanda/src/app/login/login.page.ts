@@ -44,17 +44,27 @@ export class LoginPage implements OnInit {
 
     let loading = this.presentLoading()
 
-    this.authServicie.Login(this.unUsuario.correo, this.unUsuario.clave).then(() => {
+    this.authServicie.Login(this.unUsuario.correo, this.unUsuario.clave).then((response:any) => {
 
       this.servicioUsuario.TraerUno(this.unUsuario.correo).valueChanges().pipe(take(1)).subscribe((data)=> {
-        let datosUsuario: any = data;
 
+        let datosUsuario: any = data;
         let usuarioLogin: any = {};
-        usuarioLogin.correo = this.unUsuario.correo;
-        usuarioLogin.clave = this.unUsuario.clave;
-        usuarioLogin.perfil = datosUsuario[0].perfil;
-        usuarioLogin.nombre = datosUsuario[0].nombre;
-        usuarioLogin.habilitado = datosUsuario[0].habilitado;
+
+        if(data.length != 0)
+        {
+          usuarioLogin.correo = this.unUsuario.correo;
+          usuarioLogin.clave = this.unUsuario.clave;
+          usuarioLogin.perfil = datosUsuario[0].perfil;
+          usuarioLogin.nombre = datosUsuario[0].nombre;
+          usuarioLogin.habilitado = datosUsuario[0].habilitado;
+        }
+        else
+        {
+          response.user.delete();
+          this.Toast('danger','Su solicitud fue rechazada por un supervisor',2000);
+        }
+        
         
 
         localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioLogin));
@@ -109,11 +119,12 @@ export class LoginPage implements OnInit {
             this.Reproducir('assets/mp3/correcto.mp3');
             console.log(usuarioLogin.perfil);
             break;
-          ///Agregar los otros homes
+          
           
 
         }
-        //this.router.navigateByUrl('/home');
+
+        
       });
     }).catch(async () => {
       (await loading).onDidDismiss().then(() => {
