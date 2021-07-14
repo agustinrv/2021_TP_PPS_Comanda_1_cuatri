@@ -146,18 +146,17 @@ export class AltaClientePage implements OnInit {
 
 		if (this.tipo == 'socio') {
 
-			let contrasenia: string = this.form.get('contrasenia').value;
-
 			this.socio.nombre = this.form.get('nombre').value;
 			this.socio.apellido = this.form.get('apellido').value;
 			this.socio.dni = this.form.get('dni').value;
 			this.socio.correo = this.form.get('correo').value;
+			this.socio.clave = this.form.get('contrasenia').value;
 			this.socio.foto = this.form.get('foto').value;
 			this.socio.habilitado = false;
 
 
 
-			this.auth.Register(this.socio.correo, contrasenia).then(response => {
+			this.auth.Register(this.socio.correo, this.socio.clave).then(response => {
 
 				this.socio.id = response.user.uid;
 				let email = response.user.email;

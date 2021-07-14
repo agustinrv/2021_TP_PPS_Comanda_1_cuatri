@@ -21,6 +21,8 @@ export class HabilitarClientePage implements OnInit {
 
   public cargoListadoUsuarios=false;
 
+  usuarioLogeado : any;
+
   constructor(
     private fire: UsuarioService,
     private auth: AuthService,
@@ -28,6 +30,10 @@ export class HabilitarClientePage implements OnInit {
     private localNotifications:LocalNotifications) { }
 
   ngOnInit() {
+
+    this.usuarioLogeado = JSON.parse(localStorage.getItem('usuarioLogeado'));
+
+
     this.fire.TraerTodos().valueChanges().subscribe((users)=>{
       console.log(users);
       this.listadoUsuarios = users.filter((value)=>{
@@ -61,10 +67,22 @@ export class HabilitarClientePage implements OnInit {
     this.enviarEmail("registro_aprobado",user.correo,user.nombre);
   }
 
-  RechazarCliente(user){
-    //console.log("Borrando usuario");
+  RechazarCliente(user)
+  {
     this.fire.BorrarUno(user);
     this.enviarEmail("registro_rechazado",user.correo,user.nombre);
+
+    this.auth.Login(user.correo,user.clave).then((response:any)=>{
+      console.log(response.user.email);
+      response.user.delete();
+      console.log("Eliminado de auth");
+
+      this.auth.Login(this.usuarioLogeado.correo, this.usuarioLogeado.clave).then((response:any)=>{
+        console.log(response.user.email);
+      });
+
+    })
+    
   }
   
 
