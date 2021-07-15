@@ -77,6 +77,6 @@ Link: <a>https://drive.google.com/file/d/1Tja-Nf0M94lIrWs1d9FKJ51kqLjeMQW2/view<
 </p>
 
 <p align="center">
-<img src="https://i.imgur.com/au35yc4.png" >
+<img src="https://i.imgur.com/sxu5k8C.png" >
 </p>
 
