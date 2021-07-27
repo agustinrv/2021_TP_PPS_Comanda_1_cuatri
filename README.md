@@ -19,37 +19,38 @@
 
 <h1>Qr para manejar la app</h1>
 
-<p align="center">
+
 <img src="./Readme/Bienvenido.jpeg" width="300px">
-</p>
+<img src="./Readme/Mesa 1.jpeg" width="300px">
 
-<p align="center">
-<img src="./Readme/Mesa 1.jpeg" >
-</p>
 
-<p align="center">
-<img src="./Readme/Mesa 2.jpeg" >
-</p>
 
-<p align="center">
-<img src="./Readme/Mesa 3.jpeg" >
-</p>
 
-<p align="center">
-<img src="./Readme/Propina.jpeg" >
-</p>
-
-<p align="center">
-<img src="./Readme/Hamburguesa.jpeg" >
-</p>
 
 
 <p align="center">
-<img src="./Readme/Coca Cola.jpeg" >
+<img src="./Readme/Mesa 2.jpeg" width="300px">
 </p>
 
 <p align="center">
-<img src="./Readme/Torta de chocolate.jpeg" >
+<img src="./Readme/Mesa 3.jpeg" width="300px">
+</p>
+
+<p align="center">
+<img src="./Readme/Propina.jpeg" width="300px">
+</p>
+
+<p align="center">
+<img src="./Readme/Hamburguesa.jpeg" width="300px">
+</p>
+
+
+<p align="center">
+<img src="./Readme/Coca Cola.jpeg" width="300px">
+</p>
+
+<p align="center">
+<img src="./Readme/Torta de chocolate.jpeg" width="300px">
 </p>
 
 <h1 align="center"> SEMANA 1 </h1> 
