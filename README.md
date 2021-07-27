@@ -17,6 +17,10 @@
 <br>
 <br>
 
+
+
+
+
 <h1 align="center"> SEMANA 1 </h1> 
 
 <p align="center">
@@ -72,11 +76,10 @@ Link: <a>https://drive.google.com/file/d/1Tja-Nf0M94lIrWs1d9FKJ51kqLjeMQW2/view<
 
 <h1 align="center"> SEMANA 6 </h1> 
 
-<p align="center">
-<img src="https://i.imgur.com/Cnx0hag.png" >
-</p>
 
 <p align="center">
 <img src="https://i.imgur.com/sxu5k8C.png" >
 </p>
+
+
 
