@@ -19,9 +19,11 @@
 
 <h1>Qr para manejar la app</h1>
 
+<div>
+  <img src="./Readme/Bienvenido.jpeg" width="300px">
+  <img src="./Readme/Mesa 1.jpeg" width="300px">
+</div>
 
-<img src="./Readme/Bienvenido.jpeg" width="300px">
-<img src="./Readme/Mesa 1.jpeg" width="300px">
 
 
 
