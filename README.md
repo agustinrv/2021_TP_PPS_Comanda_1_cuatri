@@ -20,7 +20,7 @@
 <h1>Qr para manejar la app</h1>
 
 <p align="center">
-<img src="./Readme/Bienvenido.jpeg" >
+<img src="./Readme/Bienvenido.jpeg" width="300px">
 </p>
 
 <p align="center">
