@@ -22,38 +22,14 @@
 <div>
   <img src="./Readme/Bienvenido.jpeg" width="300px">
   <img src="./Readme/Mesa 1.jpeg" width="300px">
+  <img src="./Readme/Mesa 2.jpeg" width="300px">
+  <img src="./Readme/Mesa 3.jpeg" width="300px">
+  <img src="./Readme/Propina.jpeg" width="300px">
+  <img src="./Readme/Hamburguesa.jpeg" width="300px">
+  <img src="./Readme/Coca Cola.jpeg" width="300px">
+  <img src="./Readme/Torta de chocolate.jpeg" width="300px">
 </div>
 
-
-
-
-
-
-
-<p align="center">
-<img src="./Readme/Mesa 2.jpeg" width="300px">
-</p>
-
-<p align="center">
-<img src="./Readme/Mesa 3.jpeg" width="300px">
-</p>
-
-<p align="center">
-<img src="./Readme/Propina.jpeg" width="300px">
-</p>
-
-<p align="center">
-<img src="./Readme/Hamburguesa.jpeg" width="300px">
-</p>
-
-
-<p align="center">
-<img src="./Readme/Coca Cola.jpeg" width="300px">
-</p>
-
-<p align="center">
-<img src="./Readme/Torta de chocolate.jpeg" width="300px">
-</p>
 
 <h1 align="center"> SEMANA 1 </h1> 
 
